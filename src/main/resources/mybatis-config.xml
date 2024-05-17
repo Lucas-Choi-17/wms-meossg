@@ -16,13 +16,15 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/meossgdb"/> <!-- URL database 변경 필요-->
+                <property name="url" value="jdbc:mysql://mysql.coffit.today/meossgdb"/> <!-- URL database 변경 필요-->
                 <property name="username" value="meossg"/> <!-- username 변경 필요-->
                 <property name="password" value="meossg"/> <!-- password 변경 필요-->
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="sql/product/product-mapper.xml"/>
+        <mapper resource="sql/mall/mall-mapper.xml"/>
+        <mapper resource="sql/member/member-mapper.xml"/>
+        <mapper resource="sql/warehouse/warehouse-mapper.xml"/>
     </mappers>
 </configuration>
