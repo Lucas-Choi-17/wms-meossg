@@ -1,11 +1,13 @@
 package com.meossg.mall.view;
 
+import com.meossg.mall.model.dto.AdminDTO;
+
 import java.util.Scanner;
 
 public class MallMenuView {
 
 
-    public void mallMenu() {
+    public void mallMenu(AdminDTO admin) {
         String menu = """
                 ============================
                 1. 상품관리

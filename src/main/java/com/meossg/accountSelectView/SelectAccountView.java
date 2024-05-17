@@ -1,5 +1,7 @@
 package com.meossg.accountSelectView;
 
+import com.meossg.mall.view.MallLoginView;
+
 import java.util.Scanner;
 
 public class SelectAccountView {
@@ -25,6 +27,7 @@ public class SelectAccountView {
                     break;
                 case "2":
                     // 쇼핑몰 관리자 접속
+                    new MallLoginView().mallLogin();
                     break;
                 case "3":
                     // 창고 관리자 접속
