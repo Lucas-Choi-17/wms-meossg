@@ -5,6 +5,7 @@ import com.meossg.mall.model.dto.AdminDTO;
 import java.util.Scanner;
 
 public class MallMenuView {
+    MallMemberMenuView MemberMenuView = new MallMemberMenuView();
 
 
     public void mallMenu(AdminDTO admin) {
@@ -16,7 +17,7 @@ public class MallMenuView {
                 4. 통계 및 분석
                 0. 로그아웃
                 ============================
-                선택 :\n""";
+                선택 :\t""";
         while (true) {
             System.out.print(menu);
             String input = new Scanner(System.in).next();
@@ -29,7 +30,7 @@ public class MallMenuView {
                     // 배송 관리
                     break;
                 case "3":
-                    // 회원 관리
+                    MemberMenuView.memberManageMenu();
                     break;
                 case "4":
                     // 통계 및 분석

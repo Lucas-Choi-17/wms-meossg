@@ -16,4 +16,22 @@
         AND A.ID = #{ id }
         AND A.PASSWORD = #{ password }
     </select>
+
+    <select id="selectAllMember" resultType="MemberDTO">
+        SELECT
+        A.ID,
+        A.NAME,
+        A.PHONE,
+        A.ADDRESS,
+        A.PASSWORD
+        FROM member A
+        ORDER BY ID
+    </select>
+
+    <update id="updateMemberInfo">
+        UPDATE member
+        SET PHONE = #{ phone },
+            ADDRESS = #{ address }
+        WHERE NAME = #{ name }
+    </update>
 </mapper>
