@@ -16,7 +16,7 @@ public class MallMenuView {
                 4. 통계 및 분석
                 0. 로그아웃
                 ============================
-                선택 :\n""";
+                선택 :\s""";
         while (true) {
             System.out.print(menu);
             String input = new Scanner(System.in).next();
