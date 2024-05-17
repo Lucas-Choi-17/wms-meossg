@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @ToString
 public class ProductDTO {
-    private String id;
+    private int id;
     private String name;
     private int price;
     private String size;
