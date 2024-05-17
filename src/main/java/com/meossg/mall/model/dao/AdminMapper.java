@@ -11,4 +11,6 @@ public interface AdminMapper {
     AdminDTO verifyLogin(AdminDTO admin);
 
     List<MemberDTO> selectAllMember();
+
+    int updateMemberInfo(MemberDTO member);
 }

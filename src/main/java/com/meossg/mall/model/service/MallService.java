@@ -62,6 +62,21 @@ public class MallService {
         sqlSession.close();
         return memberList;
     }
+
+    public boolean updateMemberInfo(MemberDTO member) {
+        SqlSession sqlSession = getSqlSession();
+        adminMapper = sqlSession.getMapper(AdminMapper.class);
+
+        int result = adminMapper.updateMemberInfo(member);
+
+        if (result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+
+        return result>0;
+    }
 }
 
 
