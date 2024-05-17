@@ -23,6 +23,7 @@ public class MallMenuView {
             switch (input) {
                 case "1":
                     // 상품 관리
+                    new MallProductManageView().productManagingMenu();
                     break;
                 case "2":
                     // 배송 관리
