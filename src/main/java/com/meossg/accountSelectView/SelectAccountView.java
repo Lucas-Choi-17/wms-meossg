@@ -20,7 +20,6 @@ public class SelectAccountView {
         while (true) {
             System.out.print(menu);
             String input = sc.next();
-            sc.nextLine();
             switch (input) {
                 case "1":
                     // 고객 접속
