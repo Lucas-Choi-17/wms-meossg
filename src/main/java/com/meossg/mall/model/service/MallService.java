@@ -15,12 +15,26 @@ public class MallService {
 
     private AdminMapper adminMapper;
 
-    public static int addProduct(ProductDTO product) {
+    public static void addProduct(ProductDTO product) {
 
         SqlSession sqlSession = getSqlSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+        int result = productMapper.addProduct(product);
+        if (result > 0) {
+            System.out.println("상품 등록 성공!!");
+            sqlSession.commit();
+        } else {
+            System.out.println("상품 등록 실패!!");
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+    }
+
+    public static int modifyProduct(ProductDTO product) {
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
         try {
-            int result = productMapper.addProduct(product);
+            int result = productMapper.modifyProduct(product);
             sqlSession.commit();
             return result;
         } catch (Exception e) {

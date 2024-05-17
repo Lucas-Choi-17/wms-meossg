@@ -11,4 +11,28 @@
         null, #{name}, #{price}, #{size}, #{color}, #{availability}
         )
     </insert>
+
+    <update id="modifyProduct">
+        UPDATE
+        PRODUCT
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                NAME = #{name},
+            </if>
+            <if test="price != null and price gt 0">
+                PRICE = #{price},
+            </if>
+            <if test="size != null and size != ''">
+                SIZE = #{size},
+            </if>
+            <if test="color != null and color != ''">
+                COLOR = #{color},
+            </if>
+            <if test="availability != null and availability != ''">
+                AVAILABILITY = #{availability}
+            </if>
+        </trim>
+        where
+        id = #{id}
+    </update>
 </mapper>
