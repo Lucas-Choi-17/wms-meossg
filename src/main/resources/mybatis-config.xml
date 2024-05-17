@@ -23,6 +23,8 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="sql/product/product-mapper.xml"/>
+        <mapper resource="sql/mall/mall-mapper.xml"/>
+        <mapper resource="sql/member/member-mapper.xml"/>
+        <mapper resource="sql/warehouse/warehouse-mapper.xml"/>
     </mappers>
 </configuration>
