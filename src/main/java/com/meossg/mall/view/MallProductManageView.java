@@ -18,7 +18,7 @@ public class MallProductManageView {
                 4. 재고 조회
                 0. 뒤로 가기
                 ============================
-                선택 :\n""";
+                선택 :\s""";
 
         while (true) {
             System.out.print(menu);
@@ -30,6 +30,7 @@ public class MallProductManageView {
                     break;
                 case "2":
                     // 상품 정보 변경
+                    MallController.modifyProduct(modifyInformation());
                     break;
                 case "3":
                     // 발주
@@ -44,6 +45,31 @@ public class MallProductManageView {
                     break;
             }
         }
+    }
+
+    private ProductDTO modifyInformation() {
+
+        Scanner sc = new Scanner(System.in);
+        ProductDTO product = new ProductDTO();
+        System.out.println("---------< 상품 정보 변경 >---------");
+        System.out.print("변경하려는 상품의 id를 입력하세요 : ");
+        product.setId(sc.nextInt());
+        sc.nextLine();
+        System.out.print("이름: ");
+        product.setName(sc.nextLine());
+        System.out.print("가격: ");
+        String price = sc.nextLine();
+        product.setPrice(price.compareTo("") == 0 ? 0 : Integer.parseInt(price));
+        System.out.print("크기: ");
+        product.setSize(sc.nextLine());
+        System.out.print("색상: ");
+        product.setColor(sc.nextLine());
+        System.out.print("판매여부: ");
+        product.setAvailability(sc.nextLine());
+
+        System.out.println(product);
+
+        return product;
     }
 
     private ProductDTO newProduct() {
