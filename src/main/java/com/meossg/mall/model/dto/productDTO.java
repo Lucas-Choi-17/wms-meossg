@@ -1,4 +1,4 @@
-package com.meossg.product.model.dto;
+package com.meossg.mall.model.dto;
 
 
 import lombok.*;
