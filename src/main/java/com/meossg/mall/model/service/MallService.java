@@ -3,16 +3,17 @@ package com.meossg.mall.model.service;
 import com.meossg.mall.model.dao.AdminMapper;
 import com.meossg.mall.model.dao.ProductMapper;
 import com.meossg.mall.model.dto.AdminDTO;
-import com.meossg.mall.model.dto.ProductDTO;
 import com.meossg.mall.model.dto.MemberDTO;
+import com.meossg.mall.model.dto.ProductDTO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
-import java.util.Map;
 
 import static com.meossg.common.MyBatisTemplate.getSqlSession;
 
 public class MallService {
+
+    private AdminMapper adminMapper;
 
     public static int addProduct(ProductDTO product) {
 
@@ -29,8 +30,6 @@ public class MallService {
             sqlSession.close();
         }
     }
-
-    private AdminMapper adminMapper;
 
     public AdminDTO verifyLogin(AdminDTO admin) {
         SqlSession sqlSession = getSqlSession();
@@ -49,8 +48,6 @@ public class MallService {
         sqlSession.close();
         return memberList;
     }
-
-
 }
 
 
