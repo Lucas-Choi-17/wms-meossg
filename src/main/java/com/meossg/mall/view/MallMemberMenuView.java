@@ -44,17 +44,17 @@ public class MallMemberMenuView {
 
     private Map<String, String> inputInfo () {
         Scanner sc = new Scanner(System.in);
-        System.out.print("메뉴 이름을 입력하세요 : ");
+        System.out.print("변경할 회원의 이름을 입력하세요 : ");
         String name = sc.nextLine();
-        System.out.print("메뉴 가격을 입력하세요 : ");
-        String price = sc.nextLine();
-        System.out.print("카테고리 코드를 입력하세요 : ");
-        String categoryCode = sc.nextLine();
+        System.out.print(name + "님의 변경된 핸드폰 번호를 입력하세요(- 제외) : ");
+        String phone = sc.nextLine();
+        System.out.print(name + "님의 변경된 주소를 입력해주세요 : ");
+        String address = sc.nextLine();
 
         Map<String, String> parameter = new HashMap<>();
         parameter.put("name", name);
-        parameter.put("price", price);
-        parameter.put("categoryCode", categoryCode);
+        parameter.put("phone", phone);
+        parameter.put("address", address);
 
         return parameter;
     }

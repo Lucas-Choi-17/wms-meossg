@@ -36,6 +36,20 @@ public class MallController {
     }
 
 
-    public void updateMember(Map<String, String> stringStringMap) {
+    public void updateMember(Map<String, String> updateInfo) {
+        MemberDTO member = new MemberDTO();
+        member.setName(updateInfo.get("name"));
+        System.out.println(updateInfo.get("name"));
+        member.setPhone(updateInfo.get("phone"));
+        System.out.println(updateInfo.get("phone"));
+        member.setAddress(updateInfo.get("address"));
+        System.out.println(updateInfo.get("address"));
+
+        if (mallService.updateMemberInfo(member)) {
+            System.out.println("회원정보 수정을 성공했습니다.");
+        } else {
+            System.out.println("회원정보 수정을 실패했습니다.");
+        }
+
     }
 }
