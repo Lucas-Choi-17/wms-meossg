@@ -16,7 +16,7 @@ public class SelectAccountView {
                 선택 :\s""";
 
         while (true) {
-            System.out.println(menu);
+            System.out.print(menu);
             String input = sc.next();
             sc.nextLine();
             switch (input) {
