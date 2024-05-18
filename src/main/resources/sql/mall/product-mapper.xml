@@ -35,4 +35,21 @@
         where
         id = #{id}
     </update>
+
+    <select id="checkProductExists" resultType="ProductDTO">
+        select
+        *
+        from
+        product
+        where
+        id = #{productId}
+    </select>
+
+    <insert id="placingOrder" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        PLACING_ORDER (PRODUCT_ID, COUNT, ORDER_DATE, INWAREHOUSEYN)
+        VALUES (
+        #{id}, #{count}, NOW(), 'N'
+        )
+    </insert>
 </mapper>

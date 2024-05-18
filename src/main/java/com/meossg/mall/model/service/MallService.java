@@ -8,6 +8,7 @@ import com.meossg.mall.model.dto.ProductDTO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.meossg.common.MyBatisTemplate.getSqlSession;
 
@@ -45,6 +46,38 @@ public class MallService {
         }
     }
 
+    public static int placingOrder(Map<String, Integer> map) {
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+        try {
+            int result = productMapper.placingOrder(map);
+            sqlSession.commit();
+            return result;
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public static int checkProductExists(int productId) {
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+
+        try {
+            ProductDTO productDTO = productMapper.checkProductExists(productId);
+            sqlSession.commit();
+            return productDTO != null ? 1 : 0;
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            sqlSession.close();
+        }
+
+    }
+
     public AdminDTO verifyLogin(AdminDTO admin) {
         SqlSession sqlSession = getSqlSession();
         adminMapper = sqlSession.getMapper(AdminMapper.class);
@@ -75,7 +108,7 @@ public class MallService {
             sqlSession.rollback();
         }
 
-        return result>0;
+        return result > 0;
     }
 }
 

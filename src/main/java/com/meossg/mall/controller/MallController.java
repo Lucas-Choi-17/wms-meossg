@@ -26,6 +26,23 @@ public class MallController {
         }
     }
 
+    public static void placingOrder(Map<String, Integer> map) {
+
+        if (map != null) {
+            int result = MallService.placingOrder(map);
+
+            if (result == 1) {
+                System.out.println("발주 성공!!");
+            } else {
+                System.out.println("발주 실패!!");
+            }
+        }
+    }
+
+    public static int checkProductExists(int productId) {
+        return MallService.checkProductExists(productId);
+    }
+
     public AdminDTO login(AdminDTO admin) {
 
         return mallService.verifyLogin(admin);

@@ -3,6 +3,8 @@ package com.meossg.mall.view;
 import com.meossg.mall.controller.MallController;
 import com.meossg.mall.model.dto.ProductDTO;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MallProductManageView {
@@ -34,6 +36,7 @@ public class MallProductManageView {
                     break;
                 case "3":
                     // 발주
+                    MallController.placingOrder(getProductId());
                     break;
                 case "4":
                     // 재고 조회
@@ -44,6 +47,30 @@ public class MallProductManageView {
                     System.out.println("다시 입력해주세요.");
                     break;
             }
+        }
+    }
+
+    private Map<String, Integer> getProductId() {
+        Scanner sc = new Scanner(System.in);
+        Map<String, Integer> map = new HashMap<>();
+
+        System.out.println("-----------< 상품 발주 >-----------");
+        System.out.print("발주하려는 상품 번호를 입력하세요 : ");
+        int productId = sc.nextInt();
+        // 입력된 번호를 상품 id로 가지는 상품 존재 여부 확인
+        int result = MallController.checkProductExists(productId);
+
+        if (result > 0) {
+            System.out.print("발주 수량을 입력하세요 : ");
+            int count = sc.nextInt();
+
+            map.put("id", productId);
+            map.put("count", count);
+
+            return map;
+        } else {
+            System.out.println("해당 id는 존재하지 않는 상품 id 입니다.");
+            return null;
         }
     }
 
