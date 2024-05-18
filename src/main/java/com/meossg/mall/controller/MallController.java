@@ -3,6 +3,7 @@ package com.meossg.mall.controller;
 import com.meossg.mall.model.dto.AdminDTO;
 import com.meossg.mall.model.dto.ProductDTO;
 import com.meossg.mall.model.dto.MemberDTO;
+import com.meossg.mall.model.dto.StockDTO;
 import com.meossg.mall.model.service.MallService;
 
 import java.util.List;
@@ -23,6 +24,33 @@ public class MallController {
             System.out.println("상품 정보 변경 성공!!");
         } else {
             System.out.println("상품 정보 변경 실패!!");
+        }
+    }
+
+    public static void placingOrder(Map<String, Integer> map) {
+
+        if (map != null) {
+            int result = MallService.placingOrder(map);
+
+            if (result == 1) {
+                System.out.println("발주 성공!!");
+            } else {
+                System.out.println("발주 실패!!");
+            }
+        }
+    }
+
+    public static int checkProductExists(int productId) {
+        return MallService.checkProductExists(productId);
+    }
+
+    public static void getAllStockList() {
+        List<StockDTO> stockList = MallService.getAllStockList();
+        System.out.println("---------- < 재고 > ----------");
+        for (StockDTO stock : stockList) {
+            System.out.print("ID : %3s,  ".formatted(stock.getId()));
+            System.out.print("NAME : %8s,  ".formatted(stock.getName()));
+            System.out.println("COUNT : %4s".formatted(stock.getCount()));
         }
     }
 
