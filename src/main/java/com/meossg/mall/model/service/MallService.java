@@ -5,6 +5,7 @@ import com.meossg.mall.model.dao.ProductMapper;
 import com.meossg.mall.model.dto.AdminDTO;
 import com.meossg.mall.model.dto.MemberDTO;
 import com.meossg.mall.model.dto.ProductDTO;
+import com.meossg.mall.model.dto.StockDTO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -76,6 +77,15 @@ public class MallService {
             sqlSession.close();
         }
 
+    }
+
+    public static List<StockDTO> getAllStockList() {
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+        List<StockDTO> stockList = productMapper.getAllStockList();
+
+        sqlSession.close();
+        return stockList;
     }
 
     public AdminDTO verifyLogin(AdminDTO admin) {

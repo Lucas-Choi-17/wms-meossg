@@ -39,6 +39,7 @@ public class MallProductManageView {
                     MallController.placingOrder(getProductId());
                     break;
                 case "4":
+                    MallController.getAllStockList();
                     // 재고 조회
                     break;
                 case "0":

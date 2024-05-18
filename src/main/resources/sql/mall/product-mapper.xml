@@ -52,4 +52,16 @@
         #{id}, #{count}, NOW(), 'N'
         )
     </insert>
+
+    <select id="getAllStockList" resultType="StockDTO">
+        SELECT
+        P.ID 'id',
+        P.NAME 'name',
+        if(S.COUNT IS NULL, 0, S.COUNT) 'count'
+        FROM
+        PRODUCT P
+        LEFT JOIN STOCK S
+        ON
+        P.ID = S.PRODUCT_ID;
+    </select>
 </mapper>
