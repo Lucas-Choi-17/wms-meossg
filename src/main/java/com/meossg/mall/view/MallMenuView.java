@@ -6,13 +6,14 @@ import java.util.Scanner;
 
 public class MallMenuView {
     MallMemberMenuView MemberMenuView = new MallMemberMenuView();
+    MallOrderManageView orderManageView = new MallOrderManageView();
 
 
     public void mallMenu(AdminDTO admin) {
         String menu = """
                 ============================
                 1. 상품관리
-                2. 배송관리
+                2. 주문관리
                 3. 회원관리
                 4. 통계 및 분석
                 0. 로그아웃
@@ -27,7 +28,8 @@ public class MallMenuView {
                     new MallProductManageView().productManagingMenu();
                     break;
                 case "2":
-                    // 배송 관리
+                    // 주문 관리
+                    orderManageView.orderManagingMenu();
                     break;
                 case "3":
                     MemberMenuView.memberManageMenu();

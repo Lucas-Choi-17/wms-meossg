@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meossg.mall.model.dao.OrderMapper">
+
+    <select id="getAllOrderList" resultType="OrderDTO">
+        SELECT
+        MO.ID 'orderId',
+        M.NAME 'userName',
+        P.NAME 'productName',
+        OL.COUNT 'count',
+        P.PRICE*OL.COUNT
+        'totalPrice'
+        FROM MEMBER_ORDER MO
+        LEFT JOIN MEMBER M ON MO.MEMBER_ID = M.ID
+        LEFT JOIN ORDER_LIST OL ON MO.ID = OL.ORDER_ID
+        LEFT JOIN PRODUCT P ON OL.PRODUCT_ID = P.ID;
+    </select>
+</mapper>
