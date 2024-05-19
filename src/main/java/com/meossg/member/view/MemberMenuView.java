@@ -7,36 +7,34 @@ import java.util.Scanner;
 
 public class MemberMenuView {
 
-    public void MemberMenu(UserDTO member) {
+    public void menu(UserDTO member) {
 
+        if (member.getId().contains("tmpuser")) {
+            bMemberMenu(member);
+        } else {
+            memberMenu(member);
+        }
+    }
+
+    public void bMemberMenu(UserDTO member) {
         MemberController memberController = new MemberController();
         Scanner sc = new Scanner(System.in);
+        String menu = """
+                ============================
+                비회원 메뉴
+                ============================
+                1. 상품 조회
+                0. 로그아웃
+                ============================
+                입력 :\s""";
 
-        if (member != null) { // 회원 로그인 후 메뉴
-            String menu = """
-                    ============================
-                    회원 메뉴
-                    ============================
-                    1. 개인정보조회
-                    2. 상품 구매
-                    3. 구매 상세 조회
-                    0. 로그아웃
-                    ============================
-                    입력 :\s""";
 
+        while (true) {
             System.out.println(menu);
             int input = sc.nextInt();
             switch (input) {
                 case 1:
-                    // 개인정보 조회1
-                     memberController.personalInquiry(member);
-                    break;
-                case 2:
-                    //상품 구매
-                    memberController.buy();
-                    break;
-                case 3:
-                    //구매 상세 조회
+                    // 상품 조회
                     break;
                 case 0:
                     // 로그아웃
@@ -46,8 +44,112 @@ public class MemberMenuView {
                     System.out.println("다시 입력해!");
                     break;
             }
-        } else { // 비회원 로그인 메뉴
+        }
+    }
 
+    public void memberMenu(UserDTO member) {
+        Scanner sc = new Scanner(System.in);
+        String menu = """
+                ============================
+                회원 메뉴
+                ============================
+                1. 개인정보 관리
+                2. 쇼핑몰
+                0. 로그아웃
+                ============================
+                입력 :\s""";
+        while (true) {
+            System.out.println(menu);
+            int input = sc.nextInt();
+            switch (input) {
+                case 1:
+                    // 개인정보 관리
+                    personalView(member);
+                    break;
+                case 2:
+                    // 쇼핑몰
+                    shopView(member);
+                    break;
+                case 0:
+                    // 로그아웃
+                    System.out.println("로그아웃합니다.");
+                    return;
+                default:
+                    System.out.println("다시 입력해!");
+                    break;
+            }
+        }
+    }
+
+    private void shopView(UserDTO member) {
+        MemberController memberController = new MemberController();
+        Scanner sc = new Scanner(System.in);
+        String menu = """
+                ============================
+                쇼핑몰 메뉴
+                ============================
+                1. 상품 조회
+                2. 상품 구매
+                3. 장바구니
+                0. 뒤로가기
+                ============================
+                입력 :\s""";
+
+        while (true) {
+            System.out.println(menu);
+            int input = sc.nextInt();
+            switch (input) {
+                case 1:
+                    // 상품 조회
+                    break;
+                case 2:
+                    // 상품 구매
+                    memberController.buy();
+                    break;
+                case 3:
+                    // 장바구니
+                    break;
+                case 0:
+                    // 뒤로가기
+                    return;
+                default:
+                    System.out.println("다시 입력해!");
+                    break;
+            }
+        }
+    }
+
+    private void personalView(UserDTO member) {
+        MemberController memberController = new MemberController();
+        Scanner sc = new Scanner(System.in);
+        String menu = """
+                ============================
+                개인정보 관리 메뉴
+                ============================
+                1. 개인정보 조회
+                2. 개인 정보 수정
+                0. 뒤로가기
+                ============================
+                입력 :\s""";
+
+        while (true) {
+            System.out.println(menu);
+            int input = sc.nextInt();
+            switch (input) {
+                case 1:
+                    // 개인정보 조회
+                    memberController.personalInquiry(member);
+                    break;
+                case 2:
+                    // 개인정보 수정
+                    break;
+                case 0:
+                    // 뒤로가기
+                    return;
+                default:
+                    System.out.println("다시 입력해!");
+                    break;
+            }
         }
     }
 
