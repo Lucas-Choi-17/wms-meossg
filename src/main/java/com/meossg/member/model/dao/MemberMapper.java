@@ -6,4 +6,6 @@ public interface MemberMapper {
     int signUp(UserDTO member);
 
     UserDTO userValidCheck(UserDTO loginMember);
+
+    UserDTO personalInquiry(UserDTO user);
 }

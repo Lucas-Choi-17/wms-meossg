@@ -33,4 +33,12 @@ public class MemberService {
             return null;
         }
     }
+
+    public UserDTO personalInquiry(UserDTO user) {
+        SqlSession sqlSession = getSqlSession();
+        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+        UserDTO member = memberMapper.personalInquiry(user);
+        sqlSession.close();
+        return member;
+    }
 }
