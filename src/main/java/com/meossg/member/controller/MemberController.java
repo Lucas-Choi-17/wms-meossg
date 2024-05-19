@@ -99,16 +99,12 @@ public class MemberController {
         return false;
     }
 
-    public void personalInquiry(){
-        Scanner sc = new Scanner(System.in);
-        int select = 0;
-        while(true){
-            System.out.println("1. 회원 정보 조회, 2. 로그아웃");
-            select = sc.nextInt();
-            if(select == 1){
-                System.out.println(loginMember);
-            }
-        }
+    public void personalInquiry(UserDTO user){
+        MemberService memberService = new MemberService();
+
+        UserDTO member = memberService.personalInquiry(user);
+        System.out.println(member.toString());
+
     }
 
     public void buy(){

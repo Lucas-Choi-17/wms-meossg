@@ -13,7 +13,7 @@
         SELECT ID, NAME, PHONE, ADDRESS, PASSWORD FROM MEMBER WHERE ID = #{id} AND PASSWORD = #{password}
     </select>
 
-    <select id="personalInquiry">
-        select * from MEMBER
+    <select id="personalInquiry" resultType="UserDTO">
+        SELECT * FROM MEMBER WHERE ID = #{id}
     </select>
 </mapper>
