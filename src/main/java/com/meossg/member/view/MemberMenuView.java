@@ -19,7 +19,7 @@ public class MemberMenuView {
                     ============================
                     1. 개인정보조회
                     2. 상품 구매
-                    3. 구매 상세 조회 
+                    3. 구매 상세 조회
                     0. 로그아웃
                     ============================
                     입력 :\s""";
@@ -28,8 +28,8 @@ public class MemberMenuView {
             int input = sc.nextInt();
             switch (input) {
                 case 1:
-                    // 개인정보 조회
-                    memberController.personalInquiry();
+                    // 개인정보 조회1
+                     memberController.personalInquiry(member);
                     break;
                 case 2:
                     //상품 구매
