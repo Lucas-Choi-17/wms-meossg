@@ -1,6 +1,7 @@
 package com.meossg.mall.model.service;
 
 import com.meossg.mall.model.dao.AdminMapper;
+import com.meossg.mall.model.dao.DeliveryMapper;
 import com.meossg.mall.model.dao.OrderMapper;
 import com.meossg.mall.model.dao.ProductMapper;
 import com.meossg.mall.model.dto.*;
@@ -28,6 +29,15 @@ public class MallService {
             sqlSession.rollback();
         }
         sqlSession.close();
+    }
+
+    public List<MemberDTO> selectMemberByName(MemberDTO findName) {
+        SqlSession sqlSession = getSqlSession();
+        AdminMapper memberMapper = sqlSession.getMapper(AdminMapper.class);
+
+        List<MemberDTO> memberList = memberMapper.selectMemberByName(findName);
+
+        return memberList;
     }
 
     public static int modifyProduct(ProductDTO product) {
@@ -128,6 +138,14 @@ public class MallService {
         if (orderList != null && orderList.size() > 0) {
             return orderList;
         } else return null;
+    }
+
+    public List<DeliveryDTO> showPostStatus() {
+        SqlSession sqlSession = getSqlSession();
+        DeliveryMapper deliveryMapper = sqlSession.getMapper(DeliveryMapper.class);
+        List<DeliveryDTO> deliveryList = deliveryMapper.showDeliveryList();
+
+        return deliveryList;
     }
 }
 

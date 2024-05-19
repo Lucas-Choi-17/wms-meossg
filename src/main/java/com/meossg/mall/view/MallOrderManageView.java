@@ -31,7 +31,7 @@ public class MallOrderManageView {
                     // 주문 승인
                     break;
                 case "3":
-                    // 배송 확인
+                    mallController.showPostStatus();
                     break;
                 case "0":
                     return;
