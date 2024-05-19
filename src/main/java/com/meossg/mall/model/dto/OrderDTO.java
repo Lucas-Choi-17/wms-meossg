@@ -13,4 +13,5 @@ public class OrderDTO {
     private String productName;
     private int count;
     private int totalPrice;
+    private String orderApproveYN;
 }

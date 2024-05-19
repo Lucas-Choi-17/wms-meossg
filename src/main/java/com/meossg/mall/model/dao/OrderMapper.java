@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface OrderMapper {
     List<OrderDTO> getAllOrderList();
+
+    List<OrderDTO> getAllOrderListWithStatus();
+
+    int approveOrder(int orderId);
 }
