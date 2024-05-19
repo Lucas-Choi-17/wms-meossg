@@ -33,6 +33,7 @@ public class MemberMenuView {
                     break;
                 case 2:
                     //상품 구매
+                    memberController.buy();
                     break;
                 case 3:
                     //구매 상세 조회

@@ -107,7 +107,7 @@ public class MemberController {
 
     }
 
-    public void buy(){
-
+    public void buy() {
+        System.out.println("-------< 구매 가능 목록 >-------");
     }
 }
