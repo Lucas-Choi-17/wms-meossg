@@ -65,6 +65,19 @@ public class MallController {
     }
 
 
+    public void selectMemberByName(MemberDTO findName) {
+        List<MemberDTO> memberList = mallService.selectMemberByName(findName);
+
+        if (memberList.isEmpty()) {
+            System.out.println(findName.getName() + "님이 존재하지 않습니다.");
+        } else {
+            for (MemberDTO member : memberList) {
+                System.out.println(member);
+            }
+        }
+
+    }
+
     public void updateMember(Map<String, String> updateInfo) {
         MemberDTO member = new MemberDTO();
         member.setName(updateInfo.get("name"));

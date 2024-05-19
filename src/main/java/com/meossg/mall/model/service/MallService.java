@@ -31,6 +31,15 @@ public class MallService {
         sqlSession.close();
     }
 
+    public List<MemberDTO> selectMemberByName(MemberDTO findName) {
+        SqlSession sqlSession = getSqlSession();
+        AdminMapper memberMapper = sqlSession.getMapper(AdminMapper.class);
+
+        List<MemberDTO> memberList = memberMapper.selectMemberByName(findName);
+
+        return memberList;
+    }
+
     public static int modifyProduct(ProductDTO product) {
         SqlSession sqlSession = getSqlSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
