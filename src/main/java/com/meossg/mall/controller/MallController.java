@@ -5,6 +5,7 @@ import com.meossg.mall.model.service.MallService;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class MallController {
 
@@ -119,6 +120,33 @@ public class MallController {
             }
         } else {
             System.out.println("배송 내역이 없습니다.");
+        }
+    }
+
+    public void approveOrder() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-------< 미 승인 주문 >-------");
+        List<OrderDTO> orderList = mallService.getAllOrderListWithStatus();
+        if (orderList == null) {
+            System.out.println("미 승인 주문 내역이 없습니다.");
+        } else {
+            for (OrderDTO order : orderList) {
+                System.out.print("주문번호 : %3s,  ".formatted(order.getOrderId()));
+                System.out.print("주문자 : %8s,  ".formatted(order.getUserName()));
+                System.out.print("상품명 : %4s,  ".formatted(order.getProductName()));
+                System.out.print("수량 : %4s,  ".formatted(order.getCount()));
+                System.out.println("총액 : %4s,  ".formatted(order.getTotalPrice()));
+            }
+            System.out.println("--------------------------");
+            System.out.print("주문 번호를 입력하세요 : ");
+            int orderId = sc.nextInt();
+            for (OrderDTO order : orderList) {
+                if (order.getOrderId() == orderId) {
+                    mallService.approveOrder(orderId);
+                    return;
+                }
+            }
+            System.out.println("없는 주문 번호입니다.");
         }
     }
 }

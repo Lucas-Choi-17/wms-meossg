@@ -147,6 +147,31 @@ public class MallService {
 
         return deliveryList;
     }
+
+    public List<OrderDTO> getAllOrderListWithStatus() {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        List<OrderDTO> orderList = orderMapper.getAllOrderListWithStatus();
+        sqlSession.close();
+        if (orderList != null && orderList.size() > 0) {
+            return orderList;
+        }
+        return null;
+    }
+
+    public void approveOrder(int orderId) {
+
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        int result = orderMapper.approveOrder(orderId);
+        if (result > 0) {
+            System.out.println("주문 승인!!");
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+    }
 }
 
 

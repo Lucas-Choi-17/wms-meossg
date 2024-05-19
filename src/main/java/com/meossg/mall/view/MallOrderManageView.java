@@ -29,6 +29,7 @@ public class MallOrderManageView {
                     break;
                 case "2":
                     // 주문 승인
+                    mallController.approveOrder();
                     break;
                 case "3":
                     mallController.showPostStatus();
