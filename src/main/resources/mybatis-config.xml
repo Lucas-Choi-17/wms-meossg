@@ -25,7 +25,7 @@
     </environments>
     <mappers>
         <mapper resource="sql/mall/mall-mapper.xml"/>
-<!--        <mapper resource="sql/mall/order-mapper.xml"/>-->
+        <mapper resource="sql/mall/order-mapper.xml"/>
         <mapper resource="sql/mall/product-mapper.xml"/>
         <mapper resource="sql/mall/admin-mapper.xml"/>
         <mapper resource="sql/member/member-mapper.xml"/>

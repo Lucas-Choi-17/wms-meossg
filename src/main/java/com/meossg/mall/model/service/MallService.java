@@ -1,11 +1,9 @@
 package com.meossg.mall.model.service;
 
 import com.meossg.mall.model.dao.AdminMapper;
+import com.meossg.mall.model.dao.OrderMapper;
 import com.meossg.mall.model.dao.ProductMapper;
-import com.meossg.mall.model.dto.AdminDTO;
-import com.meossg.mall.model.dto.MemberDTO;
-import com.meossg.mall.model.dto.ProductDTO;
-import com.meossg.mall.model.dto.StockDTO;
+import com.meossg.mall.model.dto.*;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -119,6 +117,17 @@ public class MallService {
         }
 
         return result > 0;
+    }
+
+    public List<OrderDTO> getAllOrderList() {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        List<OrderDTO> orderList = orderMapper.getAllOrderList();
+
+        sqlSession.close();
+        if (orderList != null && orderList.size() > 0) {
+            return orderList;
+        } else return null;
     }
 }
 

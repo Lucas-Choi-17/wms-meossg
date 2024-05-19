@@ -1,9 +1,6 @@
 package com.meossg.mall.controller;
 
-import com.meossg.mall.model.dto.AdminDTO;
-import com.meossg.mall.model.dto.ProductDTO;
-import com.meossg.mall.model.dto.MemberDTO;
-import com.meossg.mall.model.dto.StockDTO;
+import com.meossg.mall.model.dto.*;
 import com.meossg.mall.model.service.MallService;
 
 import java.util.List;
@@ -83,5 +80,21 @@ public class MallController {
             System.out.println("회원정보 수정을 실패했습니다.");
         }
 
+    }
+
+    public void getAllOrderList() {
+        List<OrderDTO> orderList = mallService.getAllOrderList();
+
+        if (orderList != null) {
+            for (OrderDTO order : orderList) {
+                System.out.print("주문번호 : %3s,  ".formatted(order.getOrderId()));
+                System.out.print("주문자 : %8s,  ".formatted(order.getUserName()));
+                System.out.print("제품 : %4s,  ".formatted(order.getProductName()));
+                System.out.print("수량 : %4s,  ".formatted(order.getCount()));
+                System.out.println("총액 : %4s".formatted(order.getTotalPrice()));
+            }
+        } else {
+            System.out.println("주문 내역이 없습니다.");
+        }
     }
 }
