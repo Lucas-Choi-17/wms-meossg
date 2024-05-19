@@ -1,6 +1,6 @@
 package com.meossg.warehouse.model.service;
 
-import com.meossg.warehouse.model.dao.warehouseMapper;
+import com.meossg.warehouse.model.dao.WarehouseMapper;
 import com.meossg.warehouse.model.dto.InWarehouseDTO;
 import org.apache.ibatis.session.SqlSession;
 
@@ -12,7 +12,7 @@ public class InWarehouseService {
 
     public static List<InWarehouseDTO> getAllInWarehouseList() {
         SqlSession sqlSession = getSqlSession();
-        warehouseMapper warehouseMapper = sqlSession.getMapper(warehouseMapper.class);
+        WarehouseMapper warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
         List<InWarehouseDTO> inWarehouseDTO = warehouseMapper.getAllInWarehouseList();
 
         sqlSession.close();
