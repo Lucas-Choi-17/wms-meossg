@@ -29,10 +29,11 @@ public class MemberMenuView {
             switch (input) {
                 case 1:
                     // 개인정보 조회
-                     memberController.personalInquiry();
+                    memberController.personalInquiry();
                     break;
                 case 2:
                     //상품 구매
+                    memberController.buy();
                     break;
                 case 3:
                     //구매 상세 조회

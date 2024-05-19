@@ -99,19 +99,19 @@ public class MemberController {
         return false;
     }
 
-    public void personalInquiry(){
+    public void personalInquiry() {
         Scanner sc = new Scanner(System.in);
         int select = 0;
-        while(true){
+        while (true) {
             System.out.println("1. 회원 정보 조회, 2. 로그아웃");
             select = sc.nextInt();
-            if(select == 1){
+            if (select == 1) {
                 System.out.println(loginMember);
             }
         }
     }
 
-    public void buy(){
-
+    public void buy() {
+        System.out.println("-------< 구매 가능 목록 >-------");
     }
 }
