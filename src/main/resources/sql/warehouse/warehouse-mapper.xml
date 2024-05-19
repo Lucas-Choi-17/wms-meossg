@@ -2,7 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.meossg.warehouse.model.dao.StockMapper">
+<mapper namespace="com.meossg.warehouse.model.dao.WarehouseMapper">
 
+    <select id="getUser" resultType="WhAdminDTO">
+        SELECT
+               ID,
+               NAME,
+               ASSOCIATION,
+               PASSWORD
+          FROM ADMIN
+         WHERE ID = #{ id }
+           AND ASSOCIATION = '창고'
+    </select>
 
 </mapper>
