@@ -97,4 +97,15 @@ public class MallController {
             System.out.println("주문 내역이 없습니다.");
         }
     }
+
+    public void showPostStatus() {
+        List<DeliveryDTO> deliveryList = mallService.showPostStatus();
+        if (!deliveryList.isEmpty()) {
+            for (DeliveryDTO delivery : deliveryList) {
+                System.out.println(delivery);
+            }
+        } else {
+            System.out.println("배송 내역이 없습니다.");
+        }
+    }
 }
