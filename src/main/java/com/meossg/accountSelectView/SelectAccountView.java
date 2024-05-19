@@ -25,7 +25,7 @@ public class SelectAccountView {
             switch (input) {
                 case "1":
                     // 고객 접속
-                    new MemberMenuView().MemberMenu(new MemberMenuView().MemberLogin());
+                    new MemberMenuView().menu(new MemberMenuView().MemberLogin());
                     break;
                 case "2":
                     // 쇼핑몰 관리자 접속
