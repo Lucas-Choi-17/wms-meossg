@@ -1,6 +1,7 @@
 package com.meossg.warehouse.view;
 
 import com.meossg.mall.view.MallLoginView;
+import com.meossg.warehouse.controller.WarehouseController;
 
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class WarehouseMenuView {
                 2. 출고
                 3. 출고 내역 조회
                 4. 입고내역 조회 ( 보여준 후에 입고? 아니면 5번으로 입고를 뺄까요??)
+                5. 창고 재고 조회
                 """+
 //                5. 입고
                 """
@@ -37,8 +39,11 @@ public class WarehouseMenuView {
                     break;
                 case "4":
                     // 입고 내역 조회
-//                case "5":
-//                    // 입고
+                case "5":
+                    //창고 재고 조회
+                    WarehouseController.getInWarehouse();
+                    break;
+//
                 case "9":
                     System.out.println("로그아웃 합니다.");
                     return;
