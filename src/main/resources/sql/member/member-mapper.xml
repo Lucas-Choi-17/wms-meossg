@@ -2,7 +2,18 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.meossg.member.model.dao.ProductMapper">
+<mapper namespace="com.meossg.member.model.dao.MemberMapper">
 
+    <insert id="signUp">
+        INSERT INTO MEMBER
+        VALUES(#{id},#{name},#{phone},#{address},#{password})
+    </insert>
 
+    <select id="userValidCheck" resultType="UserDTO">
+        SELECT ID, NAME, PHONE, ADDRESS, PASSWORD FROM MEMBER WHERE ID = #{id} AND PASSWORD = #{password}
+    </select>
+
+    <select id="personalInquiry">
+        select * from MEMBER
+    </select>
 </mapper>
