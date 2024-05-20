@@ -40,10 +40,37 @@
         ORDER BY A.NAME
     </select>
 
-    <update id="updateMemberInfo">
-        UPDATE member
-        SET PHONE = #{ phone },
+    <update id="updateAllInfo">
+        UPDATE MEMBER
+        SET PASSWORD = #{ password },
+            PHONE = #{ phone },
             ADDRESS = #{ address }
-        WHERE NAME = #{ name }
+        WHERE NAME LIKE #{ name }
+            AND
+              ID LIKE #{ id }
+    </update>
+
+    <update id="updateMemberPassword">
+        UPDATE MEMBER
+        SET PASSWORD = #{ password }
+        WHERE NAME LIKE #{ name }
+            AND
+              ID LIKE #{ id }
+    </update>
+
+    <update id="updateMemberPhone">
+        UPDATE MEMBER
+        SET PHONE = #{ phone }
+        WHERE NAME LIKE #{ name }
+            AND
+              ID LIKE #{ id }
+    </update>
+
+    <update id="updateMemberAddress">
+        UPDATE MEMBER
+        SET ADDRESS = #{ address }
+        WHERE NAME LIKE #{ name }
+            AND
+              ID LIKE #{ id }
     </update>
 </mapper>
