@@ -3,6 +3,8 @@ package com.meossg.member.view;
 import com.meossg.member.model.dto.UserDTO;
 import com.meossg.member.controller.MemberController;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MemberMenuView {
@@ -90,7 +92,7 @@ public class MemberMenuView {
                 ============================
                 1. 상품 조회
                 2. 상품 구매
-                3. 장바구니
+                3. 구매 내역
                 0. 뒤로가기
                 ============================
                 입력 :\s""";
@@ -108,7 +110,8 @@ public class MemberMenuView {
                     memberController.buy(member.getId());
                     break;
                 case 3:
-                    // 장바구니
+                    // 구매 내역
+                    memberController.purchased(member.getId());
                     break;
                 case 0:
                     // 뒤로가기
@@ -143,6 +146,7 @@ public class MemberMenuView {
                     break;
                 case 2:
                     // 개인정보 수정
+                    memberController.modifyInfo(inputModifyMember(member));
                     break;
                 case 0:
                     // 뒤로가기
@@ -152,6 +156,24 @@ public class MemberMenuView {
                     break;
             }
         }
+    }
+
+    private static Map<String,String> inputModifyMember(UserDTO member){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("수정할 핸드폰 번호를 입력하세요 ☎ : ");
+        String phone = sc.nextLine();
+        System.out.print("수정할 주소를 입력하세요 🏠 : ");
+        String address = sc.nextLine();
+        System.out.print("수정할 비밀번호를 입력하세요 🔓 : ");
+        String password = sc.nextLine();
+
+        Map<String,String> parameter = new HashMap<>();
+        parameter.put("phone",phone);
+        parameter.put("address",address);
+        parameter.put("password",password);
+        parameter.put("id",member.getId());
+        return parameter;
     }
 
     public UserDTO MemberLogin() {

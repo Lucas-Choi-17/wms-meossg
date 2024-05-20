@@ -1,8 +1,10 @@
 package com.meossg.member.controller;
 
 import com.meossg.member.model.dto.ItemDTO;
+import com.meossg.member.model.dto.OrderPurchasedDTO;
 import com.meossg.member.model.dto.UserDTO;
 import com.meossg.member.model.service.MemberService;
+import com.meossg.member.view.MemberMenuView;
 
 import java.util.*;
 
@@ -105,6 +107,26 @@ public class MemberController {
 
     }
 
+    public void modifyInfo(Map<String,String> parameter) {  //회원이 자신의 개인정보수정
+        PrintResult printResult = new PrintResult();
+        String id = parameter.get("id");
+        String phone = parameter.get("phone");
+        String address = parameter.get("address");
+        String password = parameter.get("password");
+
+        UserDTO user = new UserDTO();
+        user.setPhone(phone);
+        user.setAddress(address);
+        user.setPassword(password);
+        user.setId(id);
+
+        if (MemberService.modifyInfo(user)) {
+            printResult.printSuccessMessage("update");
+        } else {
+            printResult.printErrorMessage("update");
+        }
+    }
+
     public void buy(String memberId) {
         MemberService memberService = new MemberService();
         Scanner sc = new Scanner(System.in);
@@ -127,8 +149,21 @@ public class MemberController {
         MemberService memberService = new MemberService();
         List<ItemDTO> productList = memberService.selectAllProducts();
 
-        for(ItemDTO product : productList){
+        for (ItemDTO product : productList) {
             System.out.println(product);
+        }
+    }
+
+    public void purchased(String memberId) {
+        MemberService memberService = new MemberService();
+        List<OrderPurchasedDTO> orderList = memberService.purchased(memberId);
+
+        if (orderList != null && orderList.size() > 0) {
+            for (OrderPurchasedDTO order : orderList) {
+                System.out.println(order.toString());
+            }
+        } else {
+            System.out.println("주문 내역이 존재하지 않습니다.");
         }
     }
 }

@@ -6,13 +6,13 @@
 
     <select id="getAllInWarehouseList" resultType="InWarehouseDTO">
 
-        SELECT
-        I.ID 'id',
-        I.PRODUCT_ID 'productId',
-        I.IN_DATE 'InDate'
+<!--        SELECT-->
+<!--        I.ID 'id',-->
+<!--        I.PRODUCT_ID 'productId',-->
+<!--        I.IN_DATE 'InDate'-->
 
-        FROM
-        INWAREHOUSE I
+<!--        FROM-->
+<!--        INWAREHOUSE I-->
 
 
 

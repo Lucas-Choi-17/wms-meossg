@@ -20,7 +20,7 @@ public class DeliveryDTO {
         return "[ 배송 번호 : " + id + " |" +
                 " 주문 번호 : " + orderId + " |" +
                 " 배송상태 : " + status + " |" +
-                " 운송자 번호 : " + trackingNumber +
+                " 운송장 번호 : " + trackingNumber +
                 " ]";
     }
 }

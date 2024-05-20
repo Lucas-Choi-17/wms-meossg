@@ -9,8 +9,7 @@
             ID,
             ORDER_ID,
             STATUS,
-            TRACKING_NUMBER,
-            PACKAGING
+            TRACKING_NUMBER
         FROM DELIVERY
         ORDER BY ID
     </select>

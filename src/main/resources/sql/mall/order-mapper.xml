@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.meossg.mall.model.dao.OrderMapper">
 
-    <select id="getAllOrderList" resultType="OrderDTO">
+    <select id="getAllOrderList" resultType="MallOrderDTO">
         SELECT
         MO.ID 'orderId',
         M.NAME 'userName',
@@ -18,7 +18,7 @@
         LEFT JOIN PRODUCT P ON OL.PRODUCT_ID = P.ID;
     </select>
 
-    <select id="getAllOrderListWithStatus" resultType="OrderDTO">
+    <select id="getAllOrderListWithStatus" resultType="MallOrderDTO">
         SELECT
         MO.ID 'orderId',
         M.NAME 'userName',

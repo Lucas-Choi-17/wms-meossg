@@ -2,6 +2,7 @@ package com.meossg.member.model.service;
 
 import com.meossg.member.model.dao.MemberMapper;
 import com.meossg.member.model.dto.ItemDTO;
+import com.meossg.member.model.dto.OrderPurchasedDTO;
 import com.meossg.member.model.dto.UserDTO;
 import org.apache.ibatis.session.SqlSession;
 
@@ -45,6 +46,22 @@ public class MemberService {
         return member;
     }
 
+    public static boolean modifyInfo(UserDTO user) {
+        SqlSession sqlSession = getSqlSession();
+        System.out.println("user ==================== " + user);
+        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+        int result = memberMapper.modifyInfo(user);
+        System.out.println("[MemberService] modifyInfo 의 result : " + result);
+        if(result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+        return result > 0 ? true: false;
+
+    }
+
     public List<ItemDTO> selectAllProducts() {
         SqlSession sqlSession = getSqlSession();
         MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
@@ -67,5 +84,17 @@ public class MemberService {
             System.out.println("구매 실패!");
         }
         sqlSession.close();
+    }
+
+    public List<OrderPurchasedDTO> purchased(String memberId) {
+        SqlSession sqlSession = getSqlSession();
+        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+        List<OrderPurchasedDTO> orderList = memberMapper.purchased(memberId);
+        if (orderList != null && orderList.size() > 0) {
+            sqlSession.close();
+            return orderList;
+        } else {
+            return null;
+        }
     }
 }
