@@ -1,5 +1,6 @@
 package com.meossg.warehouse.model.service;
 
+import com.meossg.warehouse.model.dto.PlacingOrderDTO;
 import com.meossg.warehouse.model.mapper.WarehouseMapper;
 import com.meossg.warehouse.model.dto.OrderDTO;
 import com.meossg.warehouse.model.dto.OrderListDTO;
@@ -99,5 +100,14 @@ public class WarehouseService {
         }
 
         return shipStatus;
+    }
+
+    public List<PlacingOrderDTO> selectAllPlacingOrder() {
+
+        SqlSession sqlSession = getSqlSession();
+        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+        List<PlacingOrderDTO> list = warehouseMapper.selectAllPlacingOrder();
+
+        return list;
     }
 }

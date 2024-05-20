@@ -33,6 +33,7 @@ public class WarehouseMenuView {
             switch (input) {
                 case "1":
                     // 발주 목록 조회
+                    ov.printPlacingOrder();
                     break;
                 case "2":
                     // 출고
