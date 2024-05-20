@@ -3,6 +3,7 @@ package com.meossg.member.controller;
 import com.meossg.member.model.dto.ItemDTO;
 import com.meossg.member.model.dto.UserDTO;
 import com.meossg.member.model.service.MemberService;
+import com.meossg.member.view.MemberMenuView;
 
 import java.util.*;
 
@@ -103,6 +104,26 @@ public class MemberController {
         UserDTO member = memberService.personalInquiry(user);
         System.out.println(member.toString());
 
+    }
+
+    public void modifyInfo(Map<String,String> parameter) {  //회원이 자신의 개인정보수정
+        PrintResult printResult = new PrintResult();
+        String id = parameter.get("id");
+        String phone = parameter.get("phone");
+        String address = parameter.get("address");
+        String password = parameter.get("password");
+
+        UserDTO user = new UserDTO();
+        user.setPhone(phone);
+        user.setAddress(address);
+        user.setPassword(password);
+        user.setId(id);
+
+        if (MemberService.modifyInfo(user)) {
+            printResult.printSuccessMessage("update");
+        } else {
+            printResult.printErrorMessage("update");
+        }
     }
 
     public void buy(String memberId) {
