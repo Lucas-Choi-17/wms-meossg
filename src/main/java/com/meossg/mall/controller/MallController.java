@@ -3,6 +3,7 @@ package com.meossg.mall.controller;
 import com.meossg.mall.model.dto.*;
 import com.meossg.mall.model.service.MallService;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -67,6 +68,23 @@ public class MallController {
             System.out.println(placingOrder);
         }
 
+    }
+
+    public static int isPlacingOrderNull(int mallPlacingOrderId) {
+        return MallService.isPlacingOrderNull(mallPlacingOrderId);
+    }
+
+    public static void deletePlacingOrder(HashMap<String, Integer> placingOrderId) {
+
+        if (placingOrderId != null) {
+            int result = MallService.deletePlacingOrder(placingOrderId);
+
+            if (result == 1) {
+                System.out.println(placingOrderId.values() + "번 발주 삭제를 성공했습니다.");
+            } else {
+                System.out.println(placingOrderId.values() + "번 발주 삭제를 실패했습니다.");
+            }
+        }
     }
 
     public AdminDTO login(AdminDTO admin) {
