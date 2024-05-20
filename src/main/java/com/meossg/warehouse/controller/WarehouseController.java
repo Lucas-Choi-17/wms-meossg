@@ -31,4 +31,8 @@ public class WarehouseController {
     public WhStockDTO selectStockByName(String name) {
         return ws.selectStockByName(name);
     }
+
+    public List<WhStockDTO> selectAllStock() {
+        return ws.selectAllStock();
+    }
 }

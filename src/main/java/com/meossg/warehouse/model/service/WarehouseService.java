@@ -129,4 +129,14 @@ public class WarehouseService {
         sqlSession.close();
         return stock;
     }
+
+    public List<WhStockDTO> selectAllStock() {
+
+        SqlSession sqlSession = getSqlSession();
+        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+        List<WhStockDTO> list = warehouseMapper.selectAllStock();
+
+        sqlSession.close();
+        return list;
+    }
 }
