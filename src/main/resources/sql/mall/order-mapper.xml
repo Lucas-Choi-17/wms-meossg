@@ -47,4 +47,16 @@
         DELIVERY (ORDER_ID)
         VALUE(#{orderId})
     </insert>
+
+    <select id="getTotalProfit">
+        select
+        SUM(P.PRICE)
+        from MEMBER_ORDER MO
+        LEFT JOIN ORDER_LIST OL
+        ON MO.ID = OL.ORDER_ID
+        LEFT JOIN PRODUCT P
+        on OL.PRODUCT_ID = P.ID
+        WHERE
+        DELIVERYN = 'Y';
+    </select>
 </mapper>
