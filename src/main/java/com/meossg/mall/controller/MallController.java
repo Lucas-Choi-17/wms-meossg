@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class MallController {
 
-    private MallService mallService = new MallService();
+    private static MallService mallService = new MallService();
 
     public static void addProduct(ProductDTO product) {
         MallService.addProduct(product);
@@ -49,6 +49,14 @@ public class MallController {
             System.out.print("ID : %3s,  ".formatted(stock.getId()));
             System.out.print("NAME : %8s,  ".formatted(stock.getName()));
             System.out.println("COUNT : %4s".formatted(stock.getCount()));
+        }
+    }
+
+    public static void showAllProducts() {
+        List<ProductDTO> allProductList = mallService.selectAllProducts();
+
+        for (ProductDTO product : allProductList) {
+            System.out.println(product.toStringWithID());
         }
     }
 

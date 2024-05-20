@@ -16,4 +16,5 @@ public interface ProductMapper {
     ProductDTO checkProductExists(int productId);
 
     List<StockDTO> getAllStockList();
+    List<ProductDTO> selectAllProducts();
 }

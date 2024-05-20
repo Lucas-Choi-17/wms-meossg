@@ -15,10 +15,11 @@ public class MallProductManageView {
                 ============================
                 상품 관리
                 ============================
-                1. 상품 등록
-                2. 상품 정보 변경
-                3. 발주
-                4. 재고 조회
+                1. 상품 조회
+                2. 상품 등록
+                3. 상품 정보 변경
+                4. 발주
+                5. 재고 조회
                 0. 뒤로 가기
                 ============================
                 선택 :\s""";
@@ -28,18 +29,22 @@ public class MallProductManageView {
             String input = new Scanner(System.in).next();
             switch (input) {
                 case "1":
+                    // 상품 전체 조회
+                    MallController.showAllProducts();
+                    break;
+                case "2":
                     // 상품 등록
                     MallController.addProduct(newProduct());
                     break;
-                case "2":
+                case "3":
                     // 상품 정보 변경
                     MallController.modifyProduct(modifyInformation());
                     break;
-                case "3":
+                case "4":
                     // 발주
                     MallController.placingOrder(getProductId());
                     break;
-                case "4":
+                case "5":
                     MallController.getAllStockList();
                     // 재고 조회
                     break;
@@ -81,10 +86,9 @@ public class MallProductManageView {
         Scanner sc = new Scanner(System.in);
         ProductDTO product = new ProductDTO();
         System.out.println("---------< 상품 정보 변경 >---------");
-        System.out.println("변경하려는 상품의 id를 입력하세요 : ");
+        System.out.println("변경하려는 상품의 id를 입력해 주세요 : ");
 
         try {
-            System.out.print("상품 id: ");
             int id = sc.nextInt();
             product.setId(id);
             sc.nextLine();
@@ -124,7 +128,7 @@ public class MallProductManageView {
                 YN = sc.nextLine().charAt(0) + "";
             }
         }
-        System.out.println(product);
+        System.out.println("### 변경된 상품 정보\n" + product.toStringWithID() + "\n#################");
 
         return product;
     }

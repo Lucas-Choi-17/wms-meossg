@@ -223,6 +223,16 @@ public class MallService {
         sqlSession.close();
         return result > 0;
     }
+
+    public List<ProductDTO> selectAllProducts() {
+
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+
+        List<ProductDTO> productList = productMapper.selectAllProducts();
+
+        return productList;
+    }
 }
 
 
