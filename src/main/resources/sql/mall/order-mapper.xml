@@ -33,12 +33,18 @@
         WHERE MO.ORDER_APPROVEYN = 'N'
     </select>
 
-    <update id="approveOrder">
+    <update id="approveMemberOrder">
         UPDATE
         MEMBER_ORDER
         SET
         ORDER_APPROVEYN = 'Y'
         WHERE
-        ID = #{ orderId }
+        ID = #{ orderId };
     </update>
+
+    <insert id="makeOrderDeliver">
+        INSERT INTO
+        DELIVERY (ORDER_ID)
+        VALUE(#{orderId})
+    </insert>
 </mapper>

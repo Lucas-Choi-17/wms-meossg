@@ -163,10 +163,15 @@ public class MallService {
 
         SqlSession sqlSession = getSqlSession();
         OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-        int result = orderMapper.approveOrder(orderId);
-        if (result > 0) {
-            System.out.println("주문 승인!!");
-            sqlSession.commit();
+        int result1 = orderMapper.approveMemberOrder(orderId);
+        if (result1 > 0) {
+            int result2 = orderMapper.makeOrderDeliver(orderId);
+            if (result2 > 0) {
+                System.out.println("주문 승인!!");
+                sqlSession.commit();
+            } else {
+                sqlSession.rollback();
+            }
         } else {
             sqlSession.rollback();
         }
