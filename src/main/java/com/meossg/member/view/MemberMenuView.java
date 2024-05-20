@@ -34,7 +34,7 @@ public class MemberMenuView {
             int input = sc.nextInt();
             switch (input) {
                 case 1:
-                    // 상품 조회
+                    memberController.selectAllProducts();
                     break;
                 case 0:
                     // 로그아웃
@@ -101,6 +101,7 @@ public class MemberMenuView {
             switch (input) {
                 case 1:
                     // 상품 조회
+                    memberController.selectAllProducts();
                     break;
                 case 2:
                     // 상품 구매

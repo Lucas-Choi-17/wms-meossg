@@ -1,6 +1,7 @@
 package com.meossg.member.model.service;
 
 import com.meossg.member.model.dao.MemberMapper;
+import com.meossg.member.model.dto.ItemDTO;
 import com.meossg.member.model.dto.UserDTO;
 import org.apache.ibatis.session.SqlSession;
 
@@ -40,5 +41,14 @@ public class MemberService {
         UserDTO member = memberMapper.personalInquiry(user);
         sqlSession.close();
         return member;
+    }
+
+    public List<ItemDTO> selectAllProducts() {
+        SqlSession sqlSession = getSqlSession();
+        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+
+        List<ItemDTO> productList = memberMapper.selectAllProducts();
+
+        return productList;
     }
 }

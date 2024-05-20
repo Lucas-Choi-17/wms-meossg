@@ -1,8 +1,8 @@
 package com.meossg.member.controller;
 
+import com.meossg.member.model.dto.ItemDTO;
 import com.meossg.member.model.dto.UserDTO;
 import com.meossg.member.model.service.MemberService;
-import com.meossg.member.view.MemberLoginView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,5 +109,14 @@ public class MemberController {
 
     public void buy() {
         System.out.println("-------< 구매 가능 목록 >-------");
+    }
+
+    public void selectAllProducts() {
+        MemberService memberService = new MemberService();
+        List<ItemDTO> productList = memberService.selectAllProducts();
+
+        for(ItemDTO product : productList){
+            System.out.println(product);
+        }
     }
 }
