@@ -31,7 +31,7 @@ public class MemberService {
         MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
         UserDTO user = memberMapper.userValidCheck(loginMember);
         sqlSession.close();
-        if (user.getId() != null) {
+        if (user != null && user.getId() != null) {
             return user;
         } else {
             return null;
@@ -52,13 +52,13 @@ public class MemberService {
         MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
         int result = memberMapper.modifyInfo(user);
         System.out.println("[MemberService] modifyInfo 의 result : " + result);
-        if(result > 0) {
+        if (result > 0) {
             sqlSession.commit();
         } else {
             sqlSession.rollback();
         }
         sqlSession.close();
-        return result > 0 ? true: false;
+        return result > 0 ? true : false;
 
     }
 

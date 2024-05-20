@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class MallMenuView {
     MallMemberMenuView MemberMenuView = new MallMemberMenuView();
     MallOrderManageView orderManageView = new MallOrderManageView();
+    MallAnalysisView mallAnalysisView = new MallAnalysisView();
 
 
     public void mallMenu(AdminDTO admin) {
@@ -35,6 +36,7 @@ public class MallMenuView {
                     MemberMenuView.memberManageMenu();
                     break;
                 case "4":
+                    mallAnalysisView.analysisMenu();
                     // 통계 및 분석
                     break;
                 case "0":

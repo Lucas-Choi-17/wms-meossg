@@ -80,7 +80,6 @@ public class MallController {
     }
 
 
-
     public void getAllOrderList() {
         List<MallOrderDTO> orderList = mallService.getAllOrderList();
 
@@ -134,6 +133,7 @@ public class MallController {
             System.out.println("없는 주문 번호입니다.");
         }
     }
+
     public void updatePassword(Map<String, String> newPassword) {
         MemberDTO member = new MemberDTO();
         member.setId(newPassword.get("id"));
@@ -148,7 +148,7 @@ public class MallController {
     }
 
 
-    public void updatePhone(Map<String, String> newPhone){
+    public void updatePhone(Map<String, String> newPhone) {
         MemberDTO member = new MemberDTO();
         member.setId(newPhone.get("id"));
         member.setName(newPhone.get("name"));
@@ -188,6 +188,11 @@ public class MallController {
         } else {
             System.out.println("회원정보 수정을 실패했습니다.");
         }
+    }
+
+    public void getTotalProfit() {
+        System.out.println("----------< 전체 기간 수익 >----------");
+        System.out.println(mallService.getTotalProfit());
     }
 }
 

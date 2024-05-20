@@ -12,4 +12,6 @@ public interface OrderMapper {
     int approveMemberOrder(int orderId);
 
     int makeOrderDeliver(int orderId);
+
+    int getTotalProfit();
 }
