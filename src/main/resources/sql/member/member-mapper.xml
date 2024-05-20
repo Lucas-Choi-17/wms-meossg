@@ -48,10 +48,10 @@
         )
     </insert>
 
-    <select id="purchased">
+    <select id="purchased" resultType="OrderPurchasedDTO">
         SELECT
-        MO.ID,
-        P.NAME,
+        MO.ID 'orderId',
+        P.NAME 'productName',
         OL.COUNT,
         IF(ORDER_APPROVEYN='Y', IF(DELIVERYN='Y', '배송완료', '배송대기'), '승인대기중') 'ORDER_STATUS'
         FROM MEMBER_ORDER MO
