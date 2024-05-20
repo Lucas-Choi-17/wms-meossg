@@ -1,5 +1,6 @@
 package com.meossg.mall.model.dao;
 
+import com.meossg.mall.model.dto.MallPlacingOrderDTO;
 import com.meossg.mall.model.dto.ProductDTO;
 import com.meossg.mall.model.dto.StockDTO;
 
@@ -16,4 +17,7 @@ public interface ProductMapper {
     ProductDTO checkProductExists(int productId);
 
     List<StockDTO> getAllStockList();
+    List<ProductDTO> selectAllProducts();
+
+    List<MallPlacingOrderDTO> selectAllPlacingOrder();
 }

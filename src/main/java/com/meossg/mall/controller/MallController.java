@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class MallController {
 
-    private MallService mallService = new MallService();
+    private static MallService mallService = new MallService();
 
     public static void addProduct(ProductDTO product) {
         MallService.addProduct(product);
@@ -52,6 +52,23 @@ public class MallController {
         }
     }
 
+    public static void showAllProducts() {
+        List<ProductDTO> allProductList = mallService.selectAllProducts();
+
+        for (ProductDTO product : allProductList) {
+            System.out.println(product.toStringWithID());
+        }
+    }
+
+    public static void showAllPlacingOrder() {
+        List<MallPlacingOrderDTO> placingOrderList = mallService.selectAllPlacingOrder();
+
+        for (MallPlacingOrderDTO placingOrder : placingOrderList) {
+            System.out.println(placingOrder);
+        }
+
+    }
+
     public AdminDTO login(AdminDTO admin) {
 
         return mallService.verifyLogin(admin);
@@ -78,7 +95,6 @@ public class MallController {
         }
 
     }
-
 
 
     public void getAllOrderList() {
@@ -134,6 +150,7 @@ public class MallController {
             System.out.println("없는 주문 번호입니다.");
         }
     }
+
     public void updatePassword(Map<String, String> newPassword) {
         MemberDTO member = new MemberDTO();
         member.setId(newPassword.get("id"));
@@ -148,7 +165,7 @@ public class MallController {
     }
 
 
-    public void updatePhone(Map<String, String> newPhone){
+    public void updatePhone(Map<String, String> newPhone) {
         MemberDTO member = new MemberDTO();
         member.setId(newPhone.get("id"));
         member.setName(newPhone.get("name"));
@@ -188,6 +205,11 @@ public class MallController {
         } else {
             System.out.println("회원정보 수정을 실패했습니다.");
         }
+    }
+
+    public void getTotalProfit() {
+        System.out.println("----------< 전체 기간 수익 >----------");
+        System.out.println(mallService.getTotalProfit());
     }
 }
 

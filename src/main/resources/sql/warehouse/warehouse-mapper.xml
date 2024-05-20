@@ -116,4 +116,41 @@
         JOIN PRODUCT P ON S.PRODUCT_ID = P.ID
         WHERE P.NAME like CONCAT('%',#{ name },'%')
     </select>
+
+    <select id="selectAllStock" resultType="WhStockDTO">
+        SELECT
+               P.NAME,
+               S.COUNT
+        FROM STOCK S
+        JOIN PRODUCT P ON S.PRODUCT_ID = P.ID
+    </select>
+
+    <select id="verifyPlacingOrder" resultType="_int">
+        SELECT ID FROM PLACING_ORDER WHERE ID = #{ id }
+    </select>
+
+    <update id="updateInwarehouseYn">
+        UPDATE PLACING_ORDER SET
+        INWAREHOUSEYN = 'Y'
+        WHERE ID = #{ id }
+    </update>
+
+    <update id="updateStockCount">
+        UPDATE STOCK S, PLACING_ORDER PO SET
+        S.COUNT = S.COUNT + PO.COUNT
+        WHERE S.PRODUCT_ID = PO.PRODUCT_ID
+          AND PO.ID = #{ id }
+    </update>
+
+    <insert id="insertInWarehouse">
+        INSERT INTO INWAREHOUSE (
+        PRODUCT_ID,
+        IN_DATE
+        )
+        VALUES
+        (
+        (SELECT PRODUCT_ID FROM PLACING_ORDER WHERE ID = #{ id }),
+        SYSDATE()
+        )
+    </insert>
 </mapper>
