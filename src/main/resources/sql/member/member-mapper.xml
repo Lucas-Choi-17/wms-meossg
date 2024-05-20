@@ -61,4 +61,11 @@
         ON OL.PRODUCT_ID = P.ID
         WHERE MO.MEMBER_ID = #{memberId}
     </select>
+
+    <select id="selectProductName" parameterType="String" resultType="ItemDTO">
+        SELECT
+        *
+        FROM PRODUCT
+        WHERE NAME=#{name}
+    </select>
 </mapper>

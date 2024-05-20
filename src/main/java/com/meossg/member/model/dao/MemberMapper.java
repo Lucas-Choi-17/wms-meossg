@@ -22,4 +22,6 @@ public interface MemberMapper {
     List<ItemDTO> selectAllProducts();
 
     List<OrderPurchasedDTO> purchased(String memberId);
+
+    ItemDTO selectProductName (String name);
 }
