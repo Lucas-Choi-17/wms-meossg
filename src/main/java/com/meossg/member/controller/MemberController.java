@@ -4,9 +4,7 @@ import com.meossg.member.model.dto.ItemDTO;
 import com.meossg.member.model.dto.UserDTO;
 import com.meossg.member.model.service.MemberService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class MemberController {
 
@@ -99,7 +97,7 @@ public class MemberController {
         return false;
     }
 
-    public void personalInquiry(UserDTO user){
+    public void personalInquiry(UserDTO user) {
         MemberService memberService = new MemberService();
 
         UserDTO member = memberService.personalInquiry(user);
@@ -107,8 +105,22 @@ public class MemberController {
 
     }
 
-    public void buy() {
-        System.out.println("-------< 구매 가능 목록 >-------");
+    public void buy(String memberId) {
+        MemberService memberService = new MemberService();
+        Scanner sc = new Scanner(System.in);
+
+        Map<String, Object> map = new HashMap<>();
+        System.out.println("-------< 상품 구매 >-------");
+        System.out.print("구매하려는 상품명을 입력하세요 : ");
+        String productName = sc.nextLine();
+        System.out.print("구매 수량을 입력하세요 : ");
+        int count = sc.nextInt();
+
+        map.put("memberId", memberId);
+        map.put("productName", productName);
+        map.put("count", count);
+
+        memberService.buy(map);
     }
 
     public void selectAllProducts() {

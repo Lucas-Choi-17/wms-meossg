@@ -6,6 +6,8 @@ import com.meossg.member.model.dto.UserDTO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import static com.meossg.common.MyBatisTemplate.getSqlSession;
 
@@ -24,13 +26,13 @@ public class MemberService {
     }
 
     public static UserDTO userValidCheck(UserDTO loginMember) {
-        SqlSession sqlSession= getSqlSession();
+        SqlSession sqlSession = getSqlSession();
         MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
         UserDTO user = memberMapper.userValidCheck(loginMember);
         sqlSession.close();
         if (user.getId() != null) {
             return user;
-        } else{
+        } else {
             return null;
         }
     }
@@ -50,5 +52,20 @@ public class MemberService {
         List<ItemDTO> productList = memberMapper.selectAllProducts();
 
         return productList;
+    }
+
+    public void buy(Map<String, Object> map) {
+        SqlSession sqlSession = getSqlSession();
+        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+        int result = memberMapper.buy(map);
+
+        if (result > 0) {
+            sqlSession.commit();
+            System.out.println("구매 성공!");
+        } else {
+            sqlSession.rollback();
+            System.out.println("구매 실패!");
+        }
+        sqlSession.close();
     }
 }

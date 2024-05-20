@@ -3,6 +3,8 @@ package com.meossg.member.model.dao;
 import com.meossg.member.model.dto.ItemDTO;
 import com.meossg.member.model.dto.UserDTO;
 
+import java.util.Map;
+
 import java.util.List;
 
 public interface MemberMapper {
@@ -11,6 +13,8 @@ public interface MemberMapper {
     UserDTO userValidCheck(UserDTO loginMember);
 
     UserDTO personalInquiry(UserDTO user);
+
+    int buy(Map<String, Object> map);
 
     List<ItemDTO> selectAllProducts();
 }

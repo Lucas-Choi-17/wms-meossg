@@ -27,4 +27,18 @@
             AVAILABILITY
         FROM PRODUCT
     </select>
+
+    <insert id="buy">
+        INSERT INTO MEMBER_ORDER (MEMBER_ID)
+        VALUES(
+        #{memberId}
+        );
+
+        INSERT INTO ORDER_LIST
+        VALUES(
+        (SELECT MAX(ID) FROM MEMBER_ORDER),
+        (SELECT ID FROM PRODUCT WHERE NAME = #{productName}),
+        #{count}
+        )
+    </insert>
 </mapper>
