@@ -10,6 +10,7 @@ public class SelectAccountView {
 
     public void selectAccount() {
 
+        MemberMenuView memberMenuView = new MemberMenuView();
         Scanner sc = new Scanner(System.in);
         String menu = """
                 =======================
@@ -25,7 +26,7 @@ public class SelectAccountView {
             switch (input) {
                 case "1":
                     // 고객 접속
-                    new MemberMenuView().menu(new MemberMenuView().MemberLogin());
+                    memberMenuView.menu(memberMenuView.MemberLogin());
                     break;
                 case "2":
                     // 쇼핑몰 관리자 접속
