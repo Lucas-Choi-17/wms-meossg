@@ -29,4 +29,12 @@ public interface WarehouseMapper {
     WhStockDTO selectStockByName(String name);
 
     List<WhStockDTO> selectAllStock();
+
+    Integer verifyPlacingOrder(int id);
+
+    int updateInwarehouseYn(int id);
+
+    int updateStockCount(int id);
+
+    int insertInWarehouse(int id);
 }

@@ -139,4 +139,45 @@ public class WarehouseService {
         sqlSession.close();
         return list;
     }
+
+    public boolean verifyPlacingOrder(int id) {
+
+        SqlSession sqlSession = getSqlSession();
+        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+        Integer result = warehouseMapper.verifyPlacingOrder(id);
+
+        sqlSession.close();
+        return result != null? true : false;
+
+    }
+
+    public int updateInwarehouseYn(int id) {
+
+        SqlSession sqlSession = getSqlSession();
+        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+        int result = warehouseMapper.updateInwarehouseYn(id);
+
+        sqlSession.close();
+        return result;
+    }
+
+    public int updateStockCount(int id) {
+
+        SqlSession sqlSession = getSqlSession();
+        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+        int result = warehouseMapper.updateStockCount(id);
+
+        sqlSession.close();
+        return result;
+    }
+
+    public int insertInWarehouse(int id) {
+
+        SqlSession sqlSession = getSqlSession();
+        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+        int result = warehouseMapper.insertInWarehouse(id);
+
+        sqlSession.close();
+        return result;
+    }
 }

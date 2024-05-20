@@ -12,7 +12,6 @@ public class WarehouseMenuView {
     Scanner sc = new Scanner(System.in);
     OutWarehouseView ov = new OutWarehouseView();
     WarehouseController wc = new WarehouseController();
-    OutWarehouseController oc = new OutWarehouseController();
 
     public void warehouseMenu() {
 
@@ -49,7 +48,8 @@ public class WarehouseMenuView {
                     ov.printOutwarehouseList();
                     break;
                 case "4":
-                    // 입고 내역 조회
+                    // 입고
+                    InWarehouseSubMenu();
 
                 case "5":
                     //입고 내역 조회
@@ -65,6 +65,42 @@ public class WarehouseMenuView {
                     System.out.println("다시 입력해주세요.");
             }
         }
+    }
+
+    private void InWarehouseSubMenu() {
+        String menu = """
+                ===== 입고 메뉴 =====
+                1. 발주 목록 조회
+                2. 입고
+                9. 종료
+                선택 :\s""";
+
+        while (true) {
+            System.out.print(menu);
+            String input = sc.next();
+            sc.nextLine();
+
+            switch (input) {
+                case "1":
+                    // 발주 목록 조회
+                    ov.printPlacingOrder();
+                    break;
+                case "2":
+                    // 입고
+                    wc.inwarehouse(inputPlacingOrderId());
+                    break;
+                case "9":
+                    System.out.println("종료 합니다.");
+                    return;
+                default:
+                    System.out.println("다시 입력해주세요.");
+            }
+        }
+    }
+
+    private int inputPlacingOrderId() {
+        System.out.print("입고하실 발주번호를 입력해 주세요 : ");
+        return sc.nextInt();
     }
 
     private void selectStock() {
