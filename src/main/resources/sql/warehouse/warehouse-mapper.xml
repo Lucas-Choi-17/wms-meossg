@@ -98,4 +98,13 @@
                IF(PO.INWAREHOUSEYN = 'Y','입고완료','입고전') AS INWAREHOUSEYN
         FROM PLACING_ORDER PO
     </select>
+
+    <select id="selectAllOutwarehouse" resultType="OutwarehouseDTO">
+        SELECT OW.ID,
+               OW.ORDER_NUMBER,
+               (SELECT NAME FROM PRODUCT P WHERE P.ID = OW.PRODUCT_ID) AS NAME,
+               OW.OUT_DATE,
+               OW.ADDRESS
+          FROM OUTWAREHOUSE OW
+    </select>
 </mapper>
