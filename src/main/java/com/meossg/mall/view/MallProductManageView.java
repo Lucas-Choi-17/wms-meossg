@@ -42,7 +42,7 @@ public class MallProductManageView {
                     break;
                 case "4":
                     // 발주
-                    MallController.placingOrder(getProductId());
+                    placingOrderMenu();
                     break;
                 case "5":
                     MallController.getAllStockList();
@@ -55,6 +55,42 @@ public class MallProductManageView {
                     break;
             }
         }
+    }
+
+    private void placingOrderMenu() {
+        String menu = """
+                ============================
+                발주 관리
+                ============================
+                1. 발주 목록 조회
+                2. 발주 등록
+                3. 발주 삭제
+                0. 뒤로 가기
+                ============================
+                선택 :\s""";
+
+        while (true) {
+            System.out.print(menu);
+            String input = new Scanner(System.in).next();
+            switch (input) {
+                case "1":
+                    // 발주 목록 조히
+                    MallController.showAllPlacingOrder();
+                    break;
+                case "2":
+                    // 발주 등록
+                    MallController.placingOrder(getProductId());
+                case "3":
+                    // 발주 삭제
+//                    MallController.deletePlacingOrder(getPlacingOrderId());
+                case "0":
+                    return;
+                default:
+                    System.out.println("다시 입력해 주세요");
+                    break;
+            }
+        }
+
     }
 
     private Map<String, Integer> getProductId() {

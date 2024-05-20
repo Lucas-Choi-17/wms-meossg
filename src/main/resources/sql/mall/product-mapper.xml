@@ -73,4 +73,8 @@
             A.AVAILABILITY
         FROM PRODUCT A
     </select>
+
+    <select id="selectAllPlacingOrder" resultType="MallPlacingOrderDTO">
+        SELECT * FROM PLACING_ORDER
+    </select>
 </mapper>

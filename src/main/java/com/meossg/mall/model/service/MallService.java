@@ -225,6 +225,32 @@ public class MallService {
         return result > 0;
     }
 
+    public List<ProductDTO> selectAllProducts() {
+
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+
+        List<ProductDTO> productList = productMapper.selectAllProducts();
+
+        return productList;
+    }
+
+    public List<MallPlacingOrderDTO> selectAllPlacingOrder() {
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+
+        List<MallPlacingOrderDTO> placingOrderList = productMapper.selectAllPlacingOrder();
+
+        return placingOrderList;
+    }
+
+    public int getTotalProfit() {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        int total = orderMapper.getTotalProfit();
+        sqlSession.close();
+        return total;
+    }
 }
 
 

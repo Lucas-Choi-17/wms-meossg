@@ -60,6 +60,15 @@ public class MallController {
         }
     }
 
+    public static void showAllPlacingOrder() {
+        List<MallPlacingOrderDTO> placingOrderList = mallService.selectAllPlacingOrder();
+
+        for (MallPlacingOrderDTO placingOrder : placingOrderList) {
+            System.out.println(placingOrder);
+        }
+
+    }
+
     public AdminDTO login(AdminDTO admin) {
 
         return mallService.verifyLogin(admin);
