@@ -12,7 +12,13 @@ public interface AdminMapper {
 
     List<MemberDTO> selectAllMember();
 
-    int updateMemberInfo(MemberDTO member);
+    int updateAllInfo(MemberDTO member);
 
     List<MemberDTO> selectMemberByName(MemberDTO findName);
+
+    int updateMemberPassword(MemberDTO member);
+
+    int updateMemberPhone(MemberDTO member);
+
+    int updateMemberAddress(MemberDTO member);
 }

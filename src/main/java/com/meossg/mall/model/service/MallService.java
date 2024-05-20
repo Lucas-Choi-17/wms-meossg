@@ -114,20 +114,6 @@ public class MallService {
         return memberList;
     }
 
-    public boolean updateMemberInfo(MemberDTO member) {
-        SqlSession sqlSession = getSqlSession();
-        adminMapper = sqlSession.getMapper(AdminMapper.class);
-
-        int result = adminMapper.updateMemberInfo(member);
-
-        if (result > 0) {
-            sqlSession.commit();
-        } else {
-            sqlSession.rollback();
-        }
-
-        return result > 0;
-    }
 
     public List<OrderDTO> getAllOrderList() {
         SqlSession sqlSession = getSqlSession();
@@ -176,6 +162,66 @@ public class MallService {
             sqlSession.rollback();
         }
         sqlSession.close();
+    }
+
+    public boolean updateAllInfo(MemberDTO member) {
+        SqlSession sqlSession = getSqlSession();
+        adminMapper = sqlSession.getMapper(AdminMapper.class);
+
+        int result = adminMapper.updateAllInfo(member);
+
+        if (result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+        return result > 0;
+    }
+    public boolean updatePassword(MemberDTO member) {
+        SqlSession sqlSession = getSqlSession();
+        adminMapper = sqlSession.getMapper(AdminMapper.class);
+
+        int result = adminMapper.updateMemberPassword(member);
+
+        if (result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+        return result > 0;
+    }
+
+    public boolean updatePhone(MemberDTO member) {
+        SqlSession sqlSession = getSqlSession();
+        adminMapper = sqlSession.getMapper(AdminMapper.class);
+
+        int result = adminMapper.updateMemberPhone(member);
+
+        if (result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+        return result > 0;
+    }
+
+    public boolean updateAddress(MemberDTO member) {
+        SqlSession sqlSession = getSqlSession();
+        adminMapper = sqlSession.getMapper(AdminMapper.class);
+
+        int result = adminMapper.updateMemberAddress(member);
+
+        if (result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+
+        sqlSession.close();
+        return result > 0;
     }
 }
 
