@@ -2,17 +2,19 @@ package com.meossg.warehouse.controller;
 
 import com.meossg.mall.model.dto.ProductDTO;
 import com.meossg.warehouse.model.dto.InWarehouseDTO;
+import com.meossg.warehouse.model.dto.OrderListDTO;
+import com.meossg.warehouse.model.dto.WhAdminDTO;
 import com.meossg.warehouse.model.service.InWarehouseService;
 import com.meossg.warehouse.model.service.WarehouseService;
-import com.meossg.warehouse.view.WarehouseResultMessage;
+import com.meossg.warehouse.view.OutWarehouseView;
 
 import java.util.List;
 
 public class WarehouseController {
 
-    private WarehouseResultMessage resultMessage = new WarehouseResultMessage();
-
     WarehouseService ws = new WarehouseService();
+    OutWarehouseView ov = new OutWarehouseView();
+
     public static void getInWarehouse() {
         List<InWarehouseDTO> inWarehouseDTOList = InWarehouseService.getAllInWarehouseList();
         System.out.println("--------------창고--------------");
@@ -27,10 +29,5 @@ public class WarehouseController {
 
         return ws.verifyLogin(id,pwd);
     }
-
-
-
-
-
 
 }
