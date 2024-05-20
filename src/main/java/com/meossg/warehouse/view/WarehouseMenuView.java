@@ -43,6 +43,7 @@ public class WarehouseMenuView {
                     break;
                 case "4":
                     // 입고 내역 조회
+
                 case "5":
                     //창고 재고 조회
                     WarehouseController.getInWarehouse();

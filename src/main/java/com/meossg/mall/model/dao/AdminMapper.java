@@ -13,4 +13,6 @@ public interface AdminMapper {
     List<MemberDTO> selectAllMember();
 
     int updateMemberInfo(MemberDTO member);
+
+    List<MemberDTO> selectMemberByName(MemberDTO findName);
 }

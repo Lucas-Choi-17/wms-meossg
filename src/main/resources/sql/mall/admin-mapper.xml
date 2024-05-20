@@ -5,7 +5,7 @@
 <mapper namespace="com.meossg.mall.model.dao.AdminMapper">
 
     <select id="verifyLogin" resultType="AdminDTO">
-        select
+        SELECT
         A.ID,
         A.NAME,
         A.ASSOCIATION,
@@ -24,8 +24,20 @@
         A.PHONE,
         A.ADDRESS,
         A.PASSWORD
-        FROM member A
+        FROM MEMBER A
         ORDER BY ID
+    </select>
+
+    <select id="selectMemberByName" resultType="MemberDTO">
+        SELECT
+        A.ID,
+        A.NAME,
+        A.PHONE,
+        A.ADDRESS,
+        A.PASSWORD
+        FROM MEMBER A
+        WHERE A.NAME LIKE #{ name }
+        ORDER BY A.NAME
     </select>
 
     <update id="updateMemberInfo">
