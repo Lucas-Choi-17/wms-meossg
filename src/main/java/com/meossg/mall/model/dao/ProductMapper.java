@@ -4,6 +4,7 @@ import com.meossg.mall.model.dto.MallPlacingOrderDTO;
 import com.meossg.mall.model.dto.ProductDTO;
 import com.meossg.mall.model.dto.StockDTO;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,4 +21,8 @@ public interface ProductMapper {
     List<ProductDTO> selectAllProducts();
 
     List<MallPlacingOrderDTO> selectAllPlacingOrder();
+
+    MallPlacingOrderDTO isPlacingOrderNull(int mallPlacingOrderId);
+
+    int deletePlacingOrder(HashMap<String, Integer> mallPlacingOrder);
 }

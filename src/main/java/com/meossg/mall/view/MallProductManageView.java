@@ -80,9 +80,11 @@ public class MallProductManageView {
                 case "2":
                     // 발주 등록
                     MallController.placingOrder(getProductId());
+                    break;
                 case "3":
                     // 발주 삭제
-//                    MallController.deletePlacingOrder(getPlacingOrderId());
+                    MallController.deletePlacingOrder(getPlacingOrderId());
+                    break;
                 case "0":
                     return;
                 default:
@@ -91,6 +93,27 @@ public class MallProductManageView {
             }
         }
 
+    }
+
+    private HashMap<String, Integer> getPlacingOrderId() {
+        Scanner sc = new Scanner(System.in);
+        HashMap<String, Integer> map = new HashMap<>();
+
+
+        System.out.println("-----------< 발주 취소 >-----------");
+        System.out.print("취소할 발주 번호를 입력하세요 : ");
+        int mallPlacingOrderId = sc.nextInt();
+        // 입력된 발주 번호의 발주 목록 존재 확인
+        int result = MallController.isPlacingOrderNull(mallPlacingOrderId);
+
+        if (result > 0) {
+            map.put("id", mallPlacingOrderId);
+
+            return map;
+        } else {
+            System.out.println(mallPlacingOrderId + "번 발주가 존재하지 않습니다.");
+            return null;
+        }
     }
 
     private Map<String, Integer> getProductId() {

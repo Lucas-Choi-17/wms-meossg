@@ -36,6 +36,12 @@
         id = #{id}
     </update>
 
+    <select id="isPlacingOrderNull" resultType="MallPlacingOrderDTO" parameterType="_int">
+        SELECT *
+        FROM PLACING_ORDER
+        WHERE ID = #{ mallPlacingOrderId }
+    </select>
+
     <select id="checkProductExists" resultType="ProductDTO">
         SELECT
         *
@@ -77,4 +83,12 @@
     <select id="selectAllPlacingOrder" resultType="MallPlacingOrderDTO">
         SELECT * FROM PLACING_ORDER
     </select>
+
+    <delete id="deletePlacingOrder" parameterType="MallPlacingOrderDTO">
+        DELETE FROM PLACING_ORDER WHERE ID = #{ id };
+
+        ALTER TABLE PLACING_ORDER AUTO_INCREMENT=1;
+        SET @COUNT = 0;
+        UPDATE PLACING_ORDER SET ID = @COUNT:=@COUNT+1;
+    </delete>
 </mapper>

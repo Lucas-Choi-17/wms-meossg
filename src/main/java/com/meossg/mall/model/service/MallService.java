@@ -7,6 +7,7 @@ import com.meossg.mall.model.dao.ProductMapper;
 import com.meossg.mall.model.dto.*;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,39 @@ public class MallService {
             sqlSession.rollback();
         }
         sqlSession.close();
+    }
+
+    public static int isPlacingOrderNull(int mallPlacingOrderId) {
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+
+        MallPlacingOrderDTO mallPlacingOrder = productMapper.isPlacingOrderNull(mallPlacingOrderId);
+
+        if (mallPlacingOrder != null){
+            sqlSession.close();
+            return 1;
+        } else {
+            sqlSession.close();
+            return 0;
+        }
+    }
+
+    public static int deletePlacingOrder(HashMap<String, Integer> mallPlacingOrderId) {
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+
+        int result = productMapper.deletePlacingOrder(mallPlacingOrderId);
+
+
+        if (result > 0){
+            sqlSession.commit();
+            sqlSession.close();
+            return 1;
+        } else {
+            sqlSession.rollback();
+            sqlSession.close();
+            return 0;
+        }
     }
 
     public List<MemberDTO> selectMemberByName(MemberDTO findName) {
@@ -131,6 +165,7 @@ public class MallService {
         DeliveryMapper deliveryMapper = sqlSession.getMapper(DeliveryMapper.class);
         List<DeliveryDTO> deliveryList = deliveryMapper.showDeliveryList();
 
+        sqlSession.close();
         return deliveryList;
     }
 
@@ -232,6 +267,7 @@ public class MallService {
 
         List<ProductDTO> productList = productMapper.selectAllProducts();
 
+        sqlSession.close();
         return productList;
     }
 
@@ -241,6 +277,7 @@ public class MallService {
 
         List<MallPlacingOrderDTO> placingOrderList = productMapper.selectAllPlacingOrder();
 
+        sqlSession.close();
         return placingOrderList;
     }
 
