@@ -16,4 +16,15 @@
     <select id="personalInquiry" resultType="UserDTO">
         SELECT * FROM MEMBER WHERE ID = #{id}
     </select>
+
+    <select id="selectAllProducts" resultType="ItemDTO">
+        SELECT
+            ID,
+            NAME,
+            PRICE,
+            SIZE,
+            COLOR,
+            AVAILABILITY
+        FROM PRODUCT
+    </select>
 </mapper>

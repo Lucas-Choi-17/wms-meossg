@@ -39,7 +39,7 @@ public class MallMenuView {
                     break;
                 case "0":
                     // 로그아웃
-                    break;
+                    return;
                 default:
                     System.out.println("다시 입력해주세요.");
             }
