@@ -1,9 +1,7 @@
 package com.meossg.warehouse.model.service;
 
+import com.meossg.warehouse.model.dto.*;
 import com.meossg.warehouse.model.mapper.WarehouseMapper;
-import com.meossg.warehouse.model.dto.OrderDTO;
-import com.meossg.warehouse.model.dto.OrderListDTO;
-import com.meossg.warehouse.model.dto.WhAdminDTO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -42,11 +40,11 @@ public class WarehouseService {
         return list;
     }
 
-    public OrderDTO selectOrder(int id) {
+    public MemberOrderDTO selectOrder(int id) {
 
         SqlSession sqlSession = getSqlSession();
         warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
-        OrderDTO order = warehouseMapper.selectOrder(id);
+        MemberOrderDTO order = warehouseMapper.selectOrder(id);
         sqlSession.close();
 
         return order;
@@ -100,3 +98,22 @@ public class WarehouseService {
 
         return shipStatus;
     }
+
+    public List<PlacingOrderDTO> selectAllPlacingOrder() {
+
+        SqlSession sqlSession = getSqlSession();
+        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+        List<PlacingOrderDTO> list = warehouseMapper.selectAllPlacingOrder();
+
+        return list;
+    }
+
+    public List<OutwarehouseDTO> selectAllOutwarehouse() {
+
+        SqlSession sqlSession = getSqlSession();
+        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+        List<OutwarehouseDTO> list = warehouseMapper.selectAllOutwarehouse();
+
+        return list;
+    }
+}
