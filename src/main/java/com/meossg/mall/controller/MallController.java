@@ -79,22 +79,7 @@ public class MallController {
 
     }
 
-    public void updateMember(Map<String, String> updateInfo) {
-        MemberDTO member = new MemberDTO();
-        member.setName(updateInfo.get("name"));
-        System.out.println(updateInfo.get("name"));
-        member.setPhone(updateInfo.get("phone"));
-        System.out.println(updateInfo.get("phone"));
-        member.setAddress(updateInfo.get("address"));
-        System.out.println(updateInfo.get("address"));
 
-        if (mallService.updateMemberInfo(member)) {
-            System.out.println("회원정보 수정을 성공했습니다.");
-        } else {
-            System.out.println("회원정보 수정을 실패했습니다.");
-        }
-
-    }
 
     public void getAllOrderList() {
         List<OrderDTO> orderList = mallService.getAllOrderList();
@@ -149,4 +134,61 @@ public class MallController {
             System.out.println("없는 주문 번호입니다.");
         }
     }
+    public void updatePassword(Map<String, String> newPassword) {
+        MemberDTO member = new MemberDTO();
+        member.setId(newPassword.get("id"));
+        member.setName(newPassword.get("name"));
+        member.setPassword(newPassword.get("password"));
+
+        if (mallService.updatePassword(member)) {
+            System.out.println("회원정보 수정을 성공했습니다.");
+        } else {
+            System.out.println("회원정보 수정을 실패했습니다.");
+        }
+    }
+
+
+    public void updatePhone(Map<String, String> newPhone){
+        MemberDTO member = new MemberDTO();
+        member.setId(newPhone.get("id"));
+        member.setName(newPhone.get("name"));
+        member.setPhone(newPhone.get("phone"));
+
+        if (mallService.updatePhone(member)) {
+            System.out.println("회원정보 수정을 성공했습니다.");
+        } else {
+            System.out.println("회원정보 수정을 실패했습니다.");
+        }
+    }
+
+    public void updateAddress(Map<String, String> newAddress) {
+        MemberDTO member = new MemberDTO();
+        member.setId(newAddress.get("id"));
+        member.setName(newAddress.get("name"));
+        member.setAddress(newAddress.get("address"));
+
+        if (mallService.updateAddress(member)) {
+            System.out.println("회원정보 수정을 성공했습니다.");
+        } else {
+            System.out.println("회원정보 수정을 실패했습니다.");
+        }
+    }
+
+
+    public void updateAllInfo(Map<String, String> newAllInfo) {
+        MemberDTO member = new MemberDTO();
+        member.setId(newAllInfo.get("id"));
+        member.setName(newAllInfo.get("name"));
+        member.setPassword(newAllInfo.get("password"));
+        member.setPhone(newAllInfo.get("phone"));
+        member.setAddress(newAllInfo.get("address"));
+
+        if (mallService.updateAllInfo(member)) {
+            System.out.println("회원정보 수정을 성공했습니다.");
+        } else {
+            System.out.println("회원정보 수정을 실패했습니다.");
+        }
+    }
 }
+
+
