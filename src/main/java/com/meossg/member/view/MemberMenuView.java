@@ -83,7 +83,9 @@ public class MemberMenuView {
         }
     }
 
-    private void shopView(UserDTO member) {
+
+
+    public static void shopView(UserDTO member) {
         MemberController memberController = new MemberController();
         Scanner sc = new Scanner(System.in);
         String menu = """
@@ -115,7 +117,8 @@ public class MemberMenuView {
                     break;
                 case 0:
                     // 뒤로가기
-                    return;
+//                    return;
+                    break;
                 default:
                     System.out.println("다시 입력해!");
                     break;
@@ -185,7 +188,7 @@ public class MemberMenuView {
         while (true) {
             System.out.println("\n\n 안녕하세요! 머쓱 (⊙_⊙;) 입니다.");
             System.out.println("사용할 메뉴를 선택해주세요");
-            System.out.println("1. 로그인, 2: 비회원 로그인, 3: 회원가입");
+            System.out.println("1. 로그인 2: 비회원 로그인 3: 회원가입");
 
             int input = sc.nextInt();
 

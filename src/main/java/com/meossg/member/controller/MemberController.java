@@ -15,6 +15,15 @@ public class MemberController {
 
     public List<UserDTO> memberList = new ArrayList<>();
 
+    private final PrintResult printResult;
+
+    private final MemberService memberService;
+
+    public MemberController(){
+        printResult = new PrintResult();
+        memberService = new MemberService();
+    }
+
     public UserDTO signIn() {
         Scanner sc = new Scanner(System.in);
         loginMember = new UserDTO();
@@ -157,13 +166,71 @@ public class MemberController {
     public void purchased(String memberId) {
         MemberService memberService = new MemberService();
         List<OrderPurchasedDTO> orderList = memberService.purchased(memberId);
+        Scanner sc = new Scanner(System.in);
+        MemberController memberController = new MemberController();
 
         if (orderList != null && orderList.size() > 0) {
             for (OrderPurchasedDTO order : orderList) {
                 System.out.println(order.toString());
             }
+
+            // 주문 선택 / 뒤로가기
+
+            while (true) {
+                System.out.println("사용할 번호를 선택해주세요");
+                System.out.println("1. 주문 상품 선택 0.뒤로가기");
+            int input = sc.nextInt();
+            switch (input) {
+                case 1: //주문한 상품 선택 / 주문 선택하면 해당 정보 출력
+                    memberController.selectProductName(inputProductName());
+                    break;
+                case 0:
+                   // 뒤로가기
+                   return;
+                default:
+                    System.out.println("다시 입력해주셔요!");
+                    break;
+            }
+        }
+
+            // 정보 출력 후 해당 주문 취소하기 / 뒤로가기
+
+            // 해당 주문 취소하는 경우, 배송 완료인 경우는 취소 불가
+            // 배송 완료가 아닌 경우에는 주문 취소 -> DELIVERY에서 해당 정보 제거, MEMBER_ORDER에서 해당 ORDER_APPROVEYN 값을 null로 변경
         } else {
             System.out.println("주문 내역이 존재하지 않습니다.");
         }
     }
+
+//    public static void main(String[] args) {
+//        UserDTO user = new UserDTO("1", "얍떙", "bar", "foo", "11");
+//        shopView(user);
+//    }
+
+    private Map<String, String> inputProductName() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("주문한 상품 이름을 입력하세요 : ");
+        String name = sc.nextLine();
+
+        Map<String,String> parameter = new HashMap<>();
+        parameter.put("name", name);
+
+        return parameter;
+
+    }
+
+    public void selectProductName(Map<String,String> parameter){
+
+        String name = parameter.get("name");
+
+        ItemDTO item = MemberService.selectProductName(name);
+
+        if(item != null) {
+            printResult.printPurchased(item);
+        }else {
+            printResult.printErrorMessage("selectOne");
+        }
+    }
+
 }
