@@ -24,4 +24,13 @@ public class ProductDTO {
                 " | 색상: " + color +
                 " | 판매여부: " + availability + " ]";
     }
+
+    public String toStringWithID(){
+        return "[ 상품번호 : " + id +
+                " | 상품명: " + name +
+                        " | 가격: " + price +
+                        " | 크기: " + size +
+                        " | 색상: " + color +
+                        " | 판매여부: " + availability + " ]";
+    }
 }

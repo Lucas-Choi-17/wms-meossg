@@ -15,10 +15,11 @@ public class MallProductManageView {
                 ============================
                 상품 관리
                 ============================
-                1. 상품 등록
-                2. 상품 정보 변경
-                3. 발주
-                4. 재고 조회
+                1. 상품 조회
+                2. 상품 등록
+                3. 상품 정보 변경
+                4. 발주
+                5. 재고 조회
                 0. 뒤로 가기
                 ============================
                 선택 :\s""";
@@ -28,18 +29,22 @@ public class MallProductManageView {
             String input = new Scanner(System.in).next();
             switch (input) {
                 case "1":
+                    // 상품 전체 조회
+                    MallController.showAllProducts();
+                    break;
+                case "2":
                     // 상품 등록
                     MallController.addProduct(newProduct());
                     break;
-                case "2":
+                case "3":
                     // 상품 정보 변경
                     MallController.modifyProduct(modifyInformation());
                     break;
-                case "3":
-                    // 발주
-                    MallController.placingOrder(getProductId());
-                    break;
                 case "4":
+                    // 발주
+                    placingOrderMenu();
+                    break;
+                case "5":
                     MallController.getAllStockList();
                     // 재고 조회
                     break;
@@ -50,6 +55,42 @@ public class MallProductManageView {
                     break;
             }
         }
+    }
+
+    private void placingOrderMenu() {
+        String menu = """
+                ============================
+                발주 관리
+                ============================
+                1. 발주 목록 조회
+                2. 발주 등록
+                3. 발주 삭제
+                0. 뒤로 가기
+                ============================
+                선택 :\s""";
+
+        while (true) {
+            System.out.print(menu);
+            String input = new Scanner(System.in).next();
+            switch (input) {
+                case "1":
+                    // 발주 목록 조히
+                    MallController.showAllPlacingOrder();
+                    break;
+                case "2":
+                    // 발주 등록
+                    MallController.placingOrder(getProductId());
+                case "3":
+                    // 발주 삭제
+//                    MallController.deletePlacingOrder(getPlacingOrderId());
+                case "0":
+                    return;
+                default:
+                    System.out.println("다시 입력해 주세요");
+                    break;
+            }
+        }
+
     }
 
     private Map<String, Integer> getProductId() {
@@ -81,10 +122,9 @@ public class MallProductManageView {
         Scanner sc = new Scanner(System.in);
         ProductDTO product = new ProductDTO();
         System.out.println("---------< 상품 정보 변경 >---------");
-        System.out.println("변경하려는 상품의 id를 입력하세요 : ");
+        System.out.println("변경하려는 상품의 id를 입력해 주세요 : ");
 
         try {
-            System.out.print("상품 id: ");
             int id = sc.nextInt();
             product.setId(id);
             sc.nextLine();
@@ -124,7 +164,7 @@ public class MallProductManageView {
                 YN = sc.nextLine().charAt(0) + "";
             }
         }
-        System.out.println(product);
+        System.out.println("### 변경된 상품 정보\n" + product.toStringWithID() + "\n#################");
 
         return product;
     }

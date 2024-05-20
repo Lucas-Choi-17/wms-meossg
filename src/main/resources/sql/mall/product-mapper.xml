@@ -37,12 +37,10 @@
     </update>
 
     <select id="checkProductExists" resultType="ProductDTO">
-        select
+        SELECT
         *
-        from
-        product
-        where
-        id = #{productId}
+        FROM PRODUCT
+        WHERE ID = #{ id }
     </select>
 
     <insert id="placingOrder" useGeneratedKeys="true" keyProperty="id">
@@ -63,5 +61,20 @@
         LEFT JOIN STOCK S
         ON
         P.ID = S.PRODUCT_ID;
+    </select>
+
+    <select id="selectAllProducts" resultType="ProductDTO">
+        SELECT
+            A.ID,
+            A.NAME,
+            A.PRICE,
+            A.SIZE,
+            A.COLOR,
+            A.AVAILABILITY
+        FROM PRODUCT A
+    </select>
+
+    <select id="selectAllPlacingOrder" resultType="MallPlacingOrderDTO">
+        SELECT * FROM PLACING_ORDER
     </select>
 </mapper>
