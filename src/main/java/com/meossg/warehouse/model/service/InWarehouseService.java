@@ -1,10 +1,12 @@
 package com.meossg.warehouse.model.service;
 
+import com.meossg.mall.model.dto.ProductDTO;
 import com.meossg.warehouse.model.dao.WarehouseMapper;
 import com.meossg.warehouse.model.dto.InWarehouseDTO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.meossg.common.MyBatisTemplate.getSqlSession;
 
@@ -18,5 +20,4 @@ public class InWarehouseService {
         sqlSession.close();
         return inWarehouseDTO;
     }
-
 }
