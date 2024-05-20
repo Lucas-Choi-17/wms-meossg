@@ -178,6 +178,7 @@ public class MallService {
         sqlSession.close();
         return result > 0;
     }
+
     public boolean updatePassword(MemberDTO member) {
         SqlSession sqlSession = getSqlSession();
         adminMapper = sqlSession.getMapper(AdminMapper.class);
@@ -222,6 +223,14 @@ public class MallService {
 
         sqlSession.close();
         return result > 0;
+    }
+
+    public int getTotalProfit() {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        int total = orderMapper.getTotalProfit();
+        sqlSession.close();
+        return total;
     }
 }
 
