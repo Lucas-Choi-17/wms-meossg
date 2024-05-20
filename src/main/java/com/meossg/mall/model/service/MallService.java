@@ -115,10 +115,10 @@ public class MallService {
     }
 
 
-    public List<OrderDTO> getAllOrderList() {
+    public List<MallOrderDTO> getAllOrderList() {
         SqlSession sqlSession = getSqlSession();
         OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-        List<OrderDTO> orderList = orderMapper.getAllOrderList();
+        List<MallOrderDTO> orderList = orderMapper.getAllOrderList();
 
         sqlSession.close();
         if (orderList != null && orderList.size() > 0) {
@@ -134,10 +134,10 @@ public class MallService {
         return deliveryList;
     }
 
-    public List<OrderDTO> getAllOrderListWithStatus() {
+    public List<MallOrderDTO> getAllOrderListWithStatus() {
         SqlSession sqlSession = getSqlSession();
         OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-        List<OrderDTO> orderList = orderMapper.getAllOrderListWithStatus();
+        List<MallOrderDTO> orderList = orderMapper.getAllOrderListWithStatus();
         sqlSession.close();
         if (orderList != null && orderList.size() > 0) {
             return orderList;

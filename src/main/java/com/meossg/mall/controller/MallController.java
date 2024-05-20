@@ -82,10 +82,10 @@ public class MallController {
 
 
     public void getAllOrderList() {
-        List<OrderDTO> orderList = mallService.getAllOrderList();
+        List<MallOrderDTO> orderList = mallService.getAllOrderList();
 
         if (orderList != null) {
-            for (OrderDTO order : orderList) {
+            for (MallOrderDTO order : orderList) {
                 System.out.print("주문번호 : %3s,  ".formatted(order.getOrderId()));
                 System.out.print("주문자 : %8s,  ".formatted(order.getUserName()));
                 System.out.print("제품 : %4s,  ".formatted(order.getProductName()));
@@ -111,11 +111,11 @@ public class MallController {
     public void approveOrder() {
         Scanner sc = new Scanner(System.in);
         System.out.println("-------< 미 승인 주문 >-------");
-        List<OrderDTO> orderList = mallService.getAllOrderListWithStatus();
+        List<MallOrderDTO> orderList = mallService.getAllOrderListWithStatus();
         if (orderList == null) {
             System.out.println("미 승인 주문 내역이 없습니다.");
         } else {
-            for (OrderDTO order : orderList) {
+            for (MallOrderDTO order : orderList) {
                 System.out.print("주문번호 : %3s,  ".formatted(order.getOrderId()));
                 System.out.print("주문자 : %8s,  ".formatted(order.getUserName()));
                 System.out.print("상품명 : %4s,  ".formatted(order.getProductName()));
@@ -125,7 +125,7 @@ public class MallController {
             System.out.println("--------------------------");
             System.out.print("주문 번호를 입력하세요 : ");
             int orderId = sc.nextInt();
-            for (OrderDTO order : orderList) {
+            for (MallOrderDTO order : orderList) {
                 if (order.getOrderId() == orderId) {
                     mallService.approveOrder(orderId);
                     return;
