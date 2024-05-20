@@ -41,6 +41,7 @@ public class WarehouseMenuView {
                     break;
                 case "3":
                     // 출고 내역 조회
+                    ov.printOutwarehouseList();
                     break;
                 case "4":
                     // 입고 내역 조회

@@ -2,6 +2,7 @@ package com.meossg.warehouse.view;
 
 import com.meossg.warehouse.controller.OutWarehouseController;
 import com.meossg.warehouse.model.dto.OrderListDTO;
+import com.meossg.warehouse.model.dto.OutwarehouseDTO;
 import com.meossg.warehouse.model.dto.PlacingOrderDTO;
 
 import java.util.List;
@@ -64,6 +65,28 @@ public class OutWarehouseView {
             }
         } else {
             System.out.println("발주 목록이 없습니다.");
+        }
+    }
+
+    public void printOutwarehouseList() {
+
+        List<OutwarehouseDTO> shiplist;
+
+        shiplist = oc.selectAllOutwarehouse();
+
+        if (shiplist != null) {
+            System.out.println("===== 출고 목록 =====");
+            for (OutwarehouseDTO ship : shiplist) {
+                System.out.println("출고번호 : " + ship.getId()
+                                           + ", 주문번호 : " + ship.getOrderNumber()
+                                           + ", 상품 : " + ship.getName()
+                                           + ", 요청일 : " + ship.getOutDate()
+                                           + ", 주소 : " + ship.getAddress()
+                );
+                System.out.println("===================");
+            }
+        } else {
+            System.out.println("출고 목록이 없습니다.");
         }
     }
 }
