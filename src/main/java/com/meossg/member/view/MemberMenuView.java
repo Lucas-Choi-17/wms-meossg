@@ -3,6 +3,8 @@ package com.meossg.member.view;
 import com.meossg.member.model.dto.UserDTO;
 import com.meossg.member.controller.MemberController;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MemberMenuView {
@@ -143,6 +145,7 @@ public class MemberMenuView {
                     break;
                 case 2:
                     // 개인정보 수정
+                    memberController.modifyInfo(inputModifyMember(member));
                     break;
                 case 0:
                     // 뒤로가기
@@ -152,6 +155,24 @@ public class MemberMenuView {
                     break;
             }
         }
+    }
+
+    private static Map<String,String> inputModifyMember(UserDTO member){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("수정할 핸드폰 번호를 입력하세요 ☎ : ");
+        String phone = sc.nextLine();
+        System.out.print("수정할 주소를 입력하세요 🏠 : ");
+        String address = sc.nextLine();
+        System.out.print("수정할 비밀번호를 입력하세요 🔓 : ");
+        String password = sc.nextLine();
+
+        Map<String,String> parameter = new HashMap<>();
+        parameter.put("phone",phone);
+        parameter.put("address",address);
+        parameter.put("password",password);
+        parameter.put("id",member.getId());
+        return parameter;
     }
 
     public UserDTO MemberLogin() {

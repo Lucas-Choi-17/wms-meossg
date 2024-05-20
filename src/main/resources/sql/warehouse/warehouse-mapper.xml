@@ -30,7 +30,7 @@
          ORDER BY ORDER_ID
     </select>
 
-    <select id="selectOrder" resultType="OrderDTO">
+    <select id="selectOrder" resultType="MemberOrderDTO">
         SELECT
                ID,
                MEMBER_ID,

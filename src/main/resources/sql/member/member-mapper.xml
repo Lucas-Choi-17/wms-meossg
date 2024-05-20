@@ -17,6 +17,12 @@
         SELECT * FROM MEMBER WHERE ID = #{id}
     </select>
 
+    <update id="modifyInfo" parameterType="UserDTO">
+        UPDATE MEMBER
+        SET PHONE = #{ phone }, ADDRESS = #{ address } , PASSWORD = #{ password } WHERE ID = #{ id }
+
+    </update>
+
     <select id="selectAllProducts" resultType="ItemDTO">
         SELECT
             ID,
