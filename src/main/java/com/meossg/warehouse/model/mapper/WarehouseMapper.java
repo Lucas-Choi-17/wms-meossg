@@ -25,4 +25,6 @@ public interface WarehouseMapper {
     List<PlacingOrderDTO> selectAllPlacingOrder();
 
     List<OutwarehouseDTO> selectAllOutwarehouse();
+
+    WhStockDTO selectStockByName(String name);
 }

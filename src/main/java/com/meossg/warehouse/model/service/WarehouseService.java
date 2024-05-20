@@ -96,6 +96,7 @@ public class WarehouseService {
             sqlSession.rollback();
         }
 
+        sqlSession.close();
         return shipStatus;
     }
 
@@ -105,6 +106,7 @@ public class WarehouseService {
         warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
         List<PlacingOrderDTO> list = warehouseMapper.selectAllPlacingOrder();
 
+        sqlSession.close();
         return list;
     }
 
@@ -114,6 +116,17 @@ public class WarehouseService {
         warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
         List<OutwarehouseDTO> list = warehouseMapper.selectAllOutwarehouse();
 
+        sqlSession.close();
         return list;
+    }
+
+    public WhStockDTO selectStockByName(String name) {
+
+        SqlSession sqlSession = getSqlSession();
+        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+        WhStockDTO stock = warehouseMapper.selectStockByName(name);
+
+        sqlSession.close();
+        return stock;
     }
 }
