@@ -1,9 +1,7 @@
 package com.meossg.warehouse.controller;
 
-import com.meossg.mall.model.dto.ProductDTO;
 import com.meossg.warehouse.model.dto.InWarehouseDTO;
-import com.meossg.warehouse.model.dto.OrderListDTO;
-import com.meossg.warehouse.model.dto.WhAdminDTO;
+import com.meossg.warehouse.model.dto.WhStockDTO;
 import com.meossg.warehouse.model.service.InWarehouseService;
 import com.meossg.warehouse.model.service.WarehouseService;
 import com.meossg.warehouse.view.OutWarehouseView;
@@ -30,4 +28,7 @@ public class WarehouseController {
         return ws.verifyLogin(id,pwd);
     }
 
+    public WhStockDTO selectStockByName(String name) {
+        return ws.selectStockByName(name);
+    }
 }

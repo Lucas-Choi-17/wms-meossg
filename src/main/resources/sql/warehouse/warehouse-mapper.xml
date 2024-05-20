@@ -30,7 +30,7 @@
          ORDER BY ORDER_ID
     </select>
 
-    <select id="selectOrder" resultType="OrderDTO">
+    <select id="selectOrder" resultType="MemberOrderDTO">
         SELECT
                ID,
                MEMBER_ID,
@@ -106,5 +106,14 @@
                OW.OUT_DATE,
                OW.ADDRESS
           FROM OUTWAREHOUSE OW
+    </select>
+
+    <select id="selectStockByName" resultType="WhStockDTO">
+        SELECT
+               P.NAME,
+               S.COUNT
+        FROM STOCK S
+        JOIN PRODUCT P ON S.PRODUCT_ID = P.ID
+        WHERE P.NAME like CONCAT('%',#{ name },'%')
     </select>
 </mapper>
