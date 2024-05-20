@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.meossg.warehouse.model.dao.WarehouseMapper">
+<mapper namespace="com.meossg.warehouse.model.mapper.WarehouseMapper">
 
     <select id="getUser" resultType="WhAdminDTO">
         SELECT
@@ -15,4 +15,77 @@
            AND ASSOCIATION = '창고'
     </select>
 
+    <select id="selectAllOrderList" resultType="OrderListDTO">
+        SELECT
+               OL.ORDER_ID,
+               (SELECT NAME FROM PRODUCT WHERE ID = OL.PRODUCT_ID) AS NAME,
+               OL.COUNT
+          FROM ORDER_LIST OL
+         WHERE ORDER_ID IN (
+                            SELECT ORDER_ID
+                              FROM MEMBER_ORDER
+                             WHERE ORDER_APPROVEYN = 'Y'
+                               AND DELIVERYN = 'N'
+                           )
+         ORDER BY ORDER_ID
+    </select>
+
+    <select id="selectOrder" resultType="OrderDTO">
+        SELECT
+               ID,
+               MEMBER_ID,
+               ORDER_APPROVEYN,
+               DELIVERYN
+          FROM MEMBER_ORDER
+         WHERE ID = #{ id }
+    </select>
+
+    <select id="verifyStock" resultType="_int">
+        SELECT COUNT(*) AS verif
+        FROM (SELECT a.COUNT - b.COUNT AS verif
+        FROM ORDER_LIST a
+        JOIN STOCK b
+        ON a.PRODUCT_ID = b.PRODUCT_ID
+        WHERE a.ORDER_ID = #{ id }
+        HAVING verif &lt; 0) AS vf
+        GROUP BY verif
+    </select>
+
+    <insert id="insertOutWarehouse">
+        INSERT INTO OUTWAREHOUSE
+        (
+            ORDER_NUMBER,
+            PRODUCT_ID,
+            OUT_DATE,
+            ADDRESS
+        )
+        SELECT OL.ORDER_ID,
+            OL.PRODUCT_ID,
+            SYSDATE(),
+            MB.ADDRESS
+        FROM ORDER_LIST OL
+        JOIN MEMBER_ORDER MO ON OL.ORDER_ID = MO.id
+        JOIN MEMBER MB ON MO.MEMBER_ID = MB.id
+        WHERE OL.ORDER_ID = #{ id }
+    </insert>
+
+    <update id="updateDeliveryn">
+        UPDATE MEMBER_ORDER
+        SET DELIVERYN = 'Y'
+        WHERE ID = #{ id }
+    </update>
+
+    <update id="updateTblDelivery">
+        UPDATE DELIVERY SET
+        STATUS = 'Y',
+        TRACKING_NUMBER = (SELECT MAX(TRACKING_NUMBER) FROM DELIVERY) + 1
+        WHERE ORDER_ID = #{ id }
+    </update>
+
+    <update id="updateStock">
+        UPDATE STOCK S, ORDER_LIST OL SET
+            S.COUNT = S.COUNT - OL.COUNT
+         WHERE OL.ORDER_ID = #{ id }
+           AND S.PRODUCT_ID = OL.PRODUCT_ID
+    </update>
 </mapper>

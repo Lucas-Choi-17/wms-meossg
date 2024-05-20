@@ -1,6 +1,6 @@
 package com.meossg.warehouse.model.service;
 
-import com.meossg.warehouse.model.dao.WarehouseMapper;
+import com.meossg.warehouse.model.mapper.WarehouseMapper;
 import com.meossg.warehouse.model.dto.InWarehouseDTO;
 import org.apache.ibatis.session.SqlSession;
 

@@ -1,6 +1,6 @@
 package com.meossg.warehouse.view;
 
-import com.meossg.mall.view.MallLoginView;
+import com.meossg.warehouse.controller.OutWarehouseController;
 import com.meossg.warehouse.controller.WarehouseController;
 
 import java.util.Scanner;
@@ -8,6 +8,9 @@ import java.util.Scanner;
 public class WarehouseMenuView {
 
     Scanner sc = new Scanner(System.in);
+    OutWarehouseView ov = new OutWarehouseView();
+    WarehouseController wc = new WarehouseController();
+    OutWarehouseController oc = new OutWarehouseController();
 
     public void warehouseMenu() {
 
@@ -33,6 +36,7 @@ public class WarehouseMenuView {
                     break;
                 case "2":
                     // 출고
+                    ov.printOrderList();
                     break;
                 case "3":
                     // 출고 내역 조회
