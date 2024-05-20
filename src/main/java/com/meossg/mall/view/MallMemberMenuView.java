@@ -26,9 +26,11 @@ public class MallMemberMenuView {
 
             switch (choice){
                 case "1" :
+                    // 회원 정보 조회 메뉴로
                     showMemberMenu();
                     break;
                 case "2" :
+                    // 회원 정보 수정
                     control.updateMember(inputInfo());
                     break;
                 case "0" :
@@ -60,9 +62,11 @@ public class MallMemberMenuView {
 
             switch (choice) {
                 case "1" :
+                    // 전체 조회
                     control.selectAllMember();
                     break;
                 case "2" :
+                    // 이름으로 조회
                     control.selectMemberByName(inputName());
                     break;
                 case "0" :
