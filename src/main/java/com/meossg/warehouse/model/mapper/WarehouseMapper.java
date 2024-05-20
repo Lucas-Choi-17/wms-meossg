@@ -1,9 +1,6 @@
 package com.meossg.warehouse.model.mapper;
 
-import com.meossg.warehouse.model.dto.InWarehouseDTO;
-import com.meossg.warehouse.model.dto.OrderDTO;
-import com.meossg.warehouse.model.dto.OrderListDTO;
-import com.meossg.warehouse.model.dto.WhAdminDTO;
+import com.meossg.warehouse.model.dto.*;
 
 import java.util.List;
 
@@ -24,4 +21,6 @@ public interface WarehouseMapper {
     int updateTblDelivery(int id);
 
     int updateStock(int id);
+
+    List<PlacingOrderDTO> selectAllPlacingOrder();
 }

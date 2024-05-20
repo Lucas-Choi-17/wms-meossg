@@ -1,6 +1,7 @@
 package com.meossg.warehouse.controller;
 
 import com.meossg.warehouse.model.dto.OrderListDTO;
+import com.meossg.warehouse.model.dto.PlacingOrderDTO;
 import com.meossg.warehouse.model.service.WarehouseService;
 
 import java.util.List;
@@ -30,5 +31,9 @@ public class OutWarehouseController {
         }
 
         return true;
+    }
+
+    public List<PlacingOrderDTO> selectAllPlacingOrder() {
+        return ws.selectAllPlacingOrder();
     }
 }

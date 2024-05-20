@@ -88,4 +88,14 @@
          WHERE OL.ORDER_ID = #{ id }
            AND S.PRODUCT_ID = OL.PRODUCT_ID
     </update>
+
+    <select id="selectAllPlacingOrder" resultType="PlacingOrderDTO">
+        SELECT
+               PO.ID,
+               (SELECT NAME FROM PRODUCT P WHERE P.ID = PO.ID) AS NAME,
+               PO.COUNT,
+               PO.ORDER_DATE,
+               IF(PO.INWAREHOUSEYN = 'Y','입고완료','입고전') AS INWAREHOUSEYN
+        FROM PLACING_ORDER PO
+    </select>
 </mapper>
