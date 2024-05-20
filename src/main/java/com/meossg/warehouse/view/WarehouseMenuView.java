@@ -4,6 +4,7 @@ import com.meossg.warehouse.controller.OutWarehouseController;
 import com.meossg.warehouse.controller.WarehouseController;
 import com.meossg.warehouse.model.dto.WhStockDTO;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class WarehouseMenuView {
@@ -82,7 +83,7 @@ public class WarehouseMenuView {
             switch (input) {
                 case "1":
                     // 재고 전체 조회
-//                    selectAllStock();
+                    selectAllStock();
                     break;
                 case "2":
                     // 상품명 조회
@@ -98,9 +99,24 @@ public class WarehouseMenuView {
 
     }
 
+    private void selectAllStock() {
+        List<WhStockDTO> stockList = wc.selectAllStock();
+
+        if (stockList != null) {
+            System.out.println("\t전체 재고 조회");
+            for (WhStockDTO stock : stockList) {
+                System.out.println("====================");
+                System.out.println("상품명 : " + stock.getName());
+                System.out.println("수량 : " + stock.getCount());
+            }
+        } else {
+            System.out.println("해당하는 상품이 없습니다 !!");
+        }
+
+    }
+
     private void selectStockByName(String name) {
-        WhStockDTO stock;
-        stock = wc.selectStockByName(name);
+        WhStockDTO stock = wc.selectStockByName(name);
 
         if (stock != null) {
             System.out.println("===== 조회한 상품 =====");

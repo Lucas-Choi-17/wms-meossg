@@ -27,4 +27,6 @@ public interface WarehouseMapper {
     List<OutwarehouseDTO> selectAllOutwarehouse();
 
     WhStockDTO selectStockByName(String name);
+
+    List<WhStockDTO> selectAllStock();
 }
