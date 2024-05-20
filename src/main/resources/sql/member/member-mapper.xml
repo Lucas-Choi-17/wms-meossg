@@ -25,12 +25,12 @@
 
     <select id="selectAllProducts" resultType="ItemDTO">
         SELECT
-            ID,
-            NAME,
-            PRICE,
-            SIZE,
-            COLOR,
-            AVAILABILITY
+        ID,
+        NAME,
+        PRICE,
+        SIZE,
+        COLOR,
+        AVAILABILITY
         FROM PRODUCT
     </select>
 
@@ -47,4 +47,18 @@
         #{count}
         )
     </insert>
+
+    <select id="purchased">
+        SELECT
+        MO.ID,
+        P.NAME,
+        OL.COUNT,
+        IF(ORDER_APPROVEYN='Y', IF(DELIVERYN='Y', '배송완료', '배송대기'), '승인대기중') 'ORDER_STATUS'
+        FROM MEMBER_ORDER MO
+        LEFT JOIN ORDER_LIST OL
+        ON MO.ID = OL.ORDER_ID
+        LEFT JOIN PRODUCT P
+        ON OL.PRODUCT_ID = P.ID
+        WHERE MO.MEMBER_ID = #{memberId}
+    </select>
 </mapper>

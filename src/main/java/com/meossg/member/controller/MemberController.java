@@ -1,6 +1,7 @@
 package com.meossg.member.controller;
 
 import com.meossg.member.model.dto.ItemDTO;
+import com.meossg.member.model.dto.OrderPurchasedDTO;
 import com.meossg.member.model.dto.UserDTO;
 import com.meossg.member.model.service.MemberService;
 import com.meossg.member.view.MemberMenuView;
@@ -148,8 +149,21 @@ public class MemberController {
         MemberService memberService = new MemberService();
         List<ItemDTO> productList = memberService.selectAllProducts();
 
-        for(ItemDTO product : productList){
+        for (ItemDTO product : productList) {
             System.out.println(product);
+        }
+    }
+
+    public void purchased(String memberId) {
+        MemberService memberService = new MemberService();
+        List<OrderPurchasedDTO> orderList = memberService.purchased(memberId);
+
+        if (orderList != null && orderList.size() > 0) {
+            for (OrderPurchasedDTO order : orderList) {
+                System.out.println(order.toString());
+            }
+        } else {
+            System.out.println("주문 내역이 존재하지 않습니다.");
         }
     }
 }

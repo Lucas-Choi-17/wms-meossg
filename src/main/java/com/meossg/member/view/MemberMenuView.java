@@ -92,7 +92,7 @@ public class MemberMenuView {
                 ============================
                 1. 상품 조회
                 2. 상품 구매
-                3. 장바구니
+                3. 구매 내역
                 0. 뒤로가기
                 ============================
                 입력 :\s""";
@@ -110,7 +110,8 @@ public class MemberMenuView {
                     memberController.buy(member.getId());
                     break;
                 case 3:
-                    // 장바구니
+                    // 구매 내역
+                    memberController.purchased(member.getId());
                     break;
                 case 0:
                     // 뒤로가기
