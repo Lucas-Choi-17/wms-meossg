@@ -36,13 +36,17 @@
         id = #{id}
     </update>
 
+    <select id="isPlacingOrderNull" resultType="MallPlacingOrderDTO" parameterType="_int">
+        SELECT *
+        FROM PLACING_ORDER
+        WHERE ID = #{ mallPlacingOrderId }
+    </select>
+
     <select id="checkProductExists" resultType="ProductDTO">
-        select
+        SELECT
         *
-        from
-        product
-        where
-        id = #{productId}
+        FROM PRODUCT
+        WHERE ID = #{ id }
     </select>
 
     <insert id="placingOrder" useGeneratedKeys="true" keyProperty="id">
@@ -64,4 +68,27 @@
         ON
         P.ID = S.PRODUCT_ID;
     </select>
+
+    <select id="selectAllProducts" resultType="ProductDTO">
+        SELECT
+            A.ID,
+            A.NAME,
+            A.PRICE,
+            A.SIZE,
+            A.COLOR,
+            A.AVAILABILITY
+        FROM PRODUCT A
+    </select>
+
+    <select id="selectAllPlacingOrder" resultType="MallPlacingOrderDTO">
+        SELECT * FROM PLACING_ORDER
+    </select>
+
+    <delete id="deletePlacingOrder" parameterType="MallPlacingOrderDTO">
+        DELETE FROM PLACING_ORDER WHERE ID = #{ id };
+
+        ALTER TABLE PLACING_ORDER AUTO_INCREMENT=1;
+        SET @COUNT = 0;
+        UPDATE PLACING_ORDER SET ID = @COUNT:=@COUNT+1;
+    </delete>
 </mapper>

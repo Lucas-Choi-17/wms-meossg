@@ -97,4 +97,16 @@ public class MemberService {
             return null;
         }
     }
+
+    public static ItemDTO selectProductName(String name){
+
+        SqlSession sqlSession = getSqlSession();
+        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+
+        ItemDTO item = memberMapper.selectProductName(name);
+
+        sqlSession.close();
+        return item;
+
+    }
 }
