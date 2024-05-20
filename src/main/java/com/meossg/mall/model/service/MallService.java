@@ -1,11 +1,10 @@
 package com.meossg.mall.model.service;
 
 import com.meossg.mall.model.dao.AdminMapper;
+import com.meossg.mall.model.dao.DeliveryMapper;
+import com.meossg.mall.model.dao.OrderMapper;
 import com.meossg.mall.model.dao.ProductMapper;
-import com.meossg.mall.model.dto.AdminDTO;
-import com.meossg.mall.model.dto.MemberDTO;
-import com.meossg.mall.model.dto.ProductDTO;
-import com.meossg.mall.model.dto.StockDTO;
+import com.meossg.mall.model.dto.*;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -30,6 +29,15 @@ public class MallService {
             sqlSession.rollback();
         }
         sqlSession.close();
+    }
+
+    public List<MemberDTO> selectMemberByName(MemberDTO findName) {
+        SqlSession sqlSession = getSqlSession();
+        AdminMapper memberMapper = sqlSession.getMapper(AdminMapper.class);
+
+        List<MemberDTO> memberList = memberMapper.selectMemberByName(findName);
+
+        return memberList;
     }
 
     public static int modifyProduct(ProductDTO product) {
@@ -119,6 +127,55 @@ public class MallService {
         }
 
         return result > 0;
+    }
+
+    public List<OrderDTO> getAllOrderList() {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        List<OrderDTO> orderList = orderMapper.getAllOrderList();
+
+        sqlSession.close();
+        if (orderList != null && orderList.size() > 0) {
+            return orderList;
+        } else return null;
+    }
+
+    public List<DeliveryDTO> showPostStatus() {
+        SqlSession sqlSession = getSqlSession();
+        DeliveryMapper deliveryMapper = sqlSession.getMapper(DeliveryMapper.class);
+        List<DeliveryDTO> deliveryList = deliveryMapper.showDeliveryList();
+
+        return deliveryList;
+    }
+
+    public List<OrderDTO> getAllOrderListWithStatus() {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        List<OrderDTO> orderList = orderMapper.getAllOrderListWithStatus();
+        sqlSession.close();
+        if (orderList != null && orderList.size() > 0) {
+            return orderList;
+        }
+        return null;
+    }
+
+    public void approveOrder(int orderId) {
+
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        int result1 = orderMapper.approveMemberOrder(orderId);
+        if (result1 > 0) {
+            int result2 = orderMapper.makeOrderDeliver(orderId);
+            if (result2 > 0) {
+                System.out.println("주문 승인!!");
+                sqlSession.commit();
+            } else {
+                sqlSession.rollback();
+            }
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
     }
 }
 

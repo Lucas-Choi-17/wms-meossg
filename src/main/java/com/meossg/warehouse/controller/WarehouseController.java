@@ -1,6 +1,6 @@
 package com.meossg.warehouse.controller;
 
-import com.meossg.mall.model.dto.AdminDTO;
+import com.meossg.mall.model.dto.ProductDTO;
 import com.meossg.warehouse.model.dto.InWarehouseDTO;
 import com.meossg.warehouse.model.dto.OrderListDTO;
 import com.meossg.warehouse.model.dto.WhAdminDTO;

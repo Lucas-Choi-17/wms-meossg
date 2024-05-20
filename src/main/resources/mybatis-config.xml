@@ -17,7 +17,7 @@
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url"
-                          value="jdbc:mysql://dokalab.asuscomm.com:50133/meossgdb"/> <!-- URL database 변경 필요-->
+                          value="jdbc:mysql://dokalab.asuscomm.com:50133/meossgdb?allowMultiQueries=true"/> <!-- URL database 변경 필요-->
                 <property name="username" value="meossg"/> <!-- username 변경 필요-->
                 <property name="password" value="meossg"/> <!-- password 변경 필요-->
             </dataSource>
@@ -25,9 +25,10 @@
     </environments>
     <mappers>
         <mapper resource="sql/mall/mall-mapper.xml"/>
-<!--        <mapper resource="sql/mall/order-mapper.xml"/>-->
+        <mapper resource="sql/mall/order-mapper.xml"/>
         <mapper resource="sql/mall/product-mapper.xml"/>
         <mapper resource="sql/mall/admin-mapper.xml"/>
+        <mapper resource="sql/mall/delivery-mapper.xml"/>
         <mapper resource="sql/member/member-mapper.xml"/>
         <mapper resource="sql/warehouse/warehouse-mapper.xml"/>
         <mapper resource="sql/warehouse/inwarehouse-mapper.xml"/>
