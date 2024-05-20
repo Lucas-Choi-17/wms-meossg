@@ -10,7 +10,7 @@ public interface WarehouseMapper {
 
     List<OrderListDTO> selectAllOrderList();
 
-    OrderDTO selectOrder(int id);
+    MemberOrderDTO selectOrder(int id);
 
     Integer verifyStock(int id);
 
@@ -23,4 +23,6 @@ public interface WarehouseMapper {
     int updateStock(int id);
 
     List<PlacingOrderDTO> selectAllPlacingOrder();
+
+    List<OutwarehouseDTO> selectAllOutwarehouse();
 }
