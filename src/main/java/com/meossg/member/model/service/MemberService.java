@@ -45,6 +45,22 @@ public class MemberService {
         return member;
     }
 
+    public static boolean modifyInfo(UserDTO user) {
+        SqlSession sqlSession = getSqlSession();
+        System.out.println("user ==================== " + user);
+        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+        int result = memberMapper.modifyInfo(user);
+        System.out.println("[MemberService] modifyInfo 의 result : " + result);
+        if(result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+        return result > 0 ? true: false;
+
+    }
+
     public List<ItemDTO> selectAllProducts() {
         SqlSession sqlSession = getSqlSession();
         MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);

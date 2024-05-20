@@ -14,6 +14,8 @@ public interface MemberMapper {
 
     UserDTO personalInquiry(UserDTO user);
 
+    int modifyInfo(UserDTO user);
+
     int buy(Map<String, Object> map);
 
     List<ItemDTO> selectAllProducts();
