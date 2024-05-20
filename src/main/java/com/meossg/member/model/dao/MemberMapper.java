@@ -1,6 +1,7 @@
 package com.meossg.member.model.dao;
 
 import com.meossg.member.model.dto.ItemDTO;
+import com.meossg.member.model.dto.OrderPurchasedDTO;
 import com.meossg.member.model.dto.UserDTO;
 
 import java.util.Map;
@@ -19,4 +20,6 @@ public interface MemberMapper {
     int buy(Map<String, Object> map);
 
     List<ItemDTO> selectAllProducts();
+
+    List<OrderPurchasedDTO> purchased(String memberId);
 }

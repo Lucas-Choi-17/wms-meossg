@@ -2,6 +2,7 @@ package com.meossg.member.model.service;
 
 import com.meossg.member.model.dao.MemberMapper;
 import com.meossg.member.model.dto.ItemDTO;
+import com.meossg.member.model.dto.OrderPurchasedDTO;
 import com.meossg.member.model.dto.UserDTO;
 import org.apache.ibatis.session.SqlSession;
 
@@ -83,5 +84,17 @@ public class MemberService {
             System.out.println("구매 실패!");
         }
         sqlSession.close();
+    }
+
+    public List<OrderPurchasedDTO> purchased(String memberId) {
+        SqlSession sqlSession = getSqlSession();
+        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+        List<OrderPurchasedDTO> orderList = memberMapper.purchased(memberId);
+        if (orderList != null && orderList.size() > 0) {
+            sqlSession.close();
+            return orderList;
+        } else {
+            return null;
+        }
     }
 }
