@@ -4,16 +4,13 @@ import com.meossg.member.model.dto.ItemDTO;
 import com.meossg.member.model.dto.OrderPurchasedDTO;
 import com.meossg.member.model.dto.UserDTO;
 import com.meossg.member.model.service.MemberService;
-import com.meossg.member.view.MemberMenuView;
 
 import java.util.*;
 
 public class MemberController {
 
     public long nonMemberIdx = 0;
-    public UserDTO loginMember;
-
-    public List<UserDTO> memberList = new ArrayList<>();
+    public static UserDTO loginMember;
 
     private final PrintResult printResult;
 
@@ -26,24 +23,23 @@ public class MemberController {
 
     public UserDTO signIn() {
         Scanner sc = new Scanner(System.in);
-        loginMember = new UserDTO();
+        UserDTO user = new UserDTO();
 
         System.out.println("\n1. 로그인을 선택했습니다.");
         System.out.println("아이디와 비밀번호를 입력하세요");
 
         System.out.print("[아이디] 😍 : ");
-        loginMember.setId(sc.nextLine());
+        user.setId(sc.nextLine());
         System.out.print("[비밀번호] 😊 : ");
-        loginMember.setPassword(sc.nextLine());
+        user.setPassword(sc.nextLine());
 
-        UserDTO user = MemberService.userValidCheck(loginMember);
+        user = MemberService.userValidCheck(user);
         if (user == null) {
             System.out.println("아이디와 패스워드가 틀렸습니다.😢");
             return null;
         }
-
         loginMember = user;
-        return loginMember;
+        return user;
     }
 
     public UserDTO bsignIn() {
@@ -81,42 +77,14 @@ public class MemberController {
         System.out.println("\n회원가입이 완료되었습니다 🎉");
     }
 
-    public UserDTO userValidCheck(UserDTO member) {  //사용자가 입력한 아이디와 비밀번호가 memberList에 저장된 회원 정보와 일치하는지 확인하는 메소드
-
-        if (memberList.isEmpty()) return null;  //회원 목록이 비어있는지 확인
-
-        for (UserDTO tmp : memberList) {    //회원 목록을 순회
-            String tmpId = tmp.getId();
-            String tmpPwd = tmp.getPassword();
-
-            if (tmpId.equals(member.getId()) && tmpPwd.equals(member.getPassword())) {  //회원 목록내의 아이디와 비밀번호 일치 여부 확인
-                return tmp;
-            }
-        }
-
-        return null;   //일치하는 회원이 없는 경우 null 반환
-    }
-
-    public boolean isDupleId(UserDTO member) {
-
-        for (UserDTO user : memberList) {
-            String userId = user.getId();
-
-            if (userId.equals(member.getId())) return true;
-        }
-
-        return false;
-    }
-
-    public void personalInquiry(UserDTO user) {
+    public void personalInquiry() {
         MemberService memberService = new MemberService();
 
-        UserDTO member = memberService.personalInquiry(user);
+        UserDTO member = memberService.personalInquiry(loginMember);
         System.out.println(member.toString());
-
     }
 
-    public void modifyInfo(Map<String,String> parameter) {  //회원이 자신의 개인정보수정
+    public void modifyInfo(Map<String, String> parameter) {  //회원이 자신의 개인정보수정
         PrintResult printResult = new PrintResult();
         String id = parameter.get("id");
         String phone = parameter.get("phone");
@@ -136,7 +104,7 @@ public class MemberController {
         }
     }
 
-    public void buy(String memberId) {
+    public void buy() {
         MemberService memberService = new MemberService();
         Scanner sc = new Scanner(System.in);
 
@@ -147,7 +115,7 @@ public class MemberController {
         System.out.print("구매 수량을 입력하세요 : ");
         int count = sc.nextInt();
 
-        map.put("memberId", memberId);
+        map.put("memberId", loginMember.getId());
         map.put("productName", productName);
         map.put("count", count);
 
@@ -163,9 +131,9 @@ public class MemberController {
         }
     }
 
-    public void purchased(String memberId) {
+    public void purchased() {
         MemberService memberService = new MemberService();
-        List<OrderPurchasedDTO> orderList = memberService.purchased(memberId);
+        List<OrderPurchasedDTO> orderList = memberService.purchased(loginMember.getId());
         Scanner sc = new Scanner(System.in);
         MemberController memberController = new MemberController();
 

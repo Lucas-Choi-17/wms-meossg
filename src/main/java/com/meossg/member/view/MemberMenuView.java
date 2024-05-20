@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MemberMenuView {
+    MemberController memberController = new MemberController();
 
     public void menu(UserDTO member) {
 
@@ -83,10 +84,7 @@ public class MemberMenuView {
         }
     }
 
-
-
-    public static void shopView(UserDTO member) {
-        MemberController memberController = new MemberController();
+    private void shopView(UserDTO member) {
         Scanner sc = new Scanner(System.in);
         String menu = """
                 ============================
@@ -109,16 +107,15 @@ public class MemberMenuView {
                     break;
                 case 2:
                     // 상품 구매
-                    memberController.buy(member.getId());
+                    memberController.buy();
                     break;
                 case 3:
                     // 구매 내역
-                    memberController.purchased(member.getId());
+                    memberController.purchased();
                     break;
                 case 0:
                     // 뒤로가기
-//                    return;
-                    break;
+                    return;
                 default:
                     System.out.println("다시 입력해!");
                     break;
@@ -127,7 +124,6 @@ public class MemberMenuView {
     }
 
     private void personalView(UserDTO member) {
-        MemberController memberController = new MemberController();
         Scanner sc = new Scanner(System.in);
         String menu = """
                 ============================
@@ -145,7 +141,7 @@ public class MemberMenuView {
             switch (input) {
                 case 1:
                     // 개인정보 조회
-                    memberController.personalInquiry(member);
+                    memberController.personalInquiry();
                     break;
                 case 2:
                     // 개인정보 수정
@@ -161,7 +157,7 @@ public class MemberMenuView {
         }
     }
 
-    private static Map<String,String> inputModifyMember(UserDTO member){
+    private static Map<String, String> inputModifyMember(UserDTO member) {
 
         Scanner sc = new Scanner(System.in);
         System.out.print("수정할 핸드폰 번호를 입력하세요 ☎ : ");
@@ -171,17 +167,16 @@ public class MemberMenuView {
         System.out.print("수정할 비밀번호를 입력하세요 🔓 : ");
         String password = sc.nextLine();
 
-        Map<String,String> parameter = new HashMap<>();
-        parameter.put("phone",phone);
-        parameter.put("address",address);
-        parameter.put("password",password);
-        parameter.put("id",member.getId());
+        Map<String, String> parameter = new HashMap<>();
+        parameter.put("phone", phone);
+        parameter.put("address", address);
+        parameter.put("password", password);
+        parameter.put("id", member.getId());
         return parameter;
     }
 
     public UserDTO MemberLogin() {
 
-        MemberController memberController = new MemberController();
         Scanner sc = new Scanner(System.in);
         UserDTO member;
 
