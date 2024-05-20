@@ -9,5 +9,7 @@ public interface OrderMapper {
 
     List<OrderDTO> getAllOrderListWithStatus();
 
-    int approveOrder(int orderId);
+    int approveMemberOrder(int orderId);
+
+    int makeOrderDeliver(int orderId);
 }

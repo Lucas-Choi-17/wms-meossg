@@ -105,7 +105,7 @@ public class MemberMenuView {
                     break;
                 case 2:
                     // 상품 구매
-                    memberController.buy();
+                    memberController.buy(member.getId());
                     break;
                 case 3:
                     // 장바구니
