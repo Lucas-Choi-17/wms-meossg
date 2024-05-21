@@ -24,4 +24,8 @@ public interface MemberMapper {
     List<OrderPurchasedDTO> purchased(String memberId);
 
     ItemDTO selectProductName (String name);
+
+    int cancelOrder(int id);
+
+    String getDeliveryStatus(int id);
 }
