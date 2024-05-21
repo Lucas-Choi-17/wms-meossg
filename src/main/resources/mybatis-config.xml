@@ -31,6 +31,5 @@
         <mapper resource="sql/mall/delivery-mapper.xml"/>
         <mapper resource="sql/member/member-mapper.xml"/>
         <mapper resource="sql/warehouse/warehouse-mapper.xml"/>
-        <mapper resource="sql/warehouse/inwarehouse-mapper.xml"/>
     </mappers>
 </configuration>

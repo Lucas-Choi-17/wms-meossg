@@ -140,44 +140,98 @@ public class WarehouseService {
         return list;
     }
 
-    public boolean verifyPlacingOrder(int id) {
+//    public boolean verifyPlacingOrder(int id) {
+//
+//        SqlSession sqlSession = getSqlSession();
+//        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+//        Integer result = warehouseMapper.verifyPlacingOrder(id);
+//
+//        sqlSession.close();
+//        return result != null? true : false;
+//    }
+
+//    public int updateInwarehouseYn(int id) {
+//
+//        SqlSession sqlSession = getSqlSession();
+//        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+//        int result = warehouseMapper.updateInwarehouseYn(id);
+//
+//        sqlSession.close();
+//        return result;
+//    }
+
+//    public int updateStockCount(int id) {
+//
+//        SqlSession sqlSession = getSqlSession();
+//        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+//        int result = warehouseMapper.updateStockCount(id);
+//
+//        sqlSession.close();
+//        return result;
+//    }
+
+//    public int insertInWarehouse(int id) {
+//
+//        SqlSession sqlSession = getSqlSession();
+//        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
+//        int result = warehouseMapper.insertInWarehouse(id);
+//
+//        sqlSession.close();
+//        return result;
+//    }
+
+    public boolean inwarehouse(int id) {
+
+        boolean sqlStatus = true;
 
         SqlSession sqlSession = getSqlSession();
         warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
         Integer result = warehouseMapper.verifyPlacingOrder(id);
 
+        if( result == null){
+            sqlStatus = false;
+            result = 0;
+            System.out.println("해당하는 발주번호가 존재하지않습니다.");
+        }
+
+        if (sqlStatus == true) {
+            result = warehouseMapper.updateInwarehouseYn(id);
+        }
+
+        if (result <= 0){
+            sqlStatus = false;
+            System.out.println("입고상태변경에 실패했습니다.");
+        }
+
+
+        if (sqlStatus == true) {
+            result = warehouseMapper.updateStockCount(id);
+        }
+
+        if(result <= 0){
+            sqlStatus = false;
+            System.out.println("재고 변경에 실패했습니다.");
+        }
+
+
+        if (sqlStatus == true) {
+            result = warehouseMapper.insertInWarehouse(id);
+        }
+
+        if(result <= 0){
+            sqlStatus = false;
+            System.out.println("입고이력 생성에 실패했습니다.");
+        }
+
+        if (sqlStatus == true) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+
+
         sqlSession.close();
-        return result != null? true : false;
 
-    }
-
-    public int updateInwarehouseYn(int id) {
-
-        SqlSession sqlSession = getSqlSession();
-        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
-        int result = warehouseMapper.updateInwarehouseYn(id);
-
-        sqlSession.close();
-        return result;
-    }
-
-    public int updateStockCount(int id) {
-
-        SqlSession sqlSession = getSqlSession();
-        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
-        int result = warehouseMapper.updateStockCount(id);
-
-        sqlSession.close();
-        return result;
-    }
-
-    public int insertInWarehouse(int id) {
-
-        SqlSession sqlSession = getSqlSession();
-        warehouseMapper = sqlSession.getMapper(WarehouseMapper.class);
-        int result = warehouseMapper.insertInWarehouse(id);
-
-        sqlSession.close();
-        return result;
+        return sqlStatus;
     }
 }
