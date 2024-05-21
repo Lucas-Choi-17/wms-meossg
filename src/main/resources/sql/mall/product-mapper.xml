@@ -123,4 +123,13 @@
               A.NAME = #{ productName }
         GROUP BY A.ID;
     </select>
+
+    <select id="profitOfEachProduct" resultType="ProductDTO">
+        SELECT P.ID, P.NAME, IFNULL(J.COUNT, 0)*P.PRICE AS 'PRICE' FROM PRODUCT P
+        LEFT JOIN(SELECT OL.PRODUCT_ID, SUM(OL.COUNT) 'COUNT'
+        FROM MEMBER_ORDER MO
+        LEFT JOIN ORDER_LIST OL
+        ON MO.ID = OL.ORDER_ID
+        WHERE MO.DELIVERYN='Y' GROUP BY OL.PRODUCT_ID) J ON P.ID = J.PRODUCT_ID;
+    </select>
 </mapper>

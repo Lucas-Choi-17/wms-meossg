@@ -267,6 +267,20 @@ public class MallController {
             System.out.println("판매 내역이 없습니다.");
         }
     }
+
+    public void profitOfEachProduct() {
+        List<ProductDTO> profitList = mallService.profitOfEachProduct();
+
+        if (!profitList.isEmpty()) {
+            for (ProductDTO profit : profitList) {
+                System.out.println("[ 상품번호 : " + profit.getId() +
+                        " | 상품명: " + profit.getName() +
+                        " | 매출: " + profit.getPrice() + " ]");
+            }
+        } else {
+            System.out.println("상품이 없습니다.");
+        }
+    }
 }
 
 
