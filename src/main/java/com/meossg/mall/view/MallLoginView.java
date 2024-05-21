@@ -1,6 +1,6 @@
 package com.meossg.mall.view;
 
-import com.meossg.mall.controller.MallController;
+import com.meossg.mall.controller.mallController;
 import com.meossg.mall.model.dto.AdminDTO;
 
 import java.util.Scanner;
@@ -10,7 +10,7 @@ public class MallLoginView {
     public void mallLogin() {
 
         Scanner sc = new Scanner(System.in);
-        MallController mallController = new MallController();
+        mallController mallController = new mallController();
 
         System.out.print("ID : ");
         String id = sc.nextLine();

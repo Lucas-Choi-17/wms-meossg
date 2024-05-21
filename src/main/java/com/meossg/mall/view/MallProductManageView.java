@@ -1,6 +1,6 @@
 package com.meossg.mall.view;
 
-import com.meossg.mall.controller.MallController;
+import com.meossg.mall.controller.mallController;
 import com.meossg.mall.model.dto.ProductDTO;
 
 import java.util.HashMap;
@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MallProductManageView {
+
+    private static mallController mallController = new mallController();
 
     public void productManagingMenu() {
         String menu = """
@@ -30,22 +32,22 @@ public class MallProductManageView {
             switch (input) {
                 case "1":
                     // 상품 전체 조회
-                    MallController.showAllProducts();
+                    mallController.showAllProducts();
                     break;
                 case "2":
                     // 상품 등록
-                    MallController.addProduct(newProduct());
+                    mallController.addProduct(newProduct());
                     break;
                 case "3":
                     // 상품 정보 변경
-                    MallController.modifyProduct(modifyInformation());
+                    mallController.modifyProduct(modifyInformation());
                     break;
                 case "4":
                     // 발주
                     placingOrderMenu();
                     break;
                 case "5":
-                    MallController.getAllStockList();
+                    mallController.getAllStockList();
                     // 재고 조회
                     break;
                 case "0":
@@ -75,15 +77,15 @@ public class MallProductManageView {
             switch (input) {
                 case "1":
                     // 발주 목록 조히
-                    MallController.showAllPlacingOrder();
+                    mallController.showAllPlacingOrder();
                     break;
                 case "2":
                     // 발주 등록
-                    MallController.placingOrder(getProductId());
+                    mallController.placingOrder(getProductId());
                     break;
                 case "3":
                     // 발주 삭제
-                    MallController.deletePlacingOrder(getPlacingOrderId());
+                    mallController.deletePlacingOrder(getPlacingOrderId());
                     break;
                 case "0":
                     return;
@@ -104,7 +106,7 @@ public class MallProductManageView {
         System.out.print("취소할 발주 번호를 입력하세요 : ");
         int mallPlacingOrderId = sc.nextInt();
         // 입력된 발주 번호의 발주 목록 존재 확인
-        int result = MallController.isPlacingOrderNull(mallPlacingOrderId);
+        int result = mallController.isPlacingOrderNull(mallPlacingOrderId);
 
         if (result > 0) {
             map.put("id", mallPlacingOrderId);
@@ -124,7 +126,7 @@ public class MallProductManageView {
         System.out.print("발주하려는 상품 번호를 입력하세요 : ");
         int productId = sc.nextInt();
         // 입력된 번호를 상품 id로 가지는 상품 존재 여부 확인
-        int result = MallController.checkProductExists(productId);
+        int result = mallController.checkProductExists(productId);
 
         if (result > 0) {
             System.out.print("발주 수량을 입력하세요 : ");

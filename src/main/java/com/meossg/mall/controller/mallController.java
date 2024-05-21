@@ -5,16 +5,16 @@ import com.meossg.mall.model.service.MallService;
 
 import java.util.*;
 
-public class MallController {
+public class mallController {
 
-    private static MallService mallService = new MallService();
+    private MallService mallService = new MallService();
 
-    public static void addProduct(ProductDTO product) {
-        MallService.addProduct(product);
+    public void addProduct(ProductDTO product) {
+        mallService.addProduct(product);
     }
 
-    public static void modifyProduct(ProductDTO product) {
-        int result = MallService.modifyProduct(product);
+    public void modifyProduct(ProductDTO product) {
+        int result = mallService.modifyProduct(product);
 
         if (result == 1) {
             System.out.println("상품 정보 변경 성공!!");
@@ -23,10 +23,10 @@ public class MallController {
         }
     }
 
-    public static void placingOrder(Map<String, Integer> map) {
+    public void placingOrder(Map<String, Integer> map) {
 
         if (map != null) {
-            int result = MallService.placingOrder(map);
+            int result = mallService.placingOrder(map);
 
             if (result == 1) {
                 System.out.println("발주 성공!!");
@@ -36,12 +36,12 @@ public class MallController {
         }
     }
 
-    public static int checkProductExists(int productId) {
-        return MallService.checkProductExists(productId);
+    public int checkProductExists(int productId) {
+        return mallService.checkProductExists(productId);
     }
 
-    public static void getAllStockList() {
-        List<StockDTO> stockList = MallService.getAllStockList();
+    public void getAllStockList() {
+        List<StockDTO> stockList = mallService.getAllStockList();
         System.out.println("---------- < 재고 > ----------");
         for (StockDTO stock : stockList) {
             System.out.print("ID : %3s,  ".formatted(stock.getId()));
@@ -50,7 +50,7 @@ public class MallController {
         }
     }
 
-    public static void showAllProducts() {
+    public void showAllProducts() {
         List<ProductDTO> allProductList = mallService.selectAllProducts();
 
         for (ProductDTO product : allProductList) {
@@ -58,7 +58,7 @@ public class MallController {
         }
     }
 
-    public static void showAllPlacingOrder() {
+    public void showAllPlacingOrder() {
         List<MallPlacingOrderDTO> placingOrderList = mallService.selectAllPlacingOrder();
 
         for (MallPlacingOrderDTO placingOrder : placingOrderList) {
@@ -67,14 +67,14 @@ public class MallController {
 
     }
 
-    public static int isPlacingOrderNull(int mallPlacingOrderId) {
-        return MallService.isPlacingOrderNull(mallPlacingOrderId);
+    public int isPlacingOrderNull(int mallPlacingOrderId) {
+        return mallService.isPlacingOrderNull(mallPlacingOrderId);
     }
 
-    public static void deletePlacingOrder(HashMap<String, Integer> placingOrderId) {
+    public void deletePlacingOrder(HashMap<String, Integer> placingOrderId) {
 
         if (placingOrderId != null) {
-            int result = MallService.deletePlacingOrder(placingOrderId);
+            int result = mallService.deletePlacingOrder(placingOrderId);
 
             if (result == 1) {
                 System.out.println(placingOrderId.values() + "번 발주 삭제를 성공했습니다.");

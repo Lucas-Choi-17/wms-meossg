@@ -1,6 +1,6 @@
 package com.meossg.mall.view;
 
-import com.meossg.mall.controller.MallController;
+import com.meossg.mall.controller.mallController;
 import com.meossg.mall.model.dto.MemberDTO;
 
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MallMemberMenuView {
-    MallController control = new MallController();
+    mallController control = new mallController();
     public void memberManageMenu(){
         String memberMenu = ("""
                 ================
