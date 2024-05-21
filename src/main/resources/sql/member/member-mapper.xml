@@ -72,7 +72,7 @@
     <delete id="cancelOrder" parameterType="_int">
         DELETE
         FROM MEMBER_ORDER
-        WHERE ID = #{id}
+        WHERE ID = #{ id }
     </delete>
 
     <select id="getDeliveryStatus" parameterType="_int" resultType="String">

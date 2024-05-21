@@ -1,6 +1,6 @@
 package com.meossg.mall.view;
 
-import com.meossg.mall.controller.MallController;
+import com.meossg.mall.controller.mallController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +40,7 @@ public class MallAnalysisView {
     }
 
     private void checkSalesRateMenu() {
-        MallController mallController = new MallController();
+        mallController mallController = new mallController();
         Scanner sc = new Scanner(System.in);
         String menu = """
                 =========================
@@ -86,7 +86,7 @@ public class MallAnalysisView {
 
 
     private void checkProfit() {
-        MallController mallController = new MallController();
+        mallController mallController = new mallController();
         Scanner sc = new Scanner(System.in);
         String menu = """
                 =========================
