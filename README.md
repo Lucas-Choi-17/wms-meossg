@@ -7,7 +7,7 @@
 * 개발기간 : 2024.05.16 - 2024.05.21 (6일)
 * 회원이 이용할 수 있는 프로그램입니다.
 
-* 
+*
 ## 🧑‍💻팀원 구성
 1. 장윤지 (elliaaa)
 2. 이창민 (l2chmnl)
@@ -26,6 +26,117 @@
 
 ## 프로젝트 구조
 
+```
+JD-5racle
+├── README.md
+└── src/main/java
+      ├── com/meossg
+      |    ├── accountSelectView
+      |    |    └── SelectAccountView.java
+      |    |
+      |    ├── common
+      |    |    └── MyBatisTemplate.java
+      |    |
+      |    ├── run
+      |    |    └── Application.java
+      |    |
+      |    ├── member
+      |    |    ├── controller
+      |    |    |    ├── MemberController.java
+      |    |    |    ├── PrintResult.java
+      |    |    |    └── PrintResult.java
+      |    |    |
+      |    |    ├── model
+      |    |    |    ├── dao
+      |    |    |    |    └── MemberMapper.java
+      |    |    |    |
+      |    |    |    ├── dto
+      |    |    |    |    ├── ItemDTO.java
+      |    |    |    |    ├── OrderPurchaseDTO.java
+      |    |    |    |    └── UserDTO.java
+      |    |    |    |
+      |    |    |    └── service
+      |    |    |         └── MemberService.java
+      |    |    |
+      |    |    └── view
+      |    |         └── MemberMenuView.java
+      |    |
+      |    ├── mall
+      |    |    ├── controller
+      |    |    |    └── mallController.java
+      |    |    |
+      |    |    ├── model
+      |    |    |    ├── dao
+      |    |    |    |    ├── AdminMapper.java
+      |    |    |    |    ├── DeliveryMapper.java
+      |    |    |    |    ├── MallMapper.java
+      |    |    |    |    ├── OrderMapper.java
+      |    |    |    |    └── ProductMapper.java
+      |    |    |    |
+      |    |    |    ├── dto
+      |    |    |    |    ├── AdminDTO.java
+      |    |    |    |    ├── DeliveryDTO.java
+      |    |    |    |    ├── MallOrderDTO.java
+      |    |    |    |    ├── MallPlacingOrderDTO.java
+      |    |    |    |    ├── MemberDTO.java
+      |    |    |    |    ├── ProductDTO.java
+      |    |    |    |    ├── SalesRateDTO.java
+      |    |    |    |    └── StockDTO.java
+      |    |    |    |
+      |    |    |    └── service
+      |    |    |         └── MallService.java
+      |    |    |
+      |    |    └── view
+      |    |         ├── MallAnalysisView.java
+      |    |         ├── MallLoginView.java
+      |    |         ├── MallMemberMenuView.java
+      |    |         ├── MallMenuView.java
+      |    |         ├── MallOrderManageView.java
+      |    |         └── MallProductManageView.java
+      |    └── warehouse
+      |         ├── controller
+      |         |    ├── OutWarehouseController.java
+      |         |    └── WarehouseController.java
+      |         |
+      |         ├── model
+      |         |    ├── mapper
+      |         |    |    └── WarehouseMapper.java
+      |         |    |
+      |         |    ├── dto
+      |         |    |    ├── InWarehouseDTO.java
+      |         |    |    ├── MemberOrderDTO.java
+      |         |    |    ├── OrderListDTO.java
+      |         |    |    ├── OutwarehouseDTO.java
+      |         |    |    ├── PlacingOrderDTO.java
+      |         |    |    ├── WhAdminDTO.java
+      |         |    |    └── WhStockDTO.java
+      |         |    |
+      |         |    └── service
+      |         |         ├── InWarehouseService.java
+      |         |         └── WarehouseService.java
+      |         |
+      |         └── view
+      |              ├── OutWarehouseView.java
+      |              ├── WarehouseLoginView.java
+      |              ├── WarehouseMenuView.java
+      |              └── WarehouseResultMessage.java
+      |
+      └── resources
+           ├── sql
+           |    ├── member
+           |    |   └── member-mapper.xml
+           |    ├── mall
+           |    |   ├── admin-mapper.xml
+           |    |   ├── delivery-mapper.xml
+           |    |   ├── mall-mapper.xml
+           |    |   ├── order-mapper.xml
+           |    |   └── product-mapper.xml
+           |    └── warehouse
+           |        └── warehouse-mapper.xml
+           └── mybatis-config.xml
+```
+
+
 ## 📋역할 분담
 
 #### 장윤지
@@ -38,22 +149,22 @@
 #### 이창민
 * 기능
   1. 내용
-  2. 
+  2.
 
 #### 석현균
 * 기능
   1. 내용
-  2. 
+  2.
 
 #### 고경호
 * 기능
   1. 내용
-  2. 
+  2.
 
 #### 최승인
 * 기능
   1. 내용
-  2. 
+  2.
 
 ## 📕 프로젝트 후기
 
