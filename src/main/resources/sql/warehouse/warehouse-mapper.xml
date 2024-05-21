@@ -48,7 +48,7 @@
         JOIN STOCK b
         ON a.PRODUCT_ID = b.PRODUCT_ID
         WHERE a.ORDER_ID = #{ id }
-        HAVING verif &lt; 0) AS vf
+        HAVING verif &lt;= 0) AS vf
         GROUP BY verif
     </select>
 

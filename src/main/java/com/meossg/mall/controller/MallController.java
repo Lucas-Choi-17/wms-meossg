@@ -3,10 +3,7 @@ package com.meossg.mall.controller;
 import com.meossg.mall.model.dto.*;
 import com.meossg.mall.model.service.MallService;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class MallController {
 
@@ -237,6 +234,38 @@ public class MallController {
             int total = mallService.getPeriodProfit(period);
             System.out.println(total == 0 ? "해당 기간의 수익이 없습니다." : total);
         }
+    }
+
+    public void selectTotalSalesRate() {
+        List<SalesRateDTO> salesRateList;
+
+        salesRateList = mallService.selectTotalSalesRate();
+
+        if (!salesRateList.isEmpty()) {
+            System.out.println("=================== 총 판매량 ===================");
+            for (SalesRateDTO salesRate : salesRateList) {
+                System.out.println(salesRate);
+            }
+            System.out.println("===============================================");
+        } else {
+            System.out.println("판매 내역이 없습니다.");
+        }
+
+
+    }
+
+    public void selectSalesRateByProduct() {
+        List<SalesRateDTO> salesRateList;
+
+//        salesRateList = mallService.selectSalesRateByProduct();
+
+//        if (!salesRateList.isEmpty()) {
+//            for (SalesRateDTO salesRate : salesRateList) {
+//                System.out.println(salesRate);
+//            }
+//        } else {
+//            System.out.println("판매 내역이 없습니다.");
+//        }
     }
 }
 
