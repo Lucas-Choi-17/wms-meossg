@@ -296,6 +296,21 @@ public class MallService {
         sqlSession.close();
         return total;
     }
+
+    public List<SalesRateDTO> selectTotalSalesRate() {
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+
+        List<SalesRateDTO> salesRateList = productMapper.salesTotalSalesRate();
+
+        if (salesRateList != null && !salesRateList.isEmpty()) {
+            sqlSession.close();
+            return salesRateList;
+        } else {
+            sqlSession.close();
+            return null;
+        }
+    }
 }
 
 

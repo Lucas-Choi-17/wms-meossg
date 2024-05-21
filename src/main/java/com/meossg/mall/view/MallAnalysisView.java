@@ -14,6 +14,7 @@ public class MallAnalysisView {
                 통계 및 분석
                 =========================
                 1. 수익 확인
+                2. 판매량 확인
                 0. 뒤로가기
                 =========================
                 입력:\s""";
@@ -26,6 +27,9 @@ public class MallAnalysisView {
                     checkProfit();
                     // 수익 확인
                     break;
+                case 2:
+                    // 판매량 확인
+                    checkSalesRateMenu();
                 case 0:
                     // 뒤로가기
                     return;
@@ -34,6 +38,42 @@ public class MallAnalysisView {
             }
         }
     }
+
+    private void checkSalesRateMenu() {
+        MallController mallController = new MallController();
+        Scanner sc = new Scanner(System.in);
+        String menu = """
+                =========================
+                판매량 확인
+                -------------------------
+                1. 전체 판매량 확인
+                2. 제품별 판매량 확인
+                0. 뒤로가기
+                -------------------------
+                =========================
+                """;
+        while (true) {
+            System.out.println(menu);
+            System.out.print("메뉴를 선택해 주세요 : ");
+            String choice = sc.nextLine().charAt(0)+"";
+            switch (choice) {
+                case "1":
+                    // 전체 판매량 확인
+                    mallController.selectTotalSalesRate();
+                    break;
+                case "2":
+                    // 제품별 판매량 확인
+                    mallController.selectSalesRateByProduct();
+                    break;
+                case "0":
+                    return;
+                default:
+                    System.out.println("다시 입력해주세요.");
+            }
+
+        }
+    }
+
 
     private void checkProfit() {
         MallController mallController = new MallController();

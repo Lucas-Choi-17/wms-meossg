@@ -2,6 +2,7 @@ package com.meossg.mall.model.dao;
 
 import com.meossg.mall.model.dto.MallPlacingOrderDTO;
 import com.meossg.mall.model.dto.ProductDTO;
+import com.meossg.mall.model.dto.SalesRateDTO;
 import com.meossg.mall.model.dto.StockDTO;
 
 import java.util.HashMap;
@@ -25,4 +26,6 @@ public interface ProductMapper {
     MallPlacingOrderDTO isPlacingOrderNull(int mallPlacingOrderId);
 
     int deletePlacingOrder(HashMap<String, Integer> mallPlacingOrder);
+
+    List<SalesRateDTO> salesTotalSalesRate();
 }

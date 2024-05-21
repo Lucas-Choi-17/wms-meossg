@@ -40,6 +40,7 @@ public class OutWarehouseView {
         if (!oc.shipOrder(selOrderId)) {
 
             System.out.println("출고 실패하였습니다.");
+            return;
         }
 
         System.out.println("출고 완료하였습니다.");
