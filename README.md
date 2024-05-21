@@ -9,8 +9,6 @@
 
 * 
 ## 🧑‍💻팀원 구성
-
-0. 이름 (깃허브닉네임)
 1. 장윤지 (elliaaa)
 2. 이창민 (l2chmnl)
 3. 석현균 (gusrbstjr)
@@ -18,9 +16,13 @@
 5. 최승인 (Lucas-Choi-17)
 
 ## ⚙️ 개발 환경
-* Develop : JAVA, MYSQL
-* Version Constrol : Git
-* Communicate : Slack, Notion,ERDCLOUD
+* Develop : IntelliJ IDEA 2024.1.1 (Ultimate Edition)
+* JAVA JDK: Temurin version '17.0.10'
+* MySQL-connector-j : 8.0.33
+* Mybatis : 3.5.6
+* Version Control : Git
+* Communicate : Slack, Zoom, Kakaotalk
+* Collaboration Tool : Figma, ERDCLOUD, Github, Notion
 
 ## 프로젝트 구조
 
