@@ -28,4 +28,6 @@ public interface ProductMapper {
     int deletePlacingOrder(HashMap<String, Integer> mallPlacingOrder);
 
     List<SalesRateDTO> salesTotalSalesRate();
+
+    List<SalesRateDTO> selectSalesRateByProduct(Map<String, String> map);
 }

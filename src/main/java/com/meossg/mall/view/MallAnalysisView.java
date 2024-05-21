@@ -63,7 +63,7 @@ public class MallAnalysisView {
                     break;
                 case "2":
                     // 제품별 판매량 확인
-                    mallController.selectSalesRateByProduct();
+                    mallController.selectSalesRateByProduct(inputName());
                     break;
                 case "0":
                     return;
@@ -72,6 +72,16 @@ public class MallAnalysisView {
             }
 
         }
+    }
+
+    private Map<String, String> inputName() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("판매량을 확인할 제품명을 입력하세요 : ");
+        String productName = sc.nextLine();
+        Map<String, String> map = new HashMap<>();
+        map.put("productName", productName);
+
+        return map;
     }
 
 

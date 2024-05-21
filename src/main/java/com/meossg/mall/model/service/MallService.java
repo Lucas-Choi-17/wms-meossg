@@ -311,6 +311,21 @@ public class MallService {
             return null;
         }
     }
+
+    public List<SalesRateDTO> selectSalesRateByProduct(Map<String, String> map) {
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+
+        List<SalesRateDTO> salesRateList = productMapper.selectSalesRateByProduct(map);
+
+        if (salesRateList != null && !salesRateList.isEmpty()) {
+            sqlSession.close();
+            return salesRateList;
+        } else {
+            sqlSession.close();
+            return null;
+        }
+    }
 }
 
 

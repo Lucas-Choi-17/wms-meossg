@@ -106,4 +106,21 @@
         WHERE D.ORDER_APPROVEYN = 'Y'
         GROUP BY A.ID;
     </select>
+
+    <select id="selectSalesRateByProduct" resultType="SalesRateDTO" parameterType="hashmap">
+        SELECT A.ID productId,
+        A.NAME productName,
+        SUM(B.COUNT) salesCount
+        FROM PRODUCT A
+        JOIN ORDER_LIST B
+        ON A.ID = B.PRODUCT_ID
+        JOIN DELIVERY C
+        ON B.ORDER_ID = C.ORDER_ID
+        JOIN MEMBER_ORDER D
+        ON B.ORDER_ID = D.ID
+        WHERE D.ORDER_APPROVEYN = 'Y'
+            AND
+              A.NAME = #{ productName }
+        GROUP BY A.ID;
+    </select>
 </mapper>
