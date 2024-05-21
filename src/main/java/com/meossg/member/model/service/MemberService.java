@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import static com.meossg.common.MyBatisTemplate.getSqlSession;
 
@@ -36,6 +35,30 @@ public class MemberService {
         } else {
             return null;
         }
+    }
+
+    public static boolean cancelOrder(int id) {
+        SqlSession sqlSession = getSqlSession();
+        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+
+        int result = memberMapper.cancelOrder(id);
+
+        if(result > 0) {
+            sqlSession.commit();
+        }else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+        return result > 0 ? true:false;
+    }
+
+    public static String getDeliveryStatus(int id) {
+        SqlSession sqlSession = getSqlSession();
+        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+        String deliverYN = memberMapper.getDeliveryStatus(id);
+        sqlSession.close();
+        return deliverYN;
+
     }
 
     public UserDTO personalInquiry(UserDTO user) {

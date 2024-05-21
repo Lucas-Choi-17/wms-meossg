@@ -68,4 +68,17 @@
         FROM PRODUCT
         WHERE NAME=#{name}
     </select>
+
+    <delete id="cancelOrder" parameterType="_int">
+        DELETE
+        FROM MEMBER_ORDER
+        WHERE ID = #{id}
+    </delete>
+
+    <select id="findOrderById" parameterType="_int" resultType="String">
+        SELECT
+        DELIVERYN
+        FROM MEMBER_ORDER
+        WHERE ID = #{id}
+    </select>
 </mapper>
