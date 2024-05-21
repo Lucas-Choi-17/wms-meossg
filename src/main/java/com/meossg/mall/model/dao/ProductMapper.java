@@ -19,6 +19,7 @@ public interface ProductMapper {
     ProductDTO checkProductExists(int productId);
 
     List<StockDTO> getAllStockList();
+
     List<ProductDTO> selectAllProducts();
 
     List<MallPlacingOrderDTO> selectAllPlacingOrder();
@@ -28,4 +29,6 @@ public interface ProductMapper {
     int deletePlacingOrder(HashMap<String, Integer> mallPlacingOrder);
 
     List<SalesRateDTO> salesTotalSalesRate();
+
+    List<ProductDTO> profitOfEachProduct();
 }

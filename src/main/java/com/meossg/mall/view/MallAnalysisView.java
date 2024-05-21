@@ -55,7 +55,7 @@ public class MallAnalysisView {
         while (true) {
             System.out.println(menu);
             System.out.print("메뉴를 선택해 주세요 : ");
-            String choice = sc.nextLine().charAt(0)+"";
+            String choice = sc.nextLine().charAt(0) + "";
             switch (choice) {
                 case "1":
                     // 전체 판매량 확인
@@ -84,6 +84,7 @@ public class MallAnalysisView {
                 =========================
                 1. 전체 기간 수익 조회
                 2. 단위 기간 수익 조회
+                3. 제품별 수익 조회
                 0. 뒤로가기
                 =========================
                 입력:\s""";
@@ -99,6 +100,9 @@ public class MallAnalysisView {
                 case 2:
                     // 단위 기간 수익 조회
                     mallController.getPeriodProfit(getPeriod());
+                    break;
+                case 3:
+                    mallController.profitOfEachProduct();
                     break;
                 case 0:
                     // 뒤로가기

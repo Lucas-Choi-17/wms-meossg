@@ -311,6 +311,14 @@ public class MallService {
             return null;
         }
     }
+
+    public List<ProductDTO> profitOfEachProduct() {
+        SqlSession sqlSession = getSqlSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+        List<ProductDTO> productList = productMapper.profitOfEachProduct();
+        sqlSession.close();
+        return productList;
+    }
 }
 
 
