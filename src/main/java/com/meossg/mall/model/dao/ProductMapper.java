@@ -31,4 +31,6 @@ public interface ProductMapper {
     List<SalesRateDTO> salesTotalSalesRate();
 
     List<ProductDTO> profitOfEachProduct();
+
+    List<SalesRateDTO> selectSalesRateByProduct(Map<String, String> map);
 }

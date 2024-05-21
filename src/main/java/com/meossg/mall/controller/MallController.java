@@ -254,18 +254,18 @@ public class MallController {
 
     }
 
-    public void selectSalesRateByProduct() {
+    public void selectSalesRateByProduct(Map<String, String> map) {
         List<SalesRateDTO> salesRateList;
 
-//        salesRateList = mallService.selectSalesRateByProduct();
+        salesRateList = mallService.selectSalesRateByProduct(map);
 
-//        if (!salesRateList.isEmpty()) {
-//            for (SalesRateDTO salesRate : salesRateList) {
-//                System.out.println(salesRate);
-//            }
-//        } else {
-//            System.out.println("판매 내역이 없습니다.");
-//        }
+        if (!salesRateList.isEmpty()) {
+            for (SalesRateDTO salesRate : salesRateList) {
+                System.out.println(salesRate);
+            }
+        } else {
+            System.out.println("판매 내역이 없습니다.");
+        }
     }
 
     public void profitOfEachProduct() {
