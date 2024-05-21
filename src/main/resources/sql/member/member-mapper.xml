@@ -75,7 +75,7 @@
         WHERE ID = #{id}
     </delete>
 
-    <select id="findOrderById" parameterType="_int" resultType="String">
+    <select id="getDeliveryStatus" parameterType="_int" resultType="String">
         SELECT
         DELIVERYN
         FROM MEMBER_ORDER
