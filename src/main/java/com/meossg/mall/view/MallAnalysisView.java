@@ -2,6 +2,8 @@ package com.meossg.mall.view;
 
 import com.meossg.mall.controller.MallController;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MallAnalysisView {
@@ -56,13 +58,44 @@ public class MallAnalysisView {
                     break;
                 case 2:
                     // 단위 기간 수익 조회
-//                    mallController.getPeriodProfit();
+                    mallController.getPeriodProfit(getPeriod());
                     break;
                 case 0:
                     // 뒤로가기
                     return;
                 default:
                     System.out.println("다시 입력하세요.");
+            }
+        }
+    }
+
+    private Map<String, Integer> getPeriod() {
+        Scanner sc = new Scanner(System.in);
+        Map<String, Integer> map = new HashMap<>();
+        System.out.println("------< 기간별 수익 확인 >------");
+        while (true) {
+            System.out.print("확인하려는 연도와 월을 입력하세요(연도 월) - (0: 종료): ");
+            String period = sc.nextLine();
+
+            if (period.equals("0")) {
+                return map;
+            }
+
+            int year = Integer.parseInt(period.substring(0, 4));
+            int month = 0;
+            if (period.length() == 7) {
+                month = Integer.parseInt(period.substring(5, 7));
+            } else if (period.length() == 6) {
+                month = Integer.parseInt(period.substring(5, 6));
+            }
+
+            System.out.println(year + "년 " + month + "월");
+            if (month >= 1 && month <= 12) {
+                map.put("year", year);
+                map.put("month", month);
+                return map;
+            } else {
+                System.out.println("다시 입력하세요.");
             }
         }
     }

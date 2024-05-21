@@ -229,6 +229,15 @@ public class MallController {
         System.out.println("----------< 전체 기간 수익 >----------");
         System.out.println(mallService.getTotalProfit());
     }
+
+    public void getPeriodProfit(Map<String, Integer> period) {
+        if (period.isEmpty()) {
+            return;
+        } else {
+            int total = mallService.getPeriodProfit(period);
+            System.out.println(total == 0 ? "해당 기간의 수익이 없습니다." : total);
+        }
+    }
 }
 
 

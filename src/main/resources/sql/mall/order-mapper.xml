@@ -48,7 +48,7 @@
         VALUE(#{orderId})
     </insert>
 
-    <select id="getTotalProfit">
+    <select id="getTotalProfit" resultType="int">
         select
         SUM(P.PRICE)
         from MEMBER_ORDER MO
@@ -57,6 +57,20 @@
         LEFT JOIN PRODUCT P
         on OL.PRODUCT_ID = P.ID
         WHERE
-        DELIVERYN = 'Y';
+        DELIVERYN = 'Y'
+    </select>
+
+    <select id="getPeriodProfit" resultType="Integer">
+        select
+        SUM(P.PRICE)
+        from MEMBER_ORDER MO
+        LEFT JOIN ORDER_LIST OL
+        ON MO.ID = OL.ORDER_ID
+        LEFT JOIN PRODUCT P
+        on OL.PRODUCT_ID = P.ID
+        WHERE
+        MO.DELIVERYN = 'Y'
+        AND YEAR(MO.ORDER_DATE) = #{year}
+        AND MONTH(MO.ORDER_DATE) = #{month}
     </select>
 </mapper>

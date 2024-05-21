@@ -38,7 +38,7 @@ public class MallService {
 
         MallPlacingOrderDTO mallPlacingOrder = productMapper.isPlacingOrderNull(mallPlacingOrderId);
 
-        if (mallPlacingOrder != null){
+        if (mallPlacingOrder != null) {
             sqlSession.close();
             return 1;
         } else {
@@ -54,7 +54,7 @@ public class MallService {
         int result = productMapper.deletePlacingOrder(mallPlacingOrderId);
 
 
-        if (result > 0){
+        if (result > 0) {
             sqlSession.commit();
             sqlSession.close();
             return 1;
@@ -285,6 +285,14 @@ public class MallService {
         SqlSession sqlSession = getSqlSession();
         OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
         int total = orderMapper.getTotalProfit();
+        sqlSession.close();
+        return total;
+    }
+
+    public int getPeriodProfit(Map<String, Integer> period) {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        int total = orderMapper.getPeriodProfit(period) == null ? 0 : orderMapper.getPeriodProfit(period);
         sqlSession.close();
         return total;
     }
