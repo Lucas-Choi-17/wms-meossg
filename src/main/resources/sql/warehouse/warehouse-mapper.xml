@@ -22,7 +22,7 @@
                OL.COUNT
           FROM ORDER_LIST OL
          WHERE ORDER_ID IN (
-                            SELECT ORDER_ID
+                            SELECT ID
                               FROM MEMBER_ORDER
                              WHERE ORDER_APPROVEYN = 'Y'
                                AND DELIVERYN = 'N'
@@ -38,6 +38,7 @@
                DELIVERYN
           FROM MEMBER_ORDER
          WHERE ID = #{ id }
+           AND ORDER_APPROVEYN = 'Y'
     </select>
 
     <select id="verifyStock" resultType="_int">
@@ -76,10 +77,15 @@
     </update>
 
     <update id="updateTblDelivery">
-        UPDATE DELIVERY SET
-        STATUS = 'Y',
-        TRACKING_NUMBER = (SELECT MAX(TRACKING_NUMBER) FROM DELIVERY) + 1
-        WHERE ORDER_ID = #{ id }
+        WITH max_tracking AS (
+        SELECT MAX(TRACKING_NUMBER) AS max_tracking_number
+        FROM DELIVERY
+        )
+        UPDATE DELIVERY
+        JOIN max_tracking
+        SET STATUS = 'Y',
+        TRACKING_NUMBER = max_tracking.max_tracking_number + 1
+        WHERE ORDER_ID = #{id};
     </update>
 
     <update id="updateStock">
@@ -153,4 +159,14 @@
         SYSDATE()
         )
     </insert>
+
+    <select id="getAllInWarehouseList" resultType="InWarehouseDTO">
+                SELECT
+                I.ID 'id',
+                I.PRODUCT_ID 'productId',
+                I.IN_DATE 'InDate'
+
+                FROM
+                INWAREHOUSE I
+    </select>
 </mapper>
