@@ -84,12 +84,8 @@
         SELECT * FROM PLACING_ORDER
     </select>
 
-    <delete id="deletePlacingOrder" parameterType="MallPlacingOrderDTO">
+    <delete id="deletePlacingOrder" parameterType="Integer">
         DELETE FROM PLACING_ORDER WHERE ID = #{ id };
-
-        ALTER TABLE PLACING_ORDER AUTO_INCREMENT=1;
-        SET @COUNT = 0;
-        UPDATE PLACING_ORDER SET ID = @COUNT:=@COUNT+1;
     </delete>
 
     <select id="salesTotalSalesRate" resultType="SalesRateDTO">

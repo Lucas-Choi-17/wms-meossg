@@ -165,7 +165,6 @@
                 I.ID 'id',
                 I.PRODUCT_ID 'productId',
                 I.IN_DATE 'InDate'
-
                 FROM
                 INWAREHOUSE I
     </select>
