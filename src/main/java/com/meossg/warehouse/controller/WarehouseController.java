@@ -37,25 +37,8 @@ public class WarehouseController {
     }
 
     public void inwarehouse(int id) {
-
-        if (!ws.verifyPlacingOrder(id)) {
-            System.out.println("존재하지 않는 발주번호입니다 !!");
-            return;
+        if (!ws.inwarehouse(id)) {
+            System.out.println("입고 처리에 실패했습니다.");
         }
-
-
-        if (ws.updateInwarehouseYn(id) <= 0) {
-            System.out.println("입고 상태 변환에 실패했습니다 !!");
-            return;
-        }
-
-        if (ws.updateStockCount(id) <= 0) {
-            System.out.println("입고에 실패했습니다 !!");
-        }
-
-        if (ws.insertInWarehouse(id) <= 0) {
-            System.out.println("입고 내역 저장에 실패했습니다.");
-        }
-
     }
 }
