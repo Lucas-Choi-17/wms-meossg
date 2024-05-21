@@ -1,13 +1,13 @@
 package com.meossg.mall.view;
 
-import com.meossg.mall.controller.MallController;
+import com.meossg.mall.controller.mallController;
 
 import java.util.Scanner;
 
 public class MallOrderManageView {
 
     public void orderManagingMenu() {
-        MallController mallController = new MallController();
+        mallController mallController = new mallController();
         String menu = """
                 ============================
                 주문 관리

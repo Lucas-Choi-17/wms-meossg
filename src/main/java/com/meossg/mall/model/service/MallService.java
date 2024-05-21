@@ -17,7 +17,7 @@ public class MallService {
 
     private AdminMapper adminMapper;
 
-    public static void addProduct(ProductDTO product) {
+    public void addProduct(ProductDTO product) {
 
         SqlSession sqlSession = getSqlSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
@@ -32,7 +32,7 @@ public class MallService {
         sqlSession.close();
     }
 
-    public static int isPlacingOrderNull(int mallPlacingOrderId) {
+    public int isPlacingOrderNull(int mallPlacingOrderId) {
         SqlSession sqlSession = getSqlSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 
@@ -47,7 +47,7 @@ public class MallService {
         }
     }
 
-    public static int deletePlacingOrder(HashMap<String, Integer> mallPlacingOrderId) {
+    public int deletePlacingOrder(HashMap<String, Integer> mallPlacingOrderId) {
         SqlSession sqlSession = getSqlSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 
@@ -74,7 +74,7 @@ public class MallService {
         return memberList;
     }
 
-    public static int modifyProduct(ProductDTO product) {
+    public int modifyProduct(ProductDTO product) {
         SqlSession sqlSession = getSqlSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
         try {
@@ -89,7 +89,7 @@ public class MallService {
         }
     }
 
-    public static int placingOrder(Map<String, Integer> map) {
+    public int placingOrder(Map<String, Integer> map) {
         SqlSession sqlSession = getSqlSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
         try {
@@ -104,7 +104,7 @@ public class MallService {
         }
     }
 
-    public static int checkProductExists(int productId) {
+    public int checkProductExists(int productId) {
         SqlSession sqlSession = getSqlSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 
@@ -121,7 +121,7 @@ public class MallService {
 
     }
 
-    public static List<StockDTO> getAllStockList() {
+    public List<StockDTO> getAllStockList() {
         SqlSession sqlSession = getSqlSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
         List<StockDTO> stockList = productMapper.getAllStockList();
