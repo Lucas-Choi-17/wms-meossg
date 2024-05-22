@@ -50,7 +50,7 @@ public class WarehouseMenuView {
                 case "4":
                     // 입고
                     InWarehouseSubMenu();
-
+                    break;
                 case "5":
                     //입고 내역 조회
                     WarehouseController.getInWarehouse();
@@ -58,6 +58,7 @@ public class WarehouseMenuView {
                 case "6":
                     // 재고 조회
                     selectStock();
+                    break;
                 case "9":
                     System.out.println("로그아웃 합니다.");
                     return;
