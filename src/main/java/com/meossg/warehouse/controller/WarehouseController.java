@@ -11,7 +11,6 @@ import java.util.List;
 public class WarehouseController {
 
     WarehouseService ws = new WarehouseService();
-    OutWarehouseView ov = new OutWarehouseView();
 
     public static void getInWarehouse() {
         List<InWarehouseDTO> inWarehouseDTOList = InWarehouseService.getAllInWarehouseList();
@@ -39,6 +38,8 @@ public class WarehouseController {
     public void inwarehouse(int id) {
         if (!ws.inwarehouse(id)) {
             System.out.println("입고 처리에 실패했습니다.");
+        } else {
+            System.out.println("입고 처리에 성공하였습니다.");
         }
     }
 }
