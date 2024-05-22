@@ -91,6 +91,7 @@ public class MemberService {
 
         List<ItemDTO> productList = memberMapper.selectAllProducts();
 
+        sqlSession.close();
         return productList;
     }
 
