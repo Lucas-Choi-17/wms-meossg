@@ -70,7 +70,7 @@ public class WarehouseMenuView {
                 ===== 입고 메뉴 =====
                 1. 발주 목록 조회
                 2. 입고
-                9. 종료
+                9. 뒤로가기
                 선택 :\s""";
 
         while (true) {
@@ -88,7 +88,6 @@ public class WarehouseMenuView {
                     wc.inwarehouse(inputPlacingOrderId());
                     break;
                 case "9":
-                    System.out.println("종료 합니다.");
                     return;
                 default:
                     System.out.println("다시 입력해주세요.");
@@ -107,7 +106,7 @@ public class WarehouseMenuView {
                 =======================
                 1. 재고 전체 조회
                 2. 상품명 조회
-                9. 종료
+                9. 뒤로가기
                 선택 :\s""";
         while (true) {
             System.out.print(menu);
