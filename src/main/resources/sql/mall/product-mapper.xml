@@ -9,7 +9,9 @@
         PRODUCT
         VALUES (
         null, #{name}, #{price}, #{size}, #{color}, #{availability}
-        )
+        );
+
+        INSERT INTO STOCK VALUES ((SELECT MAX(ID) FROM PRODUCT), 0)
     </insert>
 
     <update id="modifyProduct">
@@ -54,7 +56,7 @@
         PLACING_ORDER (PRODUCT_ID, COUNT, ORDER_DATE, INWAREHOUSEYN)
         VALUES (
         #{id}, #{count}, NOW(), 'N'
-        )
+        );
     </insert>
 
     <select id="getAllStockList" resultType="StockDTO">
@@ -71,12 +73,12 @@
 
     <select id="selectAllProducts" resultType="ProductDTO">
         SELECT
-            A.ID,
-            A.NAME,
-            A.PRICE,
-            A.SIZE,
-            A.COLOR,
-            A.AVAILABILITY
+        A.ID,
+        A.NAME,
+        A.PRICE,
+        A.SIZE,
+        A.COLOR,
+        A.AVAILABILITY
         FROM PRODUCT A
     </select>
 
@@ -115,8 +117,8 @@
         JOIN MEMBER_ORDER D
         ON B.ORDER_ID = D.ID
         WHERE D.ORDER_APPROVEYN = 'Y'
-            AND
-              A.NAME = #{ productName }
+        AND
+        A.NAME = #{ productName }
         GROUP BY A.ID;
     </select>
 
