@@ -24,6 +24,6 @@ public class MallPlacingOrderDTO {
                 " | 상품번호: " + productId +
                 " | 발주수량: " + count +
                 " | 발주일: " + orderDate +
-                " | 상품판매여부: " + inWarehouseYN + " }";
+                " | 입고여부: " + inWarehouseYN + " }";
     }
 }
