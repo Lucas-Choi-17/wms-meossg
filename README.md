@@ -29,8 +29,13 @@
 2.	재고 관리: 현재 재고 상태를 확인하고 필요한 조치를 취합니다.
 3.	배송 처리: 쇼핑몰에서 주문한 상품을 회원의 주소로 배송합니다.
 
+
 ### 데이터베이스 구성
 <img src="https://github.com/ssg-240304-java2/wms-meossg/assets/83406742/cbbd4ba4-43e3-4fe1-90a0-6f3a9db0720f">
+
+### 메뉴 구조도
+<img src="https://github.com/ssg-240304-java2/wms-meossg/assets/83406742/ea13b919-5382-4cab-b952-a7df6e76e729">
+
 
 ### 기대효과
 * 효율성 증가: 쇼핑몰과 창고의 통합 관리를 통해 운영 효율성을 높입니다.
