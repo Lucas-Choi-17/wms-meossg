@@ -113,7 +113,6 @@ public class MemberController {
         System.out.print("구매하려는 상품명을 입력하세요 : ");
         String productName = sc.nextLine();
         while (checkProductName(productName) == 0) {
-            productName = null;
             System.out.println("상품명을 정확히 입력해야 합니다.");
             System.out.print("구매하려는 상품명을 입력하세요 : ");
             productName = sc.nextLine();
@@ -128,6 +127,7 @@ public class MemberController {
         memberService.buy(map);
     }
 
+    // 상품명 오입력 체크 메서드
     private int checkProductName(String productName) {
         int check = 0;
         List<ItemDTO> productList = memberService.selectAllProducts();
