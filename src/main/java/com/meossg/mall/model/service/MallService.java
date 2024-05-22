@@ -70,7 +70,7 @@ public class MallService {
         AdminMapper memberMapper = sqlSession.getMapper(AdminMapper.class);
 
         List<MemberDTO> memberList = memberMapper.selectMemberByName(findName);
-
+        sqlSession.close();
         return memberList;
     }
 
