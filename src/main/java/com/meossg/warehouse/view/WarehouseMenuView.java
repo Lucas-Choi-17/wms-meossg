@@ -23,9 +23,6 @@ public class WarehouseMenuView {
                 4. 입고
                 5. 입고 내역 조회
                 6. 재고 조회
-                """+
-//                5. 입고
-                """
                 9. 로그아웃
                 선택 :\s""";
 

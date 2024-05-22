@@ -14,7 +14,7 @@ public class SelectAccountView {
         Scanner sc = new Scanner(System.in);
         String menu = """
                 =======================
-                1. 고객 접속
+                1. 회원 접속
                 2. 쇼핑몰 관리자 접속
                 3. 창고 관리자 접속
                 9. 종료

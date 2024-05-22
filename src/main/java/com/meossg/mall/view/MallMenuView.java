@@ -13,13 +13,13 @@ public class MallMenuView {
     public void mallMenu(AdminDTO admin) {
         String menu = """
                 ============================
-                1. 상품관리
-                2. 주문관리
-                3. 회원관리
-                4. 통계 및 분석
+                1. 상품 관리
+                2. 주문 관리
+                3. 회원 관리
+                4. 통계
                 0. 로그아웃
                 ============================
-                선택 :\t""";
+                선택 :\s""";
         while (true) {
             System.out.print(menu);
             String input = new Scanner(System.in).next();
@@ -37,7 +37,7 @@ public class MallMenuView {
                     break;
                 case "4":
                     mallAnalysisView.analysisMenu();
-                    // 통계 및 분석
+                    // 통계
                     break;
                 case "0":
                     // 로그아웃
