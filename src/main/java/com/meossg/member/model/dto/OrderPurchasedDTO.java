@@ -14,12 +14,10 @@ public class OrderPurchasedDTO {
 
     @Override
     public String toString() {
-        return "OrderPurchasedDTO{" +
-                "주문번호: " + orderId +
-                ", 상품명: " + productName + '\'' +
+        return "주문번호: " + orderId +
+                ", 상품명: " + productName +
                 ", 수량: " + count +
-                ", 주문상태: " + orderStatus + '\'' +
-                '}';
+                ", 주문상태: " + orderStatus;
     }
 }
 
