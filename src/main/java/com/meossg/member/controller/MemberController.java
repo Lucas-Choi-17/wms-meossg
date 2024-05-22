@@ -112,6 +112,12 @@ public class MemberController {
         System.out.println("-------< 상품 구매 >-------");
         System.out.print("구매하려는 상품명을 입력하세요 : ");
         String productName = sc.nextLine();
+        while (checkProductName(productName) == 0) {
+            productName = null;
+            System.out.println("상품명을 정확히 입력해야 합니다.");
+            System.out.print("구매하려는 상품명을 입력하세요 : ");
+            productName = sc.nextLine();
+        }
         System.out.print("구매 수량을 입력하세요 : ");
         int count = sc.nextInt();
 
@@ -120,6 +126,17 @@ public class MemberController {
         map.put("count", count);
 
         memberService.buy(map);
+    }
+
+    private int checkProductName(String productName) {
+        int check = 0;
+        List<ItemDTO> productList = memberService.selectAllProducts();
+        for (ItemDTO item : productList) {
+            if (item.getName().equals(productName)) {
+                check++;
+            }
+        }
+        return check;
     }
 
     public void selectAllProducts() {
