@@ -16,7 +16,7 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    public MemberController(){
+    public MemberController() {
         printResult = new PrintResult();
         memberService = new MemberService();
     }
@@ -163,21 +163,22 @@ public class MemberController {
             while (true) {
                 System.out.println("사용할 번호를 선택해주세요");
                 System.out.println("1. 주문 상품 선택 2. 주문 상품 취소 0.뒤로가기");
-            int input = sc.nextInt();
-            switch (input) {
-                case 1: //주문한 상품 선택 / 주문 선택하면 해당 정보 출력
-                    memberController.selectProductName(inputProductName());
-                    break;
-                case 2 : //주문 정보 출력 후 해당 주문 취소하기
-                    memberController.cancelOrder(inputOrderId());
-                case 0:
-                   // 뒤로가기
-                   return;
-                default:
-                    System.out.println("다시 입력해주셔요!");
-                    break;
+                System.out.print("입력 : ");
+                int input = sc.nextInt();
+                switch (input) {
+                    case 1: //주문한 상품 선택 / 주문 선택하면 해당 정보 출력
+                        memberController.selectProductName(inputProductName());
+                        break;
+                    case 2: //주문 정보 출력 후 해당 주문 취소하기
+                        memberController.cancelOrder(inputOrderId());
+                    case 0:
+                        // 뒤로가기
+                        return;
+                    default:
+                        System.out.println("다시 입력해주셔요!");
+                        break;
+                }
             }
-        }
 
             // 정보 출력 후 해당 주문 취소하기 / 뒤로가기
 
@@ -199,51 +200,51 @@ public class MemberController {
         System.out.println("주문한 상품 이름을 입력하세요 : ");
         String name = sc.nextLine();
 
-        Map<String,String> parameter = new HashMap<>();
+        Map<String, String> parameter = new HashMap<>();
         parameter.put("name", name);
 
         return parameter;
 
     }
 
-    public void selectProductName(Map<String,String> parameter){
+    public void selectProductName(Map<String, String> parameter) {
 
         String name = parameter.get("name");
 
         ItemDTO item = MemberService.selectProductName(name);
 
-        if(item != null) {
+        if (item != null) {
             printResult.printPurchased(item);
-        }else {
+        } else {
             printResult.printErrorMessage("selectOne");
         }
     }
 
-    private static Map<String,String> inputOrderId(){
+    private static Map<String, String> inputOrderId() {
         Scanner sc = new Scanner(System.in);
         System.out.print("주문 번호를 입력하세요: ");
         String id = sc.nextLine();
 
-        Map<String,String> parameter = new HashMap<>();
-        parameter.put("id",id);
+        Map<String, String> parameter = new HashMap<>();
+        parameter.put("id", id);
         return parameter;
     }
 
-    public void cancelOrder(Map<String,String> parameter){
-       int id = Integer.parseInt(parameter.get("id"));
+    public void cancelOrder(Map<String, String> parameter) {
+        int id = Integer.parseInt(parameter.get("id"));
 
-       String deliverYN = MemberService.getDeliveryStatus(id);
-       if (deliverYN.equalsIgnoreCase("y")) {
-           // 주문취소가 안되는 경우
-           System.out.println("주문상품이 이미 배송중이므로 주문 취소가 불가능 합니다.");
-       } else {
-           // 주문 취소가 아직 가능한 경우
-           if (MemberService.cancelOrder(id)){
-               printResult.printSuccessMessage("delete");
-           }else {
-               printResult.printErrorMessage("delete");
-           }
-       }
+        String deliverYN = MemberService.getDeliveryStatus(id);
+        if (deliverYN.equalsIgnoreCase("y")) {
+            // 주문취소가 안되는 경우
+            System.out.println("주문상품이 이미 배송중이므로 주문 취소가 불가능 합니다.");
+        } else {
+            // 주문 취소가 아직 가능한 경우
+            if (MemberService.cancelOrder(id)) {
+                printResult.printSuccessMessage("delete");
+            } else {
+                printResult.printErrorMessage("delete");
+            }
+        }
     }
 
 }

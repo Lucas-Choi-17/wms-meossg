@@ -9,36 +9,35 @@ import java.util.Scanner;
 
 public class MallMemberMenuView {
     mallController control = new mallController();
-    public void memberManageMenu(){
+
+    public void memberManageMenu() {
         String memberMenu = ("""
                 ================
                 회원 관리
                 ----------------
                 1. 회원 정보 조회
                 2. 회원 정보 수정
-                0. 이전 메뉴로 돌아가기
+                0. 뒤로가기
                 ----------------
                 ================""");
         while (true) {
             System.out.println(memberMenu);
             System.out.print("메뉴를 선택해 주세요 : ");
-            String choice = (new Scanner(System.in).nextLine().charAt(0))+"";
+            String choice = (new Scanner(System.in).nextLine().charAt(0)) + "";
 
-            switch (choice){
-                case "1" :
+            switch (choice) {
+                case "1":
                     // 회원 정보 조회 메뉴로
                     showMemberMenu();
                     break;
-                case "2" :
+                case "2":
                     // 회원 정보 수정
                     updateMemberMenu();
                     break;
-                case "0" :
-                    System.out.println("잘못된 입력입니다.");
+                case "0":
                     return;
                 default:
                     System.out.println("다시 입력해주세요.");
-
             }
         }
 
@@ -59,22 +58,22 @@ public class MallMemberMenuView {
         while (true) {
             System.out.println(memberUpdateMenu);
             System.out.print("변경할 내용을 선택해 주세요 : ");
-            String choice = (new Scanner(System.in).nextLine().charAt(0))+"";
+            String choice = (new Scanner(System.in).nextLine().charAt(0)) + "";
 
             switch (choice) {
-                case "1" :
+                case "1":
                     control.updatePassword(newPassword());
                     break;
-                case "2" :
+                case "2":
                     control.updatePhone(newPhone());
                     break;
-                case "3" :
+                case "3":
                     control.updateAddress(newAddress());
                     break;
-                case "4" :
+                case "4":
                     control.updateAllInfo(allInfo());
                     break;
-                case "0" :
+                case "0":
                     return;
                 default:
                     System.out.println("다시 입력해 주세요.");
@@ -157,15 +156,15 @@ public class MallMemberMenuView {
             String choice = (sc.nextLine().charAt(0)) + "";
 
             switch (choice) {
-                case "1" :
+                case "1":
                     // 전체 조회
                     control.selectAllMember();
                     break;
-                case "2" :
+                case "2":
                     // 이름으로 조회
                     control.selectMemberByName(inputName());
                     break;
-                case "0" :
+                case "0":
                     return;
                 default:
                     System.out.println("다시 입력해 주세요.");
@@ -182,7 +181,7 @@ public class MallMemberMenuView {
     }
 
 
-    private Map<String, String> newPassword () {
+    private Map<String, String> newPassword() {
         Scanner sc = new Scanner(System.in);
         System.out.print("정보를 수정할 회원의 아이디을 입력하세요 : ");
         String id = sc.nextLine();
@@ -192,7 +191,7 @@ public class MallMemberMenuView {
         String password = sc.nextLine();
 
         Map<String, String> parameter = new HashMap<>();
-        parameter.put("id",id);
+        parameter.put("id", id);
         parameter.put("name", name);
         parameter.put("password", password);
 

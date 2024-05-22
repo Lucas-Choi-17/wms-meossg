@@ -11,7 +11,7 @@ public class MallAnalysisView {
         Scanner sc = new Scanner(System.in);
         String menu = """
                 =========================
-                통계 및 분석
+                통계
                 =========================
                 1. 수익 확인
                 2. 판매량 확인
@@ -50,8 +50,7 @@ public class MallAnalysisView {
                 2. 제품별 판매량 확인
                 0. 뒤로가기
                 -------------------------
-                =========================
-                """;
+                =========================""";
         while (true) {
             System.out.println(menu);
             System.out.print("메뉴를 선택해 주세요 : ");

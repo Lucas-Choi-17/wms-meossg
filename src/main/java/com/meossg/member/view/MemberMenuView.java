@@ -33,7 +33,7 @@ public class MemberMenuView {
 
 
         while (true) {
-            System.out.println(menu);
+            System.out.print(menu);
             int input = sc.nextInt();
             switch (input) {
                 case 1:
@@ -62,7 +62,7 @@ public class MemberMenuView {
                 ============================
                 입력 :\s""";
         while (true) {
-            System.out.println(menu);
+            System.out.print(menu);
             int input = sc.nextInt();
             switch (input) {
                 case 1:
@@ -92,13 +92,13 @@ public class MemberMenuView {
                 ============================
                 1. 상품 조회
                 2. 상품 구매
-                3. 구매 내역
+                3. 구매 내역 관리
                 0. 뒤로가기
                 ============================
                 입력 :\s""";
 
         while (true) {
-            System.out.println(menu);
+            System.out.print(menu);
             int input = sc.nextInt();
             switch (input) {
                 case 1:
@@ -110,7 +110,7 @@ public class MemberMenuView {
                     memberController.buy();
                     break;
                 case 3:
-                    // 구매 내역
+                    // 구매 내역 관리
                     memberController.purchased();
                     break;
                 case 0:
@@ -130,13 +130,13 @@ public class MemberMenuView {
                 개인정보 관리 메뉴
                 ============================
                 1. 개인정보 조회
-                2. 개인 정보 수정
+                2. 개인정보 수정
                 0. 뒤로가기
                 ============================
                 입력 :\s""";
 
         while (true) {
-            System.out.println(menu);
+            System.out.print(menu);
             int input = sc.nextInt();
             switch (input) {
                 case 1:
@@ -181,9 +181,10 @@ public class MemberMenuView {
         UserDTO member;
 
         while (true) {
-            System.out.println("\n\n 안녕하세요! 머쓱 (⊙_⊙;) 입니다.");
+            System.out.println("안녕하세요! 머쓱 (⊙_⊙;) 입니다.");
             System.out.println("사용할 메뉴를 선택해주세요");
             System.out.println("1. 로그인 2: 비회원 로그인 3: 회원가입");
+            System.out.print("입력 : ");
 
             int input = sc.nextInt();
 
