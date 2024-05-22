@@ -6,39 +6,39 @@
 
     <select id="getUser" resultType="WhAdminDTO">
         SELECT
-               ID,
-               NAME,
-               ASSOCIATION,
-               PASSWORD
-          FROM ADMIN
-         WHERE ID = #{ id }
-           AND ASSOCIATION = '창고'
+        ID,
+        NAME,
+        ASSOCIATION,
+        PASSWORD
+        FROM ADMIN
+        WHERE ID = #{ id }
+        AND ASSOCIATION = '창고'
     </select>
 
     <select id="selectAllOrderList" resultType="OrderListDTO">
         SELECT
-               OL.ORDER_ID,
-               (SELECT NAME FROM PRODUCT WHERE ID = OL.PRODUCT_ID) AS NAME,
-               OL.COUNT
-          FROM ORDER_LIST OL
-         WHERE ORDER_ID IN (
-                            SELECT ID
-                              FROM MEMBER_ORDER
-                             WHERE ORDER_APPROVEYN = 'Y'
-                               AND DELIVERYN = 'N'
-                           )
-         ORDER BY ORDER_ID
+        OL.ORDER_ID,
+        (SELECT NAME FROM PRODUCT WHERE ID = OL.PRODUCT_ID) AS NAME,
+        OL.COUNT
+        FROM ORDER_LIST OL
+        WHERE ORDER_ID IN (
+        SELECT ID
+        FROM MEMBER_ORDER
+        WHERE ORDER_APPROVEYN = 'Y'
+        AND DELIVERYN = 'N'
+        )
+        ORDER BY ORDER_ID
     </select>
 
     <select id="selectOrder" resultType="MemberOrderDTO">
         SELECT
-               ID,
-               MEMBER_ID,
-               ORDER_APPROVEYN,
-               DELIVERYN
-          FROM MEMBER_ORDER
-         WHERE ID = #{ id }
-           AND ORDER_APPROVEYN = 'Y'
+        ID,
+        MEMBER_ID,
+        ORDER_APPROVEYN,
+        DELIVERYN
+        FROM MEMBER_ORDER
+        WHERE ID = #{ id }
+        AND ORDER_APPROVEYN = 'Y'
     </select>
 
     <select id="verifyStock" resultType="_int">
@@ -55,15 +55,15 @@
     <insert id="insertOutWarehouse">
         INSERT INTO OUTWAREHOUSE
         (
-            ORDER_NUMBER,
-            PRODUCT_ID,
-            OUT_DATE,
-            ADDRESS
+        ORDER_NUMBER,
+        PRODUCT_ID,
+        OUT_DATE,
+        ADDRESS
         )
         SELECT OL.ORDER_ID,
-            OL.PRODUCT_ID,
-            SYSDATE(),
-            MB.ADDRESS
+        OL.PRODUCT_ID,
+        SYSDATE(),
+        MB.ADDRESS
         FROM ORDER_LIST OL
         JOIN MEMBER_ORDER MO ON OL.ORDER_ID = MO.id
         JOIN MEMBER MB ON MO.MEMBER_ID = MB.id
@@ -90,34 +90,34 @@
 
     <update id="updateStock">
         UPDATE STOCK S, ORDER_LIST OL SET
-            S.COUNT = S.COUNT - OL.COUNT
-         WHERE OL.ORDER_ID = #{ id }
-           AND S.PRODUCT_ID = OL.PRODUCT_ID
+        S.COUNT = S.COUNT - OL.COUNT
+        WHERE OL.ORDER_ID = #{ id }
+        AND S.PRODUCT_ID = OL.PRODUCT_ID
     </update>
 
     <select id="selectAllPlacingOrder" resultType="PlacingOrderDTO">
         SELECT
-               PO.ID,
-               (SELECT NAME FROM PRODUCT P WHERE P.ID = PO.ID) AS NAME,
-               PO.COUNT,
-               PO.ORDER_DATE,
-               IF(PO.INWAREHOUSEYN = 'Y','입고완료','입고전') AS INWAREHOUSEYN
+        PO.ID,
+        (SELECT NAME FROM PRODUCT P WHERE P.ID = PO.PRODUCT_ID) AS NAME,
+        PO.COUNT,
+        PO.ORDER_DATE,
+        IF(PO.INWAREHOUSEYN = 'Y','입고완료','입고전') AS INWAREHOUSEYN
         FROM PLACING_ORDER PO
     </select>
 
     <select id="selectAllOutwarehouse" resultType="OutwarehouseDTO">
         SELECT OW.ID,
-               OW.ORDER_NUMBER,
-               (SELECT NAME FROM PRODUCT P WHERE P.ID = OW.PRODUCT_ID) AS NAME,
-               OW.OUT_DATE,
-               OW.ADDRESS
-          FROM OUTWAREHOUSE OW
+        OW.ORDER_NUMBER,
+        (SELECT NAME FROM PRODUCT P WHERE P.ID = OW.PRODUCT_ID) AS NAME,
+        OW.OUT_DATE,
+        OW.ADDRESS
+        FROM OUTWAREHOUSE OW
     </select>
 
     <select id="selectStockByName" resultType="WhStockDTO">
         SELECT
-               P.NAME,
-               S.COUNT
+        P.NAME,
+        S.COUNT
         FROM STOCK S
         JOIN PRODUCT P ON S.PRODUCT_ID = P.ID
         WHERE P.NAME like CONCAT('%',#{ name },'%')
@@ -125,8 +125,8 @@
 
     <select id="selectAllStock" resultType="WhStockDTO">
         SELECT
-               P.NAME,
-               S.COUNT
+        P.NAME,
+        S.COUNT
         FROM STOCK S
         JOIN PRODUCT P ON S.PRODUCT_ID = P.ID
     </select>
@@ -145,7 +145,7 @@
         UPDATE STOCK S, PLACING_ORDER PO SET
         S.COUNT = S.COUNT + PO.COUNT
         WHERE S.PRODUCT_ID = PO.PRODUCT_ID
-          AND PO.ID = #{ id }
+        AND PO.ID = #{ id }
     </update>
 
     <insert id="insertInWarehouse">
@@ -161,11 +161,11 @@
     </insert>
 
     <select id="getAllInWarehouseList" resultType="InWarehouseDTO">
-                SELECT
-                I.ID 'id',
-                I.PRODUCT_ID 'productId',
-                I.IN_DATE 'InDate'
-                FROM
-                INWAREHOUSE I
+        SELECT
+        I.ID 'id',
+        I.PRODUCT_ID 'productId',
+        I.IN_DATE 'InDate'
+        FROM
+        INWAREHOUSE I
     </select>
 </mapper>
